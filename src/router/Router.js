@@ -9,6 +9,9 @@ import Add from '../pages/Add.vue';
 import Edit from '../pages/Edit.vue';
 import Statistics from '../pages/Statistics.vue';
 import Sponsor from '../pages/Sponsor.vue';
+import Apartment from '../pages/Apartment.vue';
+import AdvanvedSearch from '../pages/AdvancedSearch.vue';
+import SuccessSend from '../pages/SuccessSend.vue';
 
 
 const routes = [
@@ -47,6 +50,18 @@ const routes = [
     {
         path: '/dashboard/apartments/:slug/sponsor',
         component: Sponsor
+    },
+    {
+        path: '/apartment/:slug',
+        component: Apartment
+    },
+    {
+        path: '/advamced-search',
+        component: AdvanvedSearch
+    },
+    {
+        path: '/apartment/:slug/success',
+        component: SuccessSend
     },
 ];
 
