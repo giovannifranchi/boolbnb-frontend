@@ -1,8 +1,18 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import Home from '../pages/Home.vue';
-import About from '../pages/About.vue';
-import Contact from '../pages/Contacts.vue';
+import Login from '../pages/Login.vue';
+import Register from '../pages/Register.vue';
+import Dashboard from '../pages/Dashboard.vue';
+import Apartments from '../pages/Apartments.vue';
+import Add from '../pages/Add.vue';
+import Edit from '../pages/Edit.vue';
+import Statistics from '../pages/Statistics.vue';
+import Sponsor from '../pages/Sponsor.vue';
+import Apartment from '../pages/Apartment.vue';
+import AdvanvedSearch from '../pages/AdvancedSearch.vue';
+import SuccessSend from '../pages/SuccessSend.vue';
+
 
 const routes = [
     {
@@ -10,13 +20,49 @@ const routes = [
         component: Home
     },
     {
-        path: '/about',
-        component: About
+        path: '/login',
+        component: Login
     },
     {
-        path: '/contact',
-        component: Contact
-    }
+        path: '/register',
+        component: Register
+    },
+    {
+        path: '/dashboard',
+        component: Dashboard
+    },
+    {
+        path: '/dashboard/apartments',
+        component: Apartments
+    },
+    {
+        path: '/dashboard/apartments/:slug/add',
+        component: Add
+    },
+    {
+        path: '/dashboard/apartments/:slug/edit',
+        component: Edit
+    },
+    {
+        path: '/dashboard/apartments/:slug/statistics',
+        component: Statistics
+    },
+    {
+        path: '/dashboard/apartments/:slug/sponsor',
+        component: Sponsor
+    },
+    {
+        path: '/apartment/:slug',
+        component: Apartment
+    },
+    {
+        path: '/advamced-search',
+        component: AdvanvedSearch
+    },
+    {
+        path: '/apartment/:slug/success',
+        component: SuccessSend
+    },
 ];
 
 const router = createRouter({
