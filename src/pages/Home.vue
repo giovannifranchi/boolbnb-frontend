@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="text-center">Home Page</h1>
+        <h1 class="text-center">Home Page ciao</h1>
         <ul class="p-5 list-unstyled d-flex gap-3">
             <li>
                 <router-link to="/about">About</router-link>
@@ -13,11 +13,12 @@
 </template>
 
 <script>
-    export default {
-        name: 'Home',
-    }
+import AppleLogo from '../components/icons/appleLogo.vue';
+
+export default {
+    name: "Home",
+    components: { AppleLogo }
+}
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
