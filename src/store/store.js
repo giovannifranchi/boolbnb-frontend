@@ -108,6 +108,14 @@ const store =  createStore({
             } catch (error) {
                 toast.error(error.message);
             }
+        },
+
+        async logout({commit}){
+            await Auth.logout(this.state.user.token);
+            commit('setToken', null);
+            commit('setUserInfo', null);
+            commit('setUserApartments', null);
+            localStorage.clear(); 
         }
 
     }
