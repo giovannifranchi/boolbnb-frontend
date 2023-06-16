@@ -58,15 +58,17 @@ const Ajax = {
         return ajaxRequest(config);
     },
 
-    put: (endpoint, config =  {})=>{
+    put: (endpoint, params, config = {}) => {
         config = {
-            ...config,
-            ...{
-                url: endpoint,
-                method: 'PUT',
-            }
+          ...config,
+          ...{
+            url: endpoint,
+            method: 'PUT',
+            data: params
+          }
         }
-        return ajaxRequest(config);
+    
+        return ajaxRequest(config)
     },
 
     delete: (endpoint, params = null, config = {}) => {
