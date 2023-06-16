@@ -1,35 +1,82 @@
 import { createStore } from "vuex";
 
-import User from "../api/USer";
+import Auth from '../api/Auth';
+import Vendor from '../api/Vendor';
+import Apartment from '../api/Apartment';
+import Service from '../api/Service';
 
 const store =  createStore({
     state: {
         user: {
-            authtoken: null,
-            username: null,
-            role: null,
+
+            info: null,
+            token: null,
+            apartments: null,
+
         },
+
+        apartments: null,
+
+        highlightedApartments: null,
+
+        services: null,
+
     },
 
     getters: {
 
-        getUsername(state){
-            return state.user.username;
+        getUserInfo(state){
+            return state.user.info;
         },
-        getRole(state){
-            return state.user.role;
+
+        getUserApartments(state){
+            return state.user.apartments;
+        },
+
+        getToken(state){
+            return state.user.token;
+        },
+
+        getApartments(state){
+            return state.apartments;
+        },
+
+        getHighlighted(state){
+            return state.highlightedApartments;
+        },
+
+        getServices(state){
+            return state.services;
         }
+
     },
 
     mutations: {
 
-        setUsername(state, value){
-            state.user.username = value;
+        setUserInfo(state, value){
+            state.user.info = value;
         },
 
-        setRole(state, value){
-            state.user.role = value;
+        setUserApartments(state, value){
+            state.user.apartments = value;
+        },
+
+        setToken(state, value){
+            state.user.token = value;
+        },
+
+        setApartments(state, value){
+            state.apartments = value;
+        },
+
+        setHighlighted(state, value){
+            state.highlightedApartments = value;
+        },
+
+        setServices(state, value){
+            state.services = value;
         }
+        
     },
 
     actions: {
