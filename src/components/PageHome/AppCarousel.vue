@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="carousel-row">
         <div class="container">
             <h1>Grandi occasioni</h1>
@@ -7,9 +7,9 @@
             </div>
         </div>
     </div>
-</template>
+</template> -->
   
-<script>
+<!-- <script>
 export default {
     name: "AppCarousel",
     data() {
@@ -44,11 +44,11 @@ export default {
         height: 280px;
     }
 }
-</style>
+</style> -->
   
 
 
-<!-- 
+
 <template>
     <div class="carousel-row">
         <div class="container">
@@ -157,4 +157,4 @@ export default {
     width: 100%;
     height: 100%;
 }
-</style> -->
+</style>
