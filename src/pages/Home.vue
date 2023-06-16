@@ -18,9 +18,4 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/partials/variables';
-
-.carousel {
-    background-color: $custom-black;
-    color: $custom-white;
-}
 </style>

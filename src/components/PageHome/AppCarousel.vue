@@ -1,31 +1,70 @@
-<!-- <template>
+<template>
     <div class="carousel-row">
-        <div class="container">
-            <h1>Grandi occasioni</h1>
-            <div class="carousel">
-                CAROSELLO DI IMMAGINI
+
+        <h1 class="container">Grandi occasioni</h1>
+        <div class="carousel d-flex gap-5">
+            <div class="image-container" v-for="image in images">
+                <img :src="image" alt="img">
             </div>
         </div>
+
     </div>
-</template> -->
-  
-<!-- <script>
+</template> 
+<script>
+
 export default {
     name: "AppCarousel",
     data() {
         return {
-            slides: [
-                { id: 1, title: "Slide 1", image: "https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0" },
-                { id: 2, title: "Slide 2", image: "https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0" },
-                { id: 3, title: "Slide 3", image: "https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0" },
-                { id: 4, title: "Slide 4", image: "https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0" },
-                { id: 5, title: "Slide 5", image: "https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0" },
-                { id: 6, title: "Slide 6", image: "https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0" },
-                { id: 7, title: "Slide 7", image: "https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0" },
-            ],
+            images: [
+                'https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0',
+                'https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0',
+                'https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0',
+                'https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0',
+                'https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0',
+                'https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0',
+                'https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0',
+            ]
         };
+    },
+    mounted() {
+        this.$nextTick(() => {
+            this.startHorizontalScrolling();
+        });
+    },
+    methods: {
+        startHorizontalScrolling() {
+            const container = document.querySelector('.carousel');
+            if (container) {
+                // Calcola la larghezza totale del contenuto
+                const contentWidth = container.scrollWidth - container.clientWidth;
+                // Imposta un intervallo per scorrere automaticamente
+                const scrollInterval = setInterval(() => {
+                    container.scrollLeft += 1; // Puoi regolare la velocità modificando il valore qui
+                    // Verifica se è stato raggiunto il termine del contenuto
+                    if (container.scrollLeft >= contentWidth) {
+                        clearInterval(scrollInterval);
+                        // Avvia il ritorno indietro
+                        this.startReverseHorizontalScrolling(container, contentWidth);
+                    }
+                }, 10); // Puoi regolare l'intervallo di tempo per il movimento qui
+            }
+        },
+        startReverseHorizontalScrolling(container, contentWidth) {
+            // Imposta un intervallo per tornare indietro
+            const reverseScrollInterval = setInterval(() => {
+                container.scrollLeft -= 1; // Puoi regolare la velocità modificando il valore qui
+                // Verifica se è stato raggiunto l'inizio del contenuto
+                if (container.scrollLeft === 0) {
+                    clearInterval(reverseScrollInterval);
+                    // Riprendi lo scorrimento in avanti
+                    this.startHorizontalScrolling();
+                }
+            }, 10); // Puoi regolare l'intervallo di tempo per il movimento qui
+        }
     }
-};
+
+}
 </script>
   
 <style scoped lang="scss">
@@ -33,6 +72,29 @@ export default {
 
 .carousel-row {
     background-color: $custom-black;
+    position: relative;
+
+    &::before {
+        content: '';
+        z-index: 1;
+        width: 300px;
+        height: 100%;
+        position: absolute;
+        background: rgb(37, 42, 52);
+        background: linear-gradient(270deg, rgba(37, 42, 52, 0) 78%, rgba(37, 42, 52, 1) 94%);
+    }
+
+    &::after {
+        content: '';
+        z-index: 1;
+        width: 300px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: rgb(37, 42, 52);
+        background: linear-gradient(90deg, rgba(37, 42, 52, 0) 78%, rgba(37, 42, 52, 1) 94%);
+    }
 
     h1 {
         color: $custom-white;
@@ -40,121 +102,36 @@ export default {
     }
 
     .carousel {
-        color: white;
-        height: 280px;
+        overflow-x: auto;
+        white-space: nowrap;
+        -ms-overflow-style: none;
+        /* Rimuove la barra di scorrimento in Internet Explorer e Microsoft Edge */
+        scrollbar-width: none;
+        /* Rimuove la barra di scorrimento in Firefox */
     }
-}
-</style> -->
-  
+
+    /* Nasconde la barra di scorrimento in Chrome, Safari e Opera */
+    .carousel::-webkit-scrollbar {
+        display: none;
+    }
+
+    .image-container {
+        height: 300px;
+        min-width: 410px;
+        padding: 20px 0;
+        border-radius: 20px;
 
 
-
-<template>
-    <div class="carousel-row">
-        <div class="container">
-            <h1>Grandi occasioni</h1>
-            <div class="carousel">
-                <div class="carousel-slides" :style="carouselStyle">
-                    <div v-for="slide in slides" :key="slide.id" class="carousel-slide">
-                        <img :src="slide.image" :alt="slide.title">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</template>
-  
-<script>
-export default {
-    name: "AppCarousel",
-    data() {
-        return {
-            slides: [
-                { id: 1, title: "Slide 1", image: "https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0" },
-                { id: 2, title: "Slide 2", image: "https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0" },
-                { id: 3, title: "Slide 3", image: "https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0" },
-                { id: 4, title: "Slide 4", image: "https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0" },
-                { id: 5, title: "Slide 5", image: "https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0" },
-                { id: 6, title: "Slide 6", image: "https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0" },
-                { id: 7, title: "Slide 7", image: "https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0" },
-                // Aggiungi altre immagini secondo le tue esigenze
-            ],
-            currentIndex: 0,
-            visibleSlidesCount: 7,
-            slideWidth: 100,
-            slideInterval: null
-        };
-    },
-    computed: {
-        visibleSlides() {
-            const lastIndex = this.slides.length - 1;
-            const start = this.currentIndex;
-            const end = start + this.visibleSlidesCount;
-            if (end <= lastIndex) {
-                return this.slides.slice(start, end);
-            } else {
-                const slides = [...this.slides.slice(start), ...this.slides.slice(0, end - lastIndex - 1)];
-                return slides.length > this.visibleSlidesCount ? slides.slice(0, this.visibleSlidesCount) : slides;
-            }
-        },
-        carouselStyle() {
-            return {
-                width: `${this.slideWidth * this.visibleSlidesCount}%`,
-                transform: `translateX(-${this.slideWidth * this.currentIndex}%)`
-            };
-        }
-    },
-    mounted() {
-        this.startCarousel();
-    },
-    beforeUnmount() {
-        this.stopCarousel();
-    },
-    methods: {
-        startCarousel() {
-            this.slideInterval = setInterval(() => {
-                this.nextSlide();
-            }, 3000); // Intervallo di 3 secondi tra le slide (puoi modificare il valore secondo le tue preferenze)
-        },
-        stopCarousel() {
-            clearInterval(this.slideInterval);
-        },
-        nextSlide() {
-            this.currentIndex = (this.currentIndex + 1) % this.slides.length;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
         }
     }
-};
-</script>
+}
+</style> 
   
-<style scoped lang="scss">
-@import '../../assets/partials/variables';
 
-.carousel-row {
-    background-color: $custom-black;
 
-    h1 {
-        color: $custom-white;
-        padding: 10px 0;
-    }
-}
 
-.carousel {
-    overflow: hidden;
-    position: relative;
-}
-
-.carousel-slides {
-    display: flex;
-    transition: transform 0.5s ease;
-}
-
-.carousel-slide {
-    flex: 0 0 calc(100% / 7);
-    max-width: calc(100% / 7);
-}
-
-.carousel-slide img {
-    width: 100%;
-    height: 100%;
-}
-</style>
