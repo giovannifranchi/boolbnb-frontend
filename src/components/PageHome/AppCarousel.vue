@@ -24,7 +24,8 @@ export default {
                 'https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0',
                 'https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0',
                 'https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0',
-            ]
+            ],
+            isPaused: false
         };
     },
     mounted() {
@@ -35,33 +36,47 @@ export default {
     methods: {
         startHorizontalScrolling() {
             const container = document.querySelector('.carousel');
+            const imageContainers = document.querySelector('.carousel-row');
             if (container) {
-                // Calcola la larghezza totale del contenuto
                 const contentWidth = container.scrollWidth - container.clientWidth;
-                // Imposta un intervallo per scorrere automaticamente
-                const scrollInterval = setInterval(() => {
-                    container.scrollLeft += 1; // Puoi regolare la velocità modificando il valore qui
-                    // Verifica se è stato raggiunto il termine del contenuto
-                    if (container.scrollLeft >= contentWidth) {
-                        clearInterval(scrollInterval);
-                        // Avvia il ritorno indietro
-                        this.startReverseHorizontalScrolling(container, contentWidth);
-                    }
-                }, 10); // Puoi regolare l'intervallo di tempo per il movimento qui
+                let scrollInterval;
+
+                const startScroll = () => {
+                    scrollInterval = setInterval(() => {
+                        container.scrollLeft += 1;
+                        if (container.scrollLeft >= contentWidth) {
+                            clearInterval(scrollInterval);
+                            this.startReverseHorizontalScrolling(container, contentWidth);
+                        }
+                    }, 10);
+                };
+
+                const pauseScroll = () => {
+                    clearInterval(scrollInterval);
+                };
+
+
+                imageContainers.addEventListener('mouseenter', pauseScroll);
+                imageContainers.addEventListener('mouseleave', startScroll);
+
+
+                startScroll();
             }
         },
-        startReverseHorizontalScrolling(container, contentWidth) {
-            // Imposta un intervallo per tornare indietro
+        startReverseHorizontalScrolling(container) {
             const reverseScrollInterval = setInterval(() => {
-                container.scrollLeft -= 1; // Puoi regolare la velocità modificando il valore qui
-                // Verifica se è stato raggiunto l'inizio del contenuto
+                container.scrollLeft -= 1;
                 if (container.scrollLeft === 0) {
                     clearInterval(reverseScrollInterval);
-                    // Riprendi lo scorrimento in avanti
                     this.startHorizontalScrolling();
                 }
-            }, 10); // Puoi regolare l'intervallo di tempo per il movimento qui
-        }
+            }, 10);
+
+            container.forEach((imageContainer) => {
+                imageContainer.removeEventListener('mouseenter', this.pauseScroll);
+                imageContainer.removeEventListener('mouseleave', this.startScroll);
+            });
+        },
     }
 
 }
@@ -98,7 +113,7 @@ export default {
 
     h1 {
         color: $custom-white;
-        padding: 10px 0;
+        padding-top: 15px;
     }
 
     .carousel {
@@ -122,11 +137,19 @@ export default {
         border-radius: 20px;
 
 
+
+
         img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             border-radius: 20px;
+
+            &:hover {
+                border: 2px solid $custom-red;
+                transform: scale(1.06);
+                cursor: pointer;
+            }
         }
     }
 }
