@@ -100,7 +100,7 @@ const store =  createStore({
 
         async register({commit}, data){
             try {
-                const response = Auth.register(data);
+                const response = await Auth.register(data);
                 if(response.error) throw new Error(response.error);
                 localStorage.setItem('token', response.token);
                 commit('setToken', response.token);
