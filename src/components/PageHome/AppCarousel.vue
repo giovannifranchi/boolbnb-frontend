@@ -46,9 +46,9 @@ export default {
 }
 </style>
   
+
+
 <!-- 
-
-
 <template>
     <div class="carousel-row">
         <div class="container">
