@@ -5,6 +5,11 @@ import Vendor from '../api/Vendor';
 import Apartment from '../api/Apartment';
 import Service from '../api/Service';
 
+import { useToast } from "vue-toastification";
+
+const toast = useToast();
+
+
 const store =  createStore({
     state: {
         user: {
@@ -76,19 +81,33 @@ const store =  createStore({
         setServices(state, value){
             state.services = value;
         }
-        
+
     },
 
     actions: {
 
-        async fecthUsername({commit}){
-            const response = await User.getUsername(this.state.user.authtoken);
-            commit('setUsername', response);
+        async login({commit}, data){
+            try {
+                const response = await Auth.login(data);
+                if(response.error) throw new Error(response.error);
+                localStorage.setItem('token', response.token);
+                commit('setToken', response.token);
+                commit('setUserInfo', response.user);
+            }catch(error){
+                toast.error(error.message);
+            }
         },
 
-        async fetchRole({commit}){
-            const response = await User.getRole(this.state.user.authtoken);
-            commit('setRole', response);
+        async register({commit}, data){
+            try {
+                const response = Auth.register(data);
+                if(response.error) throw new Error(response.error);
+                localStorage.setItem('token', response.token);
+                commit('setToken', response.token);
+                commit('setUserInfo', response.user);          
+            } catch (error) {
+                toast.error(error.message);
+            }
         }
 
     }
