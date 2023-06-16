@@ -13,3 +13,5 @@ const Auth = {
         return Ajax.post('/logout',null, {token});
     }
 }
+
+export default Auth;
