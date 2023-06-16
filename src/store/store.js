@@ -116,8 +116,34 @@ const store =  createStore({
             commit('setUserInfo', null);
             commit('setUserApartments', null);
             localStorage.clear(); 
-        }
+        },
 
+        async fetchApartments({commit}){
+            const response = await Apartment.getAll();
+            commit('setApartments', response);
+        },
+
+        async fetchHighlighted({commit}){
+            const response = await Apartment.getHighlighted();
+            commit('setHighlighted', response);
+        },
+
+        async fetchServices({commit}){
+            const response = await Service.get();
+            commit('setServices', response);
+        },
+
+        async fetchUserApartments({commit}){
+            const response = await Vendor.getApartments(this.state.user.token);
+            response.error ? this.dispatch('clear') : commit('setUserApartments', response);
+        },
+
+        clear({commit}){
+            localStorage.clear();
+            commit('setToken', null);
+            commit('setUserInfo', null);
+            commit('setUserApartments', null);
+        }
     }
 });
 
