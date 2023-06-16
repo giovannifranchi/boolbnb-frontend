@@ -1,8 +1,11 @@
 @use './partials/mixins' as *;
 @use './partials/reset' as *;
 @use './partials/variables' as *;
+@use './partials/typography' as *;
+
 // Import all of Bootstrap's CSS
 @import "bootstrap/scss/bootstrap";
+
 
 body {
     background-color: $custom-white;

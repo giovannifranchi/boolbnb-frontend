@@ -1,13 +1,42 @@
 <template>
-    <div>
-        <h1 class="text-center">Header</h1>
-    </div>
+    <header class="p-1">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="logo">BoolBnB</div>
+            <div class="dropdown">
+
+                <font-awesome-icon data-bs-toggle="dropdown" aria-expanded="false" icon="fa-circle-user" class="icon" />
+
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Login</a></li>
+                    <li><a class="dropdown-item" href="#">Register</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
 </template>
 
 <script>
 export default {
     name: "Header",
+
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import '../assets/partials/variables';
+
+header {
+    border-bottom: 0.125rem solid $custom-black;
+
+    .logo {
+        font-size: 3.125rem;
+        color: $custom-red;
+    }
+
+    .icon {
+        font-size: 3.4375rem;
+        color: $custom-black;
+    }
+
+}
+</style>

@@ -1,15 +1,12 @@
 <template>
-    <header>
-        <Header />
-    </header>
+    <Header />
+
 
     <main>
         <router-view></router-view> <!-- Contenuto dinamico -->
     </main>
 
-    <footer>
-        <Footer />
-    </footer>
+    <Footer />
 </template>
   
 
