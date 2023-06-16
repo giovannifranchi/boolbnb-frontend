@@ -35,6 +35,8 @@
     <button class="btn btn-info mt-5" @click="fetchHighlighted">see highlighted</button>
     <p>{{ getHighlighted ? getHighlighted : 'no highlighted yet' }}</p>
   </div>
+
+  <button class="btn-danger" @click="logout">logout</button>
 </template>
 
 <script>
@@ -57,7 +59,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["login", "fetchUserApartments", "fetchApartments", "fetchHighlighted"]),
+    ...mapActions(["login", "fetchUserApartments", "fetchApartments", "fetchHighlighted", "logout"]),
   },
 };
 </script>
