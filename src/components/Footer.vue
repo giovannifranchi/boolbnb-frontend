@@ -50,6 +50,10 @@ footer {
             padding: 8px;
             color: $custom-white;
             font-size: 37px;
+
+            &:hover {
+                color: $custom-red;
+            }
         }
 
     }

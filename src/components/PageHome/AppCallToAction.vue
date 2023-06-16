@@ -59,7 +59,7 @@ export default {
         color: $custom-white;
         font-size: 23px;
         font-weight: bold;
-        border-radius: 100px;
+        border-radius: 10px;
         border: none;
     }
 }

@@ -143,7 +143,7 @@ export default {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 20px;
+            border-radius: 10px;
 
             &:hover {
                 border: 2px solid $custom-red;
