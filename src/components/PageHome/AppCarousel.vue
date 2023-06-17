@@ -1,16 +1,19 @@
 <template>
-    <div class="carousel-row">
+    <div class="carousel-row" v-if="getHighlighted">
         <h1 class="container">Grandi occasioni</h1>
         <div class="carousel d-flex gap-5" @mouseenter="pauseScroll" @mouseleave="resumeScroll">
-            <div class="image-container" v-for="image in images">
-                <img :src="image" alt="img">
+            <div class="image-container" v-for="highlighted in getHighlighted">
+                <img :src="highlighted.thumb" alt="img">
             </div>
         </div>
     </div>
 </template>
   
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 export default {
+
     name: "AppCarousel",
     data() {
         return {
@@ -26,12 +29,23 @@ export default {
             scrollInterval: null,
         };
     },
+    async created(){
+        await this.fetchHighlighted();
+    },
+
     mounted() {
         this.$nextTick(() => {
             this.startHorizontalScrolling();
         });
     },
+
+    computed: {
+        ...mapGetters(['getHighlighted']),
+    },
+
     methods: {
+        ...mapActions(["fetchHighlighted"]),
+
         startHorizontalScrolling() {
             const container = document.querySelector('.carousel');
             const contentWidth = container.scrollWidth - container.clientWidth;
