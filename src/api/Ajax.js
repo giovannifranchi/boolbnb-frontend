@@ -9,19 +9,23 @@ const ajaxRequest = async (config)=> {
 
     config.headers = {};
 
-
     switch(config.method){
         case 'GET':
-            Header.get.authtoken = config.token;
+            Header.get.Authorization = config.token ? `Bearer ${config.token}` : null;
             config.headers = Header.get;
             break;
         case 'POST':
+            Header.post.Authorization = config.token ? `Bearer ${config.token}` : null;
             config.headers = Header.post;
             break;
         case 'PUT':
-            Header.put.authtoken = config.token;
+            Header.put.Authorization = config.token ? `Bearer ${config.token}` : null;
             config.headers = Header.put;
             break;
+        case 'DELETE':
+            Header.delete.Authorization = config.token ? `Bearer ${config.token}` : null;
+            config.headers = Header.delete;
+        default: return;
     }
 
 
@@ -30,6 +34,7 @@ const ajaxRequest = async (config)=> {
 
 
 const Ajax = {
+
     get: (endpoint, config = {})=> {
         config = {
             ...config,
@@ -53,16 +58,34 @@ const Ajax = {
         return ajaxRequest(config);
     },
 
-    put: (endpoint, config =  {})=>{
+    put: (endpoint, params, config = {}) => {
         config = {
-            ...config,
-            ...{
-                url: endpoint,
-                method: 'PUT',
-            }
+          ...config,
+          ...{
+            url: endpoint,
+            method: 'PUT',
+            data: params
+          }
         }
-        return ajaxRequest(config);
-    }
+    
+        return ajaxRequest(config)
+    },
+
+    delete: (endpoint, params = null, config = {}) => {
+        config = {
+          ...config,
+          ...{
+            url: endpoint,
+            method: 'DELETE'
+          }
+        }
+    
+        if (params) {
+          config.data = {data: params}
+        }
+    
+        return ajaxRequest(config)
+      }
 }
 
 
