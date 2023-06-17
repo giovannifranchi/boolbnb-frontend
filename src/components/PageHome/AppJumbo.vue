@@ -8,15 +8,34 @@
 
         </form>
         <div class="image-container">
-            <img src="https://th.bing.com/th/id/R.3620c20c43c551aba303663ef93f81bf?rik=S5tp7TDhtnufBw&riu=http%3a%2f%2ftheaddressmagazine.com%2fwp-content%2fuploads%2f2014%2f03%2fmiami-waterfront-apartments-6.jpg&ehk=WIOoavrZsCmHrdbMXd7Yq5r7WAoaYBM832rGJ4cNS5Y%3d&risl=&pid=ImgRaw&r=0"
+            <img :src="randomHighlight.thumb"
                 alt="">
+                
         </div>
     </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
     name: "AppJumbo",
+
+    computed: {
+        ...mapGetters(['getHighlighted']),
+
+        randomHighlight(){
+            if(this.getHighlighted){
+                return this.getHighlighted[this.randomInt(0, this.getHighlighted.length - 1)];
+            }
+        }
+    },
+
+    methods: {
+        randomInt(min, max){
+            return Math.floor(Math.random() * (max - min) + min);
+        }
+    }
 }
 </script>
 
