@@ -7,7 +7,7 @@
             <div class="button-container"><button type="submit">Cerca</button></div>
 
         </form>
-        <div class="image-container">
+        <div class="image-container" v-if="randomHighlight">
             <img :src="randomHighlight.thumb"
                 alt="">
                 
