@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <!-- <div class="container">
     <form @submit.prevent="login(data)">
 
     <div class="mb-3">
@@ -36,7 +36,18 @@
     <p>{{ getHighlighted ? getHighlighted : 'no highlighted yet' }}</p>
   </div>
 
-  <button class="btn-danger" @click="logout">logout</button>
+  <button class="btn-danger" @click="logout">logout</button> -->
+
+  <button class="btn btn-info" @click="fetchApartments">get apartments</button>
+
+  <div class="row" v-if="getApartments">
+    <div class="col-3" v-for="apartment in getApartments">
+      <img :src="apartment.thumb" alt="" class="img-fluid">
+    </div>
+  </div>
+
+
+
 </template>
 
 <script>
@@ -56,6 +67,12 @@ export default {
 
   computed: {
     ...mapGetters(["getToken", "getUserApartments", "getApartments", "getHighlighted"]),
+
+    first(){
+      if(this.getApartments){
+        return this.getApartments[0];
+      }
+    }
   },
 
   methods: {
