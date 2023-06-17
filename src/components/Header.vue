@@ -31,6 +31,11 @@ header {
     .logo {
         font-size: 3.125rem;
         color: $custom-red;
+        cursor: pointer;
+    }
+
+    .dropdown {
+        cursor: pointer;
     }
 
     .icon {
