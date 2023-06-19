@@ -4,6 +4,7 @@ import Auth from '../api/Auth';
 import Vendor from '../api/Vendor';
 import Apartment from '../api/Apartment';
 import Service from '../api/Service';
+import Plan from "../api/Plan";
 
 import { useToast } from "vue-toastification";
 
@@ -25,6 +26,8 @@ const store =  createStore({
         highlightedApartments: null,
 
         services: null,
+
+        plans: null,
 
     },
 
@@ -52,6 +55,10 @@ const store =  createStore({
 
         getServices(state){
             return state.services;
+        },
+
+        getPlans(state){
+            return state.plans;
         }
 
     },
@@ -80,6 +87,10 @@ const store =  createStore({
 
         setServices(state, value){
             state.services = value;
+        },
+
+        setPlans(state, value){
+            state.plans = value;
         }
 
     },
@@ -136,6 +147,11 @@ const store =  createStore({
         async fetchUserApartments({commit}){
             const response = await Vendor.getApartments(this.state.user.token);
             response.error ? this.dispatch('clear') : commit('setUserApartments', response);
+        },
+
+        async fetchPlans({commit}){
+            const response = await Plan.get();
+            commit('setPlans', response);
         },
 
         clear({commit}){
