@@ -1,7 +1,12 @@
 <script>
-
+import {store} from "../store/store";
 export default {
     name: "ModalFilter",
+    data(){
+        return{
+            store
+        }
+    }
 }
 </script>
 
@@ -42,6 +47,15 @@ export default {
                                 </li>
                             </ul>
                         </div>
+                        <div>
+                        <h5>Servizi</h5>
+                        <div class="form-check" v-for="service in store.service">
+                            <input class="form-check-input" type="checkbox" value="" id="service-check">
+                            <label class="form-check-label" for="service-check">
+                               Service
+                            </label>
+                        </div>
+                     </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-negative" data-bs-dismiss="modal">Annulla</button>
