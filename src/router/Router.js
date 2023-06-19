@@ -12,6 +12,7 @@ import Sponsor from '../pages/Sponsor.vue';
 import Apartment from '../pages/Apartment.vue';
 import AdvancedSearch from '../pages/AdvancedSearch.vue';
 import SuccessSend from '../pages/SuccessSend.vue';
+import PageNotFound from '../pages/PageNotFound.vue';
 
 const routes = [
     {
@@ -19,52 +20,69 @@ const routes = [
         component: MainLayout,
         children: [
             {
-                path: '',
+                name: 'home',
+                path: '/',
                 component: Home
             },
             {
-                path: 'login',
+                name: 'login',
+                path: '/login',
                 component: Login
             },
             {
-                path: 'register',
+                name: 'register',
+                path: '/register',
                 component: Register
             },
             {
-                path: 'dashboard',
+                name: 'dashboard',
+                path: '/dashboard',
                 component: Dashboard
             },
             {
-                path: 'dashboard/apartments',
+                name: 'apartments',
+                path: '/dashboard/apartments',
                 component: Apartments
             },
             {
-                path: 'dashboard/apartments/:slug/add',
+                name: 'add',
+                path: '/dashboard/apartments/:slug/add',
                 component: Add
             },
             {
-                path: 'dashboard/apartments/:slug/edit',
+                name: 'edit',
+                path: '/dashboard/apartments/:slug/edit',
                 component: Edit
             },
             {
-                path: 'dashboard/apartments/:slug/statistics',
+                name: 'statistics',
+                path: '/dashboard/apartments/:slug/statistics',
                 component: Statistics
             },
             {
-                path: 'dashboard/apartments/:slug/sponsor',
+                name: 'sponsor',
+                path: '/dashboard/apartments/:slug/sponsor',
                 component: Sponsor
             },
             {
-                path: 'apartment/:slug',
+                name: 'apartment',
+                path: '/apartment/:slug/:id',
                 component: Apartment
             },
             {
-                path: 'advanced-search',
+                name: 'advancedSearch',
+                path: '/advanced-search',
                 component: AdvancedSearch
             },
             {
-                path: 'apartment/:slug/success',
+                name: 'successSend',
+                path: '/apartment/:slug/success',
                 component: SuccessSend
+            },
+            {
+                name: 'notFound',
+                path: '/:pathMatch(.*)*',
+                component: PageNotFound
             },
         ]
     },
