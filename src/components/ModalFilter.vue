@@ -1,12 +1,25 @@
 <script>
-import {store} from "../store/store";
+import { mapActions, mapGetters } from "vuex";
 export default {
     name: "ModalFilter",
-    data(){
-        return{
-            store
-        }
-    }
+    data() {
+    return {
+      isbusy: true
+    };
+    
+},
+async created() {
+    await this.fetchServices();
+    this.isbusy = false;
+  },
+
+computed: {
+    ...mapGetters(["getServices"]),
+  },
+  methods: {
+    ...mapActions(["fetchServices"])
+}
+
 }
 </script>
 
@@ -47,13 +60,10 @@ export default {
                                 </li>
                             </ul>
                         </div>
-                        <div>
+                        <div v-if="!isbusy">
                         <h5>Servizi</h5>
-                        <div class="form-check" v-for="service in store.service">
-                            <input class="form-check-input" type="checkbox" value="" id="service-check">
-                            <label class="form-check-label" for="service-check">
-                               Service
-                            </label>
+                        <div class="form-check" v-for="service in getServices">                                
+                               {{service.name}}
                         </div>
                      </div>
                     </div>
