@@ -46,8 +46,14 @@
     </div>
   </div> -->
 
-  <div v-if="first">
+  <!-- <div v-if="first">
     <img :src="image.path" alt="" v-for="image in first.images">
+  </div> -->
+
+  <div class="row" v-if="getApartments">
+    <div class="col-2" v-for="apartment in getApartments">
+      <img :src="apartment.thumb" alt="immagine mancante" class="img-fluid">
+    </div>
   </div>
 
 
@@ -86,7 +92,7 @@ export default {
   },
 
   async created(){
-    await this.fetchHighlighted();
+    await this.fetchApartments();
   }
 };
 </script>
