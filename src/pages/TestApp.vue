@@ -38,13 +38,19 @@
 
   <button class="btn-danger" @click="logout">logout</button> -->
 
-  <button class="btn btn-info" @click="fetchApartments">get apartments</button>
+  <!-- <button class="btn btn-info" @click="fetchApartments">get apartments</button>
 
   <div class="row" v-if="getApartments">
     <div class="col-3" v-for="apartment in getApartments">
       <img :src="apartment.thumb" alt="" class="img-fluid">
     </div>
+  </div> -->
+
+  <div v-if="first">
+    <img :src="image.path" alt="" v-for="image in first.images">
   </div>
+
+
 
 
 
@@ -69,8 +75,8 @@ export default {
     ...mapGetters(["getToken", "getUserApartments", "getApartments", "getHighlighted"]),
 
     first(){
-      if(this.getApartments){
-        return this.getApartments[0];
+      if(this.getHighlighted){
+        return this.getHighlighted[0];
       }
     }
   },
@@ -78,6 +84,10 @@ export default {
   methods: {
     ...mapActions(["login", "fetchUserApartments", "fetchApartments", "fetchHighlighted", "logout"]),
   },
+
+  async created(){
+    await this.fetchHighlighted();
+  }
 };
 </script>
 
