@@ -2,17 +2,22 @@ import Ajax from "./Ajax";
 
 const Apartment = {
 
-    getAll: ()=> {
+    getAll: () => {
         return Ajax.get('/apartments');
     },
 
-    getOne: (id)=>{
+    getOne: (id) => {
         return Ajax.get(`/apartments/${id}`);
     },
 
-    getHighlighted: ()=> {
+    getHighlighted: () => {
         return Ajax.get('/apartments/highlighted');
+    },
+
+    searchByPosition: (params) => {
+        return Ajax.get('/apartments/search/advanced', params);
     }
+
 
 }
 

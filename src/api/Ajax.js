@@ -4,12 +4,12 @@ import Header from "./Header";
 
 const baseURL = import.meta.env.VITE_BASE_URL;
 
-const ajaxRequest = async (config)=> {
+const ajaxRequest = async (config) => {
     config.baseURL = baseURL;
 
     config.headers = {};
 
-    switch(config.method){
+    switch (config.method) {
         case 'GET':
             Header.get.Authorization = config.token ? `Bearer ${config.token}` : null;
             config.headers = Header.get;
@@ -35,18 +35,19 @@ const ajaxRequest = async (config)=> {
 
 const Ajax = {
 
-    get: (endpoint, config = {})=> {
+    get: (endpoint, params = null, config = {}) => {
         config = {
             ...config,
             ...{
                 url: endpoint,
-                method: 'GET'
+                method: 'GET',
+                params,
             }
         }
         return ajaxRequest(config);
     },
 
-    post: (endpoint, params, config = {})=> {
+    post: (endpoint, params, config = {}) => {
         config = {
             ...config,
             ...{
@@ -60,32 +61,32 @@ const Ajax = {
 
     put: (endpoint, params, config = {}) => {
         config = {
-          ...config,
-          ...{
-            url: endpoint,
-            method: 'PUT',
-            data: params
-          }
+            ...config,
+            ...{
+                url: endpoint,
+                method: 'PUT',
+                data: params
+            }
         }
-    
+
         return ajaxRequest(config)
     },
 
     delete: (endpoint, params = null, config = {}) => {
         config = {
-          ...config,
-          ...{
-            url: endpoint,
-            method: 'DELETE'
-          }
+            ...config,
+            ...{
+                url: endpoint,
+                method: 'DELETE'
+            }
         }
-    
+
         if (params) {
-          config.data = {data: params}
+            config.data = { data: params }
         }
-    
+
         return ajaxRequest(config)
-      }
+    }
 }
 
 

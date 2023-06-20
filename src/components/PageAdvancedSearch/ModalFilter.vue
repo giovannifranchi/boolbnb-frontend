@@ -1,7 +1,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
-import PriceRange from "../components/PriceRange.vue"
-import DistanceRange from "../components/DistanceRange.vue"
+import PriceRange from "../PageAdvancedSearch/PriceRange.vue"
+import DistanceRange from "../PageAdvancedSearch/DistanceRange.vue"
 export default {
     name: "ModalFilter",
     components: {
@@ -118,12 +118,14 @@ export default {
 
 <style lang="scss" scoped>
 .modal-content {
-    @import '../assets/partials/variables';
+    @import '../../assets/partials/variables';
     border: solid 3px $custom-blu;
     border-radius: 1.5625rem;
-.modal-title{
-    color: $custom-red;
-}
+
+    .modal-title {
+        color: $custom-red;
+    }
+
     .filter-select {
         button {
             border: solid 1px $custom-black;

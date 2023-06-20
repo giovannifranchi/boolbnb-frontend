@@ -70,9 +70,9 @@ const routes = [
                 component: Apartment
             },
             {
-                name: 'advancedSearch',
                 path: '/advanced-search',
-                component: AdvancedSearch
+                name: 'AdvancedSearch',
+                component: AdvancedSearch,
             },
             {
                 name: 'successSend',

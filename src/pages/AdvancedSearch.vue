@@ -1,11 +1,21 @@
 <script>
-import CardImg from '../components/icons/CardImg.vue';
-import ModalFilter from '../components/ModalFilter.vue';
+import CardImg from '../components/PageAdvancedSearch/CardImg.vue';
+import ModalFilter from '../components/PageAdvancedSearch/ModalFilter.vue';
+import Apartment from '../api/Apartment';
 export default {
     name: "AdvancedSearch",
     components: {
         CardImg,
         ModalFilter
+    },
+    data() {
+        return {
+            aparments: [],
+        }
+    },
+    async mounted() {
+        const response = await Apartment.searchByPosition({ latitude: this.$route.query.latitude, longitude: this.$route.query.longitude, radius: 20 });
+        this.aparments = response;
     }
 }
 </script>
@@ -29,17 +39,15 @@ export default {
         <!-- Modal -->
         <ModalFilter />
         <!-- /Modal -->
-        <div class="container p-0 d-flex justify-content-between">
-            <CardImg />
-            <CardImg />
-            <CardImg />
-            <CardImg />
+        <div class="container p-0 d-flex justify-content-between" v-for="apartment in aparments">
+            {{ apartment.name }}
         </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
 @import '../assets/partials/variables';
+
 
 .icon {
     font-size: 1.75rem;
