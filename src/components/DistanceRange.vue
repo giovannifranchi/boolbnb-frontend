@@ -8,12 +8,21 @@ export default {
     <div class="slidecontainer mb-3 mt-2" >
         <h5> Distanza</h5>
         <input type="range" min="1" max="100" value="20" class="slider" id="myRange">
+        <div class="dist-container mt-3">
+            mappa città
+
+        </div>
     </div>
 </template>
 
 
 <style lang="scss" scoped>
     @import '../assets/partials/variables';
+    .dist-container{
+        height: 300px;
+        width: 100%;
+        background-color: $custom-blu;
+    }
    .slider {
         -webkit-appearance: none;
         width: 100%;

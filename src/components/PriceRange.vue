@@ -2,6 +2,7 @@
 export default {
     name: "PriceRage",
 
+
 }
 </script>
 
@@ -17,9 +18,9 @@ export default {
             <input type="range" class="max" min="0" max="1000" value="700" step="10">
         </div>
         <div class="range-price">
-            <label for="min">Min</label>
+            <label for="min">Min €</label>
             <input type="number" name="min" value="300">
-            <label for="max">Max</label>
+            <label for="max">Max €</label>
             <input type="number" name="max" value="700">
         </div>
     </div>
