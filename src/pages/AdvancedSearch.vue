@@ -1,48 +1,7 @@
-<script>
-import CardImg from '../components/PageAdvancedSearch/CardImg.vue';
-import ModalFilter from '../components/PageAdvancedSearch/ModalFilter.vue';
-import Apartment from '../api/Apartment';
-export default {
-    name: "AdvancedSearch",
-    components: {
-        CardImg,
-        ModalFilter
-    },
-    data() {
-        return {
-
-            aparments: [],
-            searchRadius: 20
-        }
-    },
-    mounted() {
-        this.searchApartments();
-    },
-    methods: {
-        async searchApartments() {
-            const response = await Apartment.searchByPosition({ latitude: this.$route.query.latitude, longitude: this.$route.query.longitude, radius: this.searchRadius });
-            this.aparments = response;
-        }
-    },
-    // computed: {
-    //     getAllImages() {
-    //         if (this.apartments) {
-
-    //             // let allImages = [];
-    //             // this.aparments.forEach((apartment, index) => {
-    //             //     const images = { id: apartment.id, images: apartment. };
-    //             //     apartment
-    //             // })
-    //         }
-    //     }
-    // }
-}
-</script>
-
 <template>
-    <div class="container ">
-        <!-- search bar -->
+    <div class="container d-flex justify-content-center align-items-center">
         <div class="custom-container py-5">
+            <!-- search bar -->
             <div class="input-group rounded pb-5">
                 <input type="search" class="form-control rounded" aria-label="Search" placeholder="Old-ricerca"
                     aria-describedby="search-addon" />
@@ -53,22 +12,57 @@ export default {
                     <font-awesome-icon icon="sliders" />
                 </button>
             </div>
-        </div>
-        <!-- /search bar -->
-        <!-- Modal -->
-        <ModalFilter />
-        <!-- /Modal -->
-        <div class="container">
-            <div class="d-flex gap-5">
-                <CardImg v-for="apartment in aparments" :dataApartment="apartment" />
+            <!-- /search bar -->
+
+            <!-- Modal -->
+            <ModalFilter />
+            <!-- /Modal -->
+
+            <div class="container">
+                <div class=" row justify-content-center">
+                    <CardImg v-for="apartment in apartments" :dataApartment="apartment" />
+                </div>
             </div>
         </div>
-
     </div>
 </template>
+  
+<script>
+import CardImg from '../components/PageAdvancedSearch/CardImg.vue';
+import ModalFilter from '../components/PageAdvancedSearch/ModalFilter.vue';
+import Apartment from '../api/Apartment';
 
+export default {
+    name: "AdvancedSearch",
+    components: {
+        CardImg,
+        ModalFilter
+    },
+    data() {
+        return {
+            apartments: [],
+            searchRadius: 20
+        };
+    },
+    mounted() {
+        this.searchApartments();
+    },
+    methods: {
+        async searchApartments() {
+            const response = await Apartment.searchByPosition({
+                latitude: this.$route.query.latitude,
+                longitude: this.$route.query.longitude,
+                radius: this.$route.query.radius
+            });
+            this.apartments = response;
+        }
+    }
+};
+</script>
+  
 <style lang="scss" scoped>
 @import '../assets/partials/variables';
+
 
 
 .icon {

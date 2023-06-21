@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="card  col-3 col-sm-12">
         <!-- carosello -->
         <div :id="'carouselIndicators_' + uniqueId" class="carousel slide">
             <ul class="carousel-indicators">
@@ -67,7 +67,6 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-    width: calc((100% - 40px) / 4);
     background-color: transparent;
     border: none;
 

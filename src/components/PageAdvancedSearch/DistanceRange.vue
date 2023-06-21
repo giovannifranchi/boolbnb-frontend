@@ -3,70 +3,25 @@ import Slider from '@vueform/slider';
 export default {
     name: "PriceRange",
     components: {
-      Slider,
+        Slider,
     },
     data() {
-      return {
-        value: 20
-      }
+        return {
+            range: 20,
+            format: {
+                prefix: 'Km '
+            }
+        }
     }
-  }
+}
 
 </script>
 
 <template>
     <div class="slidecontainer mb-3 mt-2">
-        <h5> Distanza</h5>
+        <h5 class="mb-5 mt-4"> Distanza</h5>
         <div>
-    <Slider v-model="value" />
-  </div>
-<!--         <input type="range" min="1" max="100" value="20" class="slider" id="myRange"> -->
-<!--         <div class="dist-container mt-3">
-            mappa città
-
-        </div> -->
+            <Slider v-model="range" :format="format" />
+        </div>
     </div>
 </template>
-
-
-<style  src="@vueform/slider/themes/default.css">
-
-/* @import '../../assets/partials/variables';
-
-.dist-container {
-    height: 300px;
-    width: 100%;
-    background-color: $custom-blu;
-} */
-
-/* .slider {
-    width: 100%;
-    height: 15px;
-    border-radius: 5px;
-    background: $custom-white;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-}
-
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: $custom-blu;
-    cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: $custom-blu;
-    cursor: pointer;
-} */
-
-/* /distance range */
-</style>

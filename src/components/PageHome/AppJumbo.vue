@@ -34,7 +34,7 @@ export default {
         return {
             inputSearch: '',
             foundedItems: [],
-
+            defaultRadius: 20
         }
     },
     computed: {
@@ -59,7 +59,8 @@ export default {
                 name: 'AdvancedSearch',
                 query: {
                     latitude: object.lat,
-                    longitude: object.lon
+                    longitude: object.lon,
+                    radius: this.defaultRadius
                 }
             });
         },
@@ -69,6 +70,7 @@ export default {
                 query: {
                     latitude: this.foundedItems[0].position.lat,
                     longitude: this.foundedItems[0].position.lon,
+                    radius: this.defaultRadius
                 }
             });
         }
