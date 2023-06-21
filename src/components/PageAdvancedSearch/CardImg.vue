@@ -1,5 +1,5 @@
 <template>
-    <div class="card  col-3 col-sm-12">
+    <div class="card col-lg-4 col-md-4 col-sm-12 mb-5">
         <!-- carosello -->
         <div :id="'carouselIndicators_' + uniqueId" class="carousel slide">
             <ul class="carousel-indicators">
@@ -56,7 +56,7 @@ export default {
                 this.dataApartment.images.forEach((image) => {
                     images.push(image.path)
                 })
-                console.log(images)
+
                 return images;
 
             }

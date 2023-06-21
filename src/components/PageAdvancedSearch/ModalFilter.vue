@@ -24,7 +24,11 @@ export default {
         ...mapGetters(["getServices"]),
     },
     methods: {
-        ...mapActions(["fetchServices"])
+        ...mapActions(["fetchServices"]),
+
+        loadFilter() {
+
+        }
     }
 
 }
@@ -109,7 +113,7 @@ export default {
                 <!-- /main modal -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-negative" data-bs-dismiss="modal">Annulla</button>
-                    <button type="button" class="btn btn-positive">Applica</button>
+                    <button type="button" class="btn btn-positive" @click="loadFilter()">Applica</button>
                 </div>
             </div>
         </div>

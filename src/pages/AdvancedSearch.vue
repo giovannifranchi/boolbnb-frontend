@@ -31,6 +31,7 @@
 import CardImg from '../components/PageAdvancedSearch/CardImg.vue';
 import ModalFilter from '../components/PageAdvancedSearch/ModalFilter.vue';
 import Apartment from '../api/Apartment';
+import { storeFilter } from '../store/storeFilter';
 
 export default {
     name: "AdvancedSearch",
@@ -40,12 +41,19 @@ export default {
     },
     data() {
         return {
+            storeFilter,
             apartments: [],
             searchRadius: 20
         };
     },
     mounted() {
         this.searchApartments();
+    },
+    watch: {
+        getRadius(newValue) {
+            this.searchAdvanced(newValue)
+            console.log(newValue)
+        }
     },
     methods: {
         async searchApartments() {
@@ -54,7 +62,22 @@ export default {
                 longitude: this.$route.query.longitude,
                 radius: this.$route.query.radius
             });
+
             this.apartments = response;
+        },
+        async searchAdvanced(range) {
+            const response = await Apartment.searchByPosition({
+                latitude: this.$route.query.latitude,
+                longitude: this.$route.query.longitude,
+                radius: range
+            })
+            this.apartments = response
+            console.log('call')
+        }
+    },
+    computed: {
+        getRadius() {
+            return this.storeFilter.range
         }
     }
 };
