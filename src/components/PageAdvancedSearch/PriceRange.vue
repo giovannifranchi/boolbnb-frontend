@@ -1,14 +1,19 @@
 <script>
+import Slider from '@vueform/slider';
 export default {
     name: "PriceRage",
+    components: { Slider },
+    data: () => ({
+      value: [20, 40]
+    })
 }
 </script>
 
 <template>
     <div class="price-range">
         <h5>Fascia di prezzo</h5>
-
-        <div class="range-slider  mt-3">
+        <Slider v-model="value" />
+        <!--         <div class="range-slider  mt-3">
             <span class="range-selected"></span>
         </div>
         <div class="range-input">
@@ -20,12 +25,12 @@ export default {
             <input type="number" name="min" value="300">
             <label for="max">Max €</label>
             <input type="number" name="max" value="700">
-        </div>
+        </div> -->
     </div>
 </template>
 
-<style lang="scss" scoped>
-@import '../../assets/partials/variables';
+<style src="@vueform/slider/themes/default.css">
+/* @import '../../assets/partials/variables';
 
 .range-slider {
     height: 15px;
@@ -60,7 +65,7 @@ export default {
     height: 25px;
     width: 25px;
     border-radius: 50%;
-    /*   border: 3px solid $custom-black; */
+      border: 3px solid $custom-black;
     background-color: $custom-blu;
     pointer-events: auto;
     -webkit-appearance: none;
@@ -70,7 +75,7 @@ export default {
     height: 25px;
     width: 25px;
     border-radius: 50%;
-    /*   border: 3px solid $custom-black; */
+      border: 3px solid $custom-black;
     background-color: $custom-blu;
     pointer-events: auto;
     -moz-appearance: none;
@@ -80,7 +85,7 @@ export default {
     margin: 30px 0;
     width: 100%;
     display: flex;
-    /*   justify-content: center; */
+      justify-content: center;
     align-items: center;
 }
 
@@ -96,7 +101,7 @@ export default {
 
 .range-price input:first-of-type {
     margin-right: 15px;
-}
+} */
 
 /* pice range */
 </style>

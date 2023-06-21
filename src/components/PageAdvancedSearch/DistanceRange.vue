@@ -1,5 +1,5 @@
 <script>
- import Slider from '@vueform/slider';
+import Slider from '@vueform/slider';
 export default {
     name: "PriceRange",
     components: {
@@ -30,6 +30,7 @@ export default {
 
 
 <style  src="@vueform/slider/themes/default.css">
+
 /* @import '../../assets/partials/variables';
 
 .dist-container {
