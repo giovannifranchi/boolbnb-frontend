@@ -49,18 +49,7 @@ export default {
         uniqueId() {
             return "cardImg_" + Math.random().toString(36).substr(2, 9);
         },
-    },
-    mounted() {
-        this.$nextTick(() => {
-            const carousel = new bootstrap.Carousel(this.$refs.carousel, {
-                interval: false,
-            });
-
-            carousel.on("slide.bs.carousel", (event) => {
-                this.activeIndex = event.to;
-            });
-        });
-    },
+    }
 };
 </script>
 
