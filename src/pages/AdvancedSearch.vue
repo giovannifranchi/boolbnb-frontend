@@ -11,11 +11,17 @@ export default {
     data() {
         return {
             aparments: [],
+            searchRadius: 20
         }
     },
-    async mounted() {
-        const response = await Apartment.searchByPosition({ latitude: this.$route.query.latitude, longitude: this.$route.query.longitude, radius: 20 });
-        this.aparments = response;
+    mounted() {
+        this.searchApartments();
+    },
+    methods: {
+        async searchApartments() {
+            const response = await Apartment.searchByPosition({ latitude: this.$route.query.latitude, longitude: this.$route.query.longitude, radius: this.searchRadius });
+            this.aparments = response;
+        }
     }
 }
 </script>
@@ -39,9 +45,12 @@ export default {
         <!-- Modal -->
         <ModalFilter />
         <!-- /Modal -->
-        <div class="container p-0 d-flex justify-content-between" v-for="apartment in aparments">
-            {{ apartment.name }}
+        <div class="container">
+            <div class="" v-for="apartment in aparments">
+                <CardImg :data="apartment" />
+            </div>
         </div>
+
     </div>
 </template>
 

@@ -1,7 +1,5 @@
 <!-- TO DO LIST 
-- IL CAROSELLO E' BUGGATO QUANDO RITORNA INDIETRO 
 - GRAFICA RESPONSIVE ANCORA DA IMPLEMENTARE 
-- IMPLEMENTARE TOM TOM PER LA RICERCA GUIDATA NELLA SEARCHBAR
 - INSERIRE I LINK A TUTTI I PULSANTI 
 - RIVEDERE HEADER E LE VARIE AZIONI -->
 
@@ -22,7 +20,3 @@ export default {
     components: { AppJumbo, AppCarousel, AppCallToAction }
 }
 </script>
-
-<style lang="scss" scoped>
-@import '../assets/partials/variables';
-</style>
