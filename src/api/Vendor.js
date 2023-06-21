@@ -20,8 +20,11 @@ const Vendor = {
 
     delete: (token, id)=> {
         return Ajax.delete(`/apartments/vendors/delete/${id}`, null, {token});
-    }
+    },
 
+    upload:(data)=>{
+        return Ajax.post('/upload', data);
+    }
 }
 
 export default Vendor;

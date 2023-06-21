@@ -50,20 +50,30 @@
     <img :src="image.path" alt="" v-for="image in first.images">
   </div> -->
 
-  <div class="row" v-if="getApartments">
+  <!-- <div class="row" v-if="getApartments">
     <div class="col-2" v-for="apartment in getApartments">
       <img :src="apartment.thumb" alt="immagine mancante" class="img-fluid">
     </div>
+  </div> -->
+
+  <div class="container">
+    <form @submit.prevent="submit" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="formFileMultiple" class="form-label">Multiple files input example</label>
+        <input class="form-control" type="file" id="formFileMultiple" @change="setImages" multiple/>
+        <input class="btn btn-primary" value="submit" type="submit">
+      </div>
+    </form>
+    <div v-for="path in data.paths" :key="path">
+      <img :src="path" alt="" v-if="path">
+    </div>
   </div>
-
-
-
-
-
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions } from "vuex";
+import axios from 'axios';
+import Vendor from '../api/Vendor';
 
 export default {
   name: "TestApp",
@@ -73,6 +83,8 @@ export default {
       data: {
         email: "",
         password: "",
+        images: [],
+        paths: [],
       },
     };
   },
@@ -80,20 +92,38 @@ export default {
   computed: {
     ...mapGetters(["getToken", "getUserApartments", "getApartments", "getHighlighted"]),
 
-    first(){
-      if(this.getHighlighted){
+    first() {
+      if (this.getHighlighted) {
         return this.getHighlighted[0];
       }
-    }
+    },
   },
 
   methods: {
     ...mapActions(["login", "fetchUserApartments", "fetchApartments", "fetchHighlighted", "logout"]),
-  },
 
-  async created(){
-    await this.fetchApartments();
-  }
+    setImages(e){
+      this.data.images = [...e.target.files];
+      console.log(this.data.images);
+    },
+
+    async submit(){
+      let fd = new FormData();
+      this.data.images.forEach((image, index) => {
+        fd.append('images['+index+']', image);
+      });
+      // axios.post('http://127.0.0.1:8000/api/upload',fd)
+      // .then((res)=> {
+      //   console.log(res.data);
+      //   this.data.paths = res.data.paths;
+      // })
+      // .catch((err)=> {
+      //   console.log(err);
+      // })
+      const response = await Vendor.upload(fd);
+      this.data.paths = response.paths;
+    }
+  },
 };
 </script>
 
