@@ -3,13 +3,13 @@
         <!-- carosello -->
         <div :id="'carouselIndicators_' + uniqueId" class="carousel slide">
             <ul class="carousel-indicators">
-                <li v-for="(image, index) in data.images" :key="index" :data-bs-target="'#carouselIndicators_' + uniqueId"
+                <li v-for="(image, index) in getAllImages" :key="index" :data-bs-target="'#carouselIndicators_' + uniqueId"
                     :data-bs-slide-to="index" :class="{ active: index === activeIndex }"></li>
             </ul>
             <div class="carousel-inner">
-                <div :class="['carousel-item', { active: index === activeIndex }]" v-for="(image, index) in data.images"
+                <div :class="['carousel-item', { active: index === activeIndex }]" v-for="(image, index) in getAllImages"
                     :key="index">
-                    <img :src="image.path" class="d-block w-100" alt="...">
+                    <img :src="image" class="d-block w-100" alt="...">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselIndicators_' + uniqueId"
@@ -25,9 +25,10 @@
         </div>
         <!-- /carosello -->
         <div class="info-card">
-            <h5 class="card-title pt-2">{{ data.address }}, {{ data.city }}</h5>
-            <p>{{ data.name }}</p>
-            <p>{{ data.price }}$ /Notte</p>
+            <h5 class="card-title pt-2">{{ dataApartment.address }}, {{ dataApartment.city }}</h5>
+            <p>{{ dataApartment.name }}</p>
+            <p>{{ dataApartment.price }}$ /Notte</p>
+
         </div>
     </div>
 </template>
@@ -36,7 +37,7 @@
 export default {
     name: "CardImg",
     props: {
-        data: {
+        dataApartment: {
             type: Object,
         },
     },
@@ -49,6 +50,17 @@ export default {
         uniqueId() {
             return "cardImg_" + Math.random().toString(36).substr(2, 9);
         },
+        getAllImages() {
+            if (this.dataApartment) {
+                const images = [this.dataApartment.thumb];
+                this.dataApartment.images.forEach((image) => {
+                    images.push(image.path)
+                })
+                console.log(images)
+                return images;
+
+            }
+        }
     }
 };
 </script>

@@ -10,6 +10,7 @@ export default {
     },
     data() {
         return {
+
             aparments: [],
             searchRadius: 20
         }
@@ -22,7 +23,19 @@ export default {
             const response = await Apartment.searchByPosition({ latitude: this.$route.query.latitude, longitude: this.$route.query.longitude, radius: this.searchRadius });
             this.aparments = response;
         }
-    }
+    },
+    // computed: {
+    //     getAllImages() {
+    //         if (this.apartments) {
+
+    //             // let allImages = [];
+    //             // this.aparments.forEach((apartment, index) => {
+    //             //     const images = { id: apartment.id, images: apartment. };
+    //             //     apartment
+    //             // })
+    //         }
+    //     }
+    // }
 }
 </script>
 
@@ -46,8 +59,8 @@ export default {
         <ModalFilter />
         <!-- /Modal -->
         <div class="container">
-            <div class="" v-for="apartment in aparments">
-                <CardImg :data="apartment" />
+            <div class="d-flex gap-5">
+                <CardImg v-for="apartment in aparments" :dataApartment="apartment" />
             </div>
         </div>
 
