@@ -60,7 +60,21 @@ export default {
 
         getMaxPrice(newValue){
             this.searchAdvanced();
+        },
+
+        getRooms(newValue){
+            this.searchAdvanced();
+        },
+
+        getBeds(newValue){
+            this.searchAdvanced();
+        },
+
+        getBaths(newValue){
+            this.searchAdvanced();
         }
+
+
     },
     methods: {
         async searchApartments() {
@@ -79,6 +93,9 @@ export default {
                 radius: this.storeFilter.range,
                 minPrice: this.storeFilter.minPrice,
                 maxPrice: this.storeFilter.maxPrice,
+                rooms: this.storeFilter.rooms,
+                baths: this.storeFilter.baths,
+                beds: this.storeFilter.beds
             })
             this.apartments = response
             console.log('call')
@@ -95,6 +112,18 @@ export default {
 
         getMaxPrice(){
             return this.storeFilter.maxPrice;
+        },
+
+        getRooms(){
+            return this.storeFilter.rooms;
+        },
+
+        getBaths(){
+            return this.storeFilter.baths;
+        },
+
+        getBeds(){
+            return this.storeFilter.beds;
         }
     }
 };
