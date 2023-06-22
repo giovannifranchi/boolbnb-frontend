@@ -52,7 +52,6 @@ export default {
     watch: {
         getRadius(newValue) {
             this.searchAdvanced();
-            console.log(newValue)
         },
 
         getMinPrice(newValue){

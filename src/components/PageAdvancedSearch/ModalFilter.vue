@@ -14,6 +14,9 @@ export default {
         return {
             isbusy: true,
             storeFilter,
+            activeRoom: 0,
+            activeBath: 0,
+            activeBed: 0,
         };
 
     },
@@ -44,6 +47,12 @@ export default {
             console.log(this.storeFilter.selectedServices);
         },
 
+        getBtnValue(index){
+            if(index === 0) return 'Qualsiasi';
+            if(index === 6) return '6+';
+            return index;
+        },
+
         loadFilter() {
 
         }
@@ -67,15 +76,9 @@ export default {
                     <!-- Rooms -->
                     <div>
                         <h5>Numero Stanze</h5>
-                        <ul class="px-0 pt-2">
-                            <li class="filter-select">
-                                <button class="btn active">Qualsiasi</button>
-                                <button class="btn">1</button>
-                                <button class="btn">2</button>
-                                <button class="btn">3</button>
-                                <button class="btn">4</button>
-                                <button class="btn">5</button>
-                                <button class="btn">6+</button>
+                        <ul class="px-0 pt-2 d-flex">
+                            <li class="filter-select" v-for="(room, index) in 7" :key="room">
+                                <button class="btn" :class="index === activeRoom ? 'active' : ''" @click="activeRoom = index">{{ getBtnValue(index)  }}</button>
                             </li>
                         </ul>
                     </div>
@@ -84,15 +87,11 @@ export default {
                     <div>
                         <h5>Numero Letti</h5>
                         <ul class="px-0 pt-2">
-                            <li class="filter-select">
-                                <button class="btn active">Qualsiasi</button>
-                                <button class="btn">1</button>
-                                <button class="btn">2</button>
-                                <button class="btn">3</button>
-                                <button class="btn">4</button>
-                                <button class="btn">5</button>
-                                <button class="btn">6+</button>
+                            <ul class="px-0 pt-2 d-flex">
+                            <li class="filter-select" v-for="(bed, index) in 7" :key="bed">
+                                <button class="btn" :class="index === activeBed ? 'active' : ''" @click="activeBed = index">{{ getBtnValue(index)  }}</button>
                             </li>
+                        </ul>
                         </ul>
                     </div>
                     <!-- /beds -->
@@ -100,15 +99,11 @@ export default {
                     <div>
                         <h5>Numero Bagni</h5>
                         <ul class="px-0 pt-2">
-                            <li class="filter-select">
-                                <button class="btn ">Qualsiasi</button>
-                                <button class="btn">1</button>
-                                <button class="btn active">2</button>
-                                <button class="btn">3</button>
-                                <button class="btn">4</button>
-                                <button class="btn">5</button>
-                                <button class="btn">6+</button>
+                            <ul class="px-0 pt-2 d-flex">
+                            <li class="filter-select" v-for="(bath, index) in 7" :key="bath">
+                                <button class="btn" :class="index === activeBath ? 'active' : ''" @click="activeBath = index">{{ getBtnValue(index)  }}</button>
                             </li>
+                        </ul>
                         </ul>
                     </div>
                     <!-- /bathrooms -->
