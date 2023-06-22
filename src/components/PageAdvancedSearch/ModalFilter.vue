@@ -116,7 +116,7 @@ export default {
                     <div v-if="!isbusy">
                         <h5>Servizi</h5>
                         <div class="form-check" v-for="service in getServices">
-                            <input class="form-check-input" type="checkbox" :value="service.id" id="check-service" @change="getSelectedServices.includes(service.id) ? selectService(service.id) : removeService(service.id)" :selected="getSelectedServices.includes(service.id)">
+                            <input class="form-check-input" type="checkbox" :value="service.id" id="check-service" @change="getSelectedServices.includes(service.id) ? removeService(service.id) : selectService(service.id)" :selected="getSelectedServices.includes(service.id)">
                             <label class="form-check-label" for="check-service">
                                 <div>
                                     <font-awesome-icon aria-expanded="false" :icon="service.icon_url" class="icon" />
