@@ -2,19 +2,20 @@
 @use './partials/reset' as *;
 @use './partials/variables' as *;
 @use './partials/typography' as *;
-
 // Import all of Bootstrap's CSS
 @import "bootstrap/scss/bootstrap";
+@import "./partials/slider";
 
 
 body {
     background-color: $custom-white;
 }
 
-.custom-container{
+.custom-container {
     margin: 0 auto;
     width: 80%;
 }
-ul{
+
+ul {
     list-style: none;
 }
