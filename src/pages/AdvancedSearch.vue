@@ -51,7 +51,7 @@ export default {
     },
     watch: {
         getRadius(newValue) {
-            this.searchAdvanced(newValue)
+            this.searchAdvanced();
             console.log(newValue)
         },
 
@@ -73,11 +73,11 @@ export default {
 
             this.apartments = response;
         },
-        async searchAdvanced(range) {
+        async searchAdvanced() {
             const response = await Apartment.searchByPosition({
                 latitude: this.$route.query.latitude,
                 longitude: this.$route.query.longitude,
-                radius: range,
+                radius: this.storeFilter.range,
                 minPrice: this.storeFilter.minPrice,
                 maxPrice: this.storeFilter.maxPrice,
             })
