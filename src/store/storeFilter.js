@@ -5,4 +5,7 @@ export const storeFilter = reactive({
     minPrice: 500,
     maxPrice: 2000,
     selectedServices: [],
+    beds: 0,
+    rooms: 0,
+    baths: 0,
 })
