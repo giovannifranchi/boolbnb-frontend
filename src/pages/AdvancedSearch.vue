@@ -53,6 +53,14 @@ export default {
         getRadius(newValue) {
             this.searchAdvanced(newValue)
             console.log(newValue)
+        },
+
+        getMinPrice(newValue){
+            this.searchAdvanced();
+        },
+
+        getMaxPrice(newValue){
+            this.searchAdvanced();
         }
     },
     methods: {
@@ -69,7 +77,9 @@ export default {
             const response = await Apartment.searchByPosition({
                 latitude: this.$route.query.latitude,
                 longitude: this.$route.query.longitude,
-                radius: range
+                radius: range,
+                minPrice: this.storeFilter.minPrice,
+                maxPrice: this.storeFilter.maxPrice,
             })
             this.apartments = response
             console.log('call')
@@ -78,6 +88,14 @@ export default {
     computed: {
         getRadius() {
             return this.storeFilter.range
+        },
+
+        getMinPrice(){
+            return this.storeFilter.minPrice;
+        },
+
+        getMaxPrice(){
+            return this.storeFilter.maxPrice;
         }
     }
 };

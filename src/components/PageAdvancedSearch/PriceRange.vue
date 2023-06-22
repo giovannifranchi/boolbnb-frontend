@@ -17,8 +17,6 @@ export default {
     watch: {
         priceRange(newValue){
             this.setChange();
-            console.log(this.storeFilter.minPrice, 'min');
-            console.log(this.storeFilter.maxPrice, 'max');
         }
     },
 
