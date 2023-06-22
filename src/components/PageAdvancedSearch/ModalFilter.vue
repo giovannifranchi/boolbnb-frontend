@@ -2,6 +2,7 @@
 import { mapActions, mapGetters } from "vuex";
 import PriceRange from "../PageAdvancedSearch/PriceRange.vue"
 import DistanceRange from "../PageAdvancedSearch/DistanceRange.vue"
+import { storeFilter } from "../../store/storeFilter";
 export default {
     name: "ModalFilter",
     components: {
@@ -11,7 +12,8 @@ export default {
 
     data() {
         return {
-            isbusy: true
+            isbusy: true,
+            storeFilter,
         };
 
     },
@@ -22,9 +24,25 @@ export default {
 
     computed: {
         ...mapGetters(["getServices"]),
+
+        getSelectedServices(){
+            return this.storeFilter.selectedServices;
+        }
     },
     methods: {
         ...mapActions(["fetchServices"]),
+
+        selectService(id){
+            this.storeFilter.selectedServices.push(id);
+            console.log(this.storeFilter.selectedServices);
+        },
+
+        removeService(id){
+            this.storeFilter.selectedServices = this.storeFilter.selectedServices.filter((service)=>{
+                return service !== id;
+            });
+            console.log(this.storeFilter.selectedServices);
+        },
 
         loadFilter() {
 
@@ -98,7 +116,7 @@ export default {
                     <div v-if="!isbusy">
                         <h5>Servizi</h5>
                         <div class="form-check" v-for="service in getServices">
-                            <input class="form-check-input" type="checkbox" value="" id="check-service">
+                            <input class="form-check-input" type="checkbox" :value="service.id" id="check-service" @change="getSelectedServices.includes(service.id) ? selectService(service.id) : removeService(service.id)" :selected="getSelectedServices.includes(service.id)">
                             <label class="form-check-label" for="check-service">
                                 <div>
                                     <font-awesome-icon aria-expanded="false" :icon="service.icon_url" class="icon" />
