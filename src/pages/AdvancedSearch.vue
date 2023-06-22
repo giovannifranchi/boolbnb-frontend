@@ -50,6 +50,7 @@ export default {
         this.searchApartments();
     },
     watch: {
+
         getRadius(newValue) {
             this.searchAdvanced();
         },
@@ -72,7 +73,14 @@ export default {
 
         getBaths(newValue){
             this.searchAdvanced();
-        }
+        },
+
+        getServices: {
+        handler(newValue) {
+            this.searchAdvanced();
+        },
+        deep: true
+    }
 
 
     },
@@ -95,7 +103,8 @@ export default {
                 maxPrice: this.storeFilter.maxPrice,
                 rooms: this.storeFilter.rooms,
                 baths: this.storeFilter.baths,
-                beds: this.storeFilter.beds
+                beds: this.storeFilter.beds,
+                services: this.storeFilter.selectedServices
             })
             this.apartments = response
             console.log('call')
@@ -124,6 +133,10 @@ export default {
 
         getBeds(){
             return this.storeFilter.beds;
+        },
+
+        getServices(){
+            return this.storeFilter.selectedServices;
         }
     }
 };
