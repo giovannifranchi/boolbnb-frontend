@@ -43,8 +43,9 @@ export default {
     },
     async created() {
         const response = await Apartment.getOne(this.$route.params.id);
-        response.error ? this.$router.push({name:'notFound'}) : ()=>{this.apartment=response;this.isbusy = false;}
-        
+        // response.error ? this.$router.push({name:'notFound'}) : ()=>{this.apartment=response;this.isbusy = false;}
+        this.apartment = response;
+        this.isbusy = false;
     },
   
 }
