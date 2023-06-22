@@ -4,6 +4,7 @@
     <router-link
       :to="{name:'apartment', params: { slug: dataApartment.slug, id: dataApartment.id } }"
       class="text-decoration-none text-reset"
+      @click="addView(dataApartment.id)"
     >
       <div :id="'carouselIndicators_' + uniqueId" class="carousel slide">
         <ul class="carousel-indicators">
@@ -54,6 +55,8 @@
 </template>
 
 <script>
+import View from '../../api/View';
+
 export default {
   name: "CardImg",
   props: {
@@ -81,6 +84,13 @@ export default {
       }
     },
   },
+
+  methods: {
+    async addView(id){
+      const response = await View.post(id);
+      console.log(response);
+    }
+  }
 };
 </script>
 
