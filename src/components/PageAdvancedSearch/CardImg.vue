@@ -2,7 +2,7 @@
   <div class="card col-lg-4 col-md-4 col-sm-12 mb-5">
     <!-- carosello -->
     <router-link
-      :to="{ path: '/apartment/:slug/:id', params: { slug: dataApartment.slug, id: dataApartment.id } }"
+      :to="{name:'apartment', params: { slug: dataApartment.slug, id: dataApartment.id } }"
       class="text-decoration-none text-reset"
     >
       <div :id="'carouselIndicators_' + uniqueId" class="carousel slide">
