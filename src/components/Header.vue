@@ -4,12 +4,15 @@
             <div class="logo">BoolBnB</div>
             <div class="dropdown">
 
-                <font-awesome-icon data-bs-toggle="dropdown" aria-expanded="false" icon="fa-circle-user" class="icon" />
 
+                <font-awesome-icon data-bs-toggle="dropdown" aria-expanded="false" icon="fa-circle-user" class="icon"  v-if="!getToken"/>
+                <span v-else-if="getUserInfo">{{ getUserInfo }}</span> 
+                <button v-if="getToken" @click="exit">Logout</button>
                 <ul class="dropdown-menu">
                     <!-- <li><a class="dropdown-item" href="http://127.0.0.1:8000/login">Login</a></li> -->
-                    <li><a class="dropdown-item" href="http://127.0.0.1:8000/register">Register</a></li>
-                    <router-link class="dropdown-item" v-if="!getToken" :to="{name: 'login'}">Login</router-link>
+                    <!-- <li><a class="dropdown-item" href="http://127.0.0.1:8000/register">Register</a></li> -->
+                    <router-link class="dropdown-item"  :to="{name: 'register'}">Register</router-link>
+                    <router-link class="dropdown-item"  :to="{name: 'login'}">Login</router-link>
                 </ul>
             </div>
         </div>
@@ -17,14 +20,23 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters, mapActions} from 'vuex';
 
 export default {
     name: "Header",
 
     computed: {
-        ...mapGetters(['getToken']),
-    }
+        ...mapGetters(['getToken', "getUserInfo"]),
+    },
+
+    methods: {
+        ...mapActions(['logout']),
+
+        async exit(){
+            await this.logout();
+            this.$router.push({name: 'home'});
+        }
+    },
 
 }
 </script>

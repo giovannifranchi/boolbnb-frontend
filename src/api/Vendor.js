@@ -7,7 +7,7 @@ const Vendor = {
     },
 
     getOneApartment: (token, id)=> {
-        return Ajax.get(`/apartments/vendors/${id}`, {token});
+        return Ajax.get(`/apartments/vendors/${id}`, null, {token});
     },
 
     create: (token, data)=> {

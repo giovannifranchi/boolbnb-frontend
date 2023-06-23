@@ -16,17 +16,16 @@ const ajaxRequest = async (config) => {
             config.headers = {...Header.get, 'Authorization': authHeaderValue};
             break;
         case 'POST':
-            Header.post.Authorization = config.token ? `Bearer ${config.token}` : null;
-            config.headers = Header.post;
+            config.headers = {...Header.post, 'Authorization': authHeaderValue};
             break;
         case 'PUT':
-            Header.put.Authorization = config.token ? `Bearer ${config.token}` : null;
-            config.headers = Header.put;
+            config.headers = {...Header.put, 'Authorization': authHeaderValue};
             break;
         case 'DELETE':
-            Header.delete.Authorization = config.token ? `Bearer ${config.token}` : null;
-            config.headers = Header.delete;
-        default: return;
+            config.headers = {...Header.delete, 'Authorization': authHeaderValue};
+            break;
+        default: 
+            return;
     }
 
 
