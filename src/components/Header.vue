@@ -1,7 +1,7 @@
 <template>
     <header class="p-1">
         <div class="container d-flex justify-content-between align-items-center">
-            <div class="logo">BoolBnB</div>
+            <router-link class="logo" to="/">BoolBnB</router-link>
             <div class="dropdown">
 
                 <font-awesome-icon data-bs-toggle="dropdown" aria-expanded="false" icon="fa-circle-user" class="icon" />
@@ -32,6 +32,7 @@ header {
         font-size: 3.125rem;
         color: $custom-red;
         cursor: pointer;
+        text-decoration: none;
     }
 
     .dropdown {
