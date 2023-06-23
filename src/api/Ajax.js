@@ -29,7 +29,13 @@ const ajaxRequest = async (config) => {
     }
 
 
-    return (await axios.request(config)).data;
+    try {
+        const response = await axios.request(config);
+        return response.data;
+    } catch (error) {
+        // Here you throw the error to be caught where the AJAX methods are called
+        throw error;
+    }
 }
 
 

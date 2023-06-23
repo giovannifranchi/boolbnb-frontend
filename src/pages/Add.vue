@@ -150,23 +150,29 @@ export default {
       formData.append("address", this.street);
       formData.append("city", this.city);
       formData.append("state", this.state);
-      formData.append("longitude", this.longitude.toString());
-      formData.append("latitude", this.latitude.toString());
-      formData.append("square_meters", this.square_meters.toString());
-      formData.append("bathrooms", this.bathrooms.toString());
-      formData.append("beds", this.beds.toString());
-      formData.append("rooms", this.rooms.toString());
-      formData.append("price", this.price.toString());
-      formData.append("discount", this.discount.toString());
+      formData.append("longitude", this.longitude);
+      formData.append("latitude", this.latitude);
+      formData.append("square_meters", this.square_meters);
+      formData.append("bathrooms", this.bathrooms);
+      formData.append("beds", this.beds);
+      formData.append("rooms", this.rooms);
+      formData.append("price", this.price);
+      formData.append("discount", this.discount);
       this.services.forEach((service, index) => {
-        formData.append(`services[${index}]`, service.toString());
+        formData.append(`services[${index}]`, service);
       });
       this.images.forEach((image, index) => {
         formData.append(`images[${index}]`, image);
       });
 
-      const response = await Vendor.create(this.getToken, formData);
-      console.log(response);
+      try {
+        const response = await Vendor.create(this.getToken, formData);
+        console.log(response);
+      } catch (error) {
+        if (error.response.status === 401) {
+            this.$router.push({name: 'home'});
+      }
+     }
     },
 
     async getOptions() {
