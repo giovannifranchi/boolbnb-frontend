@@ -1,36 +1,63 @@
 <template>
-    <div v-if="!isbusy">
-        <h1 class="text-center">Apartment Page</h1>
+    <div class="container" v-if="!isbusy">
+        <h1>{{ apartment.name }}</h1>
 
         <div>
+            <div class="row">
+                <div class="container-img col-6">
+                    <img :src="apartment.thumb" alt="..." />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3>Info principali</h3>
+                    <ul class="ps-0">
+                        <li>
+                            Prezzo: {{ apartment.price }}€
+                        </li>
+                        <li>
+                            Metratura: {{ apartment.square_meters }} mq
+                        </li>
+                        <li>
+                            N° Stanze: {{ apartment.rooms }}
+                        </li>
+                        <li>
+                            N° Bagni: {{ apartment.bathrooms }}
+                        </li>
+                        <li>
+                            N° Bagni: {{ apartment.bathrooms }}
+                        </li>
+                        <li>
+                            In affitto da: {{ apartment.created_at }} <!-- modificare formato ora -->
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <h3>Servizi</h3>
+                    <ul>
+                        <li v-for="service in services">
+                            <p> {{ services.name }}</p>
+
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
             <div>
-            <h3>{{ apartment.name }}</h3>
-            <p>Indirizzo:</p>
-        </div>
-        <div>
-            <h3>Info principali</h3>
-            <p>Prezzo:€</p>
-            <p>Sconto:%</p>
-            <p>Metratura:mq</p>
-            <p>N.Stanze:</p>
-            <p>N.Bagni</p>
-            <p>in affitto da:</p>
-        </div>
-        <div>
-            <h3>Descrizione</h3>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque dignissimos rem enim repudiandae. Repellendus
-                velit rerum iure sequi repellat quis explicabo vero eum quos doloribus labore eius obcaecati, provident
-                quod.
-            </p>
-        </div>
+                <h3>Descrizione</h3>
+                <p>{{ apartment.description }}
+                </p>
+            </div>
         </div>
 
-        
+
     </div>
 </template>
 
 <script>
 import Apartment from "../api/Apartment";
+import Service from '../api/Service';
+
 
 export default {
     name: "Apartment",
@@ -39,6 +66,10 @@ export default {
         return {
             isbusy: true,
             apartment: null,
+            images: null,
+            services: {
+                type: Object,
+    },
         };
     },
     async created() {
@@ -47,7 +78,7 @@ export default {
         this.apartment = response;
         this.isbusy = false;
     },
-  
+
 }
 </script>
 
