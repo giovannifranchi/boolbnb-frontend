@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h1 class="text-center">Add a new apartment</h1>
     <form @submit.prevent="send">
       <!-- apartment name -->
@@ -10,7 +10,12 @@
       <!-- apartment address -->
       <div class="mb-3">
         <label for="address-input" class="form-label">Address</label>
-        <input type="text" class="form-control" id="address-input" />
+        <input type="text" class="form-control" id="address-input" v-model="inputSearch" @input="getOptions" />
+        <ul class="list-unstyled" v-if="inputSearch">
+          <li v-for="(option, index) in searchOptions" :key="index" @click="setOptions(option)">
+            {{ formatAddress(option.address) }}
+          </li>
+        </ul>
       </div>
       <!-- square meters -->
       <div class="mb-3">
@@ -82,13 +87,16 @@
           </div>
         </div>
       </div>
+
+      <button class="btn btn-primary mt-5">Create</button>
     </form>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import Vendor from "../api/Vendor";
+import Search from "../api/Search";
 
 export default {
   name: "Add",
@@ -96,6 +104,9 @@ export default {
   data() {
     return {
       apartmentName: null,
+      street: null,
+      city: null,
+      state: null,
       longitude: null,
       latitude: null,
       square_meters: null,
@@ -105,6 +116,10 @@ export default {
       price: null,
       discount: null,
       services: [],
+
+      //input handles for autocomplete
+      inputSearch: null,
+      searchOptions: [],
     };
   },
 
@@ -113,6 +128,8 @@ export default {
   },
 
   methods: {
+    ...mapActions(["fetchServices"]),
+
     addService(id) {
       this.services.push(id);
     },
@@ -121,21 +138,49 @@ export default {
       this.services = this.services.filter((service) => service !== id);
     },
 
-    async send(){
-        const response = await Vendor.create(this.getToken, {
-            name: this.apartmentName,
-            longitude: this.longitude,
-            latitude: this.latitude,
-            square_meters: this.square_meters,
-            bathrooms: this.bathrooms,
-            beds: this.beds,
-            rooms: this.rooms,
-            price: this.price,
-            discount: this.discount,
-            services: this.services,
-        });
-        console.log(response);
-    }
+    async send() {
+      const response = await Vendor.create(this.getToken, {
+        name: this.apartmentName,
+        address: this.street,
+        city: this.city,
+        state: this.state,
+        longitude: this.longitude,
+        latitude: this.latitude,
+        square_meters: this.square_meters,
+        bathrooms: this.bathrooms,
+        beds: this.beds,
+        rooms: this.rooms,
+        price: this.price,
+        discount: this.discount,
+        services: this.services,
+      });
+      console.log(response);
+    },
+
+    async getOptions() {
+      const response = await Search.autocomplete(this.inputSearch);
+      this.searchOptions = response.results;
+      console.log(this.searchOptions);
+    },
+
+    setOptions(option) {
+      this.searchOptions = [];
+      this.latitude = option.position.lat;
+      this.longitude = option.position.lon;
+      this.street = option.address.streetName;
+      this.city = option.address.municipality;
+      this.state = option.address.country;
+      this.inputSearch = this.formatAddress(option.address);
+      console.log(this.latitude, this.longitude, this.searchOptions);
+    },
+
+    formatAddress(address) {
+      return `${address.streetName || ""} ${address.municipality || ""} ${address.country || ""}`.trim();
+    },
+  },
+
+  async created() {
+    await this.fetchServices();
   },
 };
 </script>
