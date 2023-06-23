@@ -37,32 +37,50 @@ const routes = [
             {
                 name: 'dashboard',
                 path: '/dashboard',
-                component: Dashboard
+                component: Dashboard,
+                meta: {
+                    requiresAuth: true
+                }
             },
             {
                 name: 'apartments',
                 path: '/dashboard/apartments',
-                component: Apartments
+                component: Apartments,
+                meta: {
+                    requiresAuth: true
+                }
             },
             {
                 name: 'add',
                 path: '/dashboard/apartments/:slug/add',
-                component: Add
+                component: Add,
+                meta: {
+                    requiresAuth: true
+                }
             },
             {
                 name: 'edit',
                 path: '/dashboard/apartments/:slug/edit',
-                component: Edit
+                component: Edit,
+                meta: {
+                    requiresAuth: true
+                }
             },
             {
                 name: 'statistics',
                 path: '/dashboard/apartments/:slug/statistics',
-                component: Statistics
+                component: Statistics,
+                meta: {
+                    requiresAuth: true
+                }
             },
             {
                 name: 'sponsor',
                 path: '/dashboard/apartments/:slug/sponsor',
-                component: Sponsor
+                component: Sponsor,
+                meta: {
+                    requiresAuth: true
+                }
             },
             {
                 name: 'apartment',
