@@ -88,6 +88,11 @@
         </div>
       </div>
 
+      <div class="mb-3">
+        <label for="formFileMultiple" class="form-label">Upload images</label>
+        <input class="form-control" type="file" id="formFileMultiple" @change="onFileSelected" multiple />
+      </div>
+
       <button class="btn btn-primary mt-5">Create</button>
     </form>
   </div>
@@ -116,6 +121,7 @@ export default {
       price: null,
       discount: null,
       services: [],
+      images: [],
 
       //input handles for autocomplete
       inputSearch: null,
@@ -139,21 +145,27 @@ export default {
     },
 
     async send() {
-      const response = await Vendor.create(this.getToken, {
-        name: this.apartmentName,
-        address: this.street,
-        city: this.city,
-        state: this.state,
-        longitude: this.longitude,
-        latitude: this.latitude,
-        square_meters: this.square_meters,
-        bathrooms: this.bathrooms,
-        beds: this.beds,
-        rooms: this.rooms,
-        price: this.price,
-        discount: this.discount,
-        services: this.services,
+      const formData = new FormData();
+      formData.append("name", this.apartmentName);
+      formData.append("address", this.street);
+      formData.append("city", this.city);
+      formData.append("state", this.state);
+      formData.append("longitude", this.longitude.toString());
+      formData.append("latitude", this.latitude.toString());
+      formData.append("square_meters", this.square_meters.toString());
+      formData.append("bathrooms", this.bathrooms.toString());
+      formData.append("beds", this.beds.toString());
+      formData.append("rooms", this.rooms.toString());
+      formData.append("price", this.price.toString());
+      formData.append("discount", this.discount.toString());
+      this.services.forEach((service, index) => {
+        formData.append(`services[${index}]`, service.toString());
       });
+      this.images.forEach((image, index) => {
+        formData.append(`images[${index}]`, image);
+      });
+
+      const response = await Vendor.create(this.getToken, formData);
       console.log(response);
     },
 
@@ -176,6 +188,10 @@ export default {
 
     formatAddress(address) {
       return `${address.streetName || ""} ${address.municipality || ""} ${address.country || ""}`.trim();
+    },
+
+    onFileSelected(event) {
+      this.images = Array.from(event.target.files);
     },
   },
 
