@@ -3,7 +3,7 @@ import Ajax from "./Ajax";
 const Vendor = {
 
     getApartments: (token)=> {
-        return Ajax.get('/apartments/vendors/index', {token});
+        return Ajax.get('/apartments/vendors/index', null, {token});
     },
 
     getOneApartment: (token, id)=> {

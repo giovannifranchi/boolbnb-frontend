@@ -7,8 +7,9 @@
                 <font-awesome-icon data-bs-toggle="dropdown" aria-expanded="false" icon="fa-circle-user" class="icon" />
 
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="http://127.0.0.1:8000/login">Login</a></li>
+                    <!-- <li><a class="dropdown-item" href="http://127.0.0.1:8000/login">Login</a></li> -->
                     <li><a class="dropdown-item" href="http://127.0.0.1:8000/register">Register</a></li>
+                    <router-link class="dropdown-item" v-if="!getToken" :to="{name: 'login'}">Login</router-link>
                 </ul>
             </div>
         </div>
@@ -16,8 +17,14 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
+
 export default {
     name: "Header",
+
+    computed: {
+        ...mapGetters(['getToken']),
+    }
 
 }
 </script>

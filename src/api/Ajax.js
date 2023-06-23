@@ -9,10 +9,11 @@ const ajaxRequest = async (config) => {
 
     config.headers = {};
 
+    const authHeaderValue = config.token ? `Bearer ${config.token}` : null;
+
     switch (config.method) {
         case 'GET':
-            Header.get.Authorization = config.token ? `Bearer ${config.token}` : null;
-            config.headers = Header.get;
+            config.headers = {...Header.get, 'Authorization': authHeaderValue};
             break;
         case 'POST':
             Header.post.Authorization = config.token ? `Bearer ${config.token}` : null;
