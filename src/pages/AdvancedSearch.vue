@@ -1,6 +1,7 @@
 <template>
   <div class="container d-flex justify-content-center align-items-center">
     <div class="custom-container py-5">
+      <h2 class="mb-3">Ricerca avanzata</h2>
       <!-- search bar -->
       <div class="d-flex flex-column pb-5">
         <form @submit.prevent="sendPositionButton(foundedItems[0].address)">
@@ -9,29 +10,12 @@
               @input="autoComplete(inputSearch)">
             <div class="buttons-container">
               <button class="btn  icon"><font-awesome-icon icon="magnifying-glass" class="icon" /></button>
-              <button type="button" class="btn icon" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <button type="button" class="btn icon" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                aria-expanded="false" aria-controls="collapseExample">
                 <font-awesome-icon icon="sliders" />
               </button>
             </div>
           </div>
-          <!-- <h2>Trova alloggi su BoolBnB</h2>
-          <label for="search" class="pb-3">Dove?</label>
-          <input type="text" name="search" id="search" v-model="inputSearch" @input="autoComplete(inputSearch)">
-          <ul v-if="inputSearch">
-            <li class="list" v-for="element in foundedItems" @click="sendPosition(element.position)">
-              {{ element.address.streetName || '' + ' '
-                +
-                element.address.municipality + ' ' +
-                element.address.country
-              }}
-            </li>
-          </ul>
-          <div class="button-container"><button type="submit">
-              <font-awesome-icon icon="magnifying-glass" class="icon" />
-            </button></div>
-          <button type="button" class="btn ps-4 icon" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <font-awesome-icon icon="sliders" />
-          </button> -->
         </form>
 
         <div>
@@ -45,12 +29,29 @@
             </li>
           </ul>
         </div>
+        <div class="collapse" id="collapseExample">
+          <div class="filterContainer">
+            <DistanceRange />
+            <PriceRange />
+            <button class="mt-4 ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+              aria-controls="offcanvasScrolling">Filtri Avanzati</button>
+          </div>
+        </div>
       </div>
       <!-- /search bar -->
 
-      <!-- Modal -->
-      <ModalFilter />
-      <!-- /Modal -->
+      <!-- OFFCANVAS  -->
+      <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+        id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Offcanvas with body scrolling</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ModalFilter />
+        </div>
+      </div>
+      <!-- /OFFCANVAS  -->
 
       <div class="container">
         <div class="row justify-content-center">
@@ -65,6 +66,8 @@
 import CardImg from "../components/PageAdvancedSearch/CardImg.vue";
 import ModalFilter from "../components/PageAdvancedSearch/ModalFilter.vue";
 import Apartment from "../api/Apartment";
+import DistanceRange from "../components/PageAdvancedSearch/DistanceRange.vue";
+import PriceRange from "../components/PageAdvancedSearch/PriceRange.vue";
 import { storeFilter } from "../store/storeFilter";
 import Search from '../api/Search'
 
@@ -74,6 +77,8 @@ export default {
   components: {
     CardImg,
     ModalFilter,
+    DistanceRange,
+    PriceRange
   },
   data() {
     return {
@@ -128,8 +133,10 @@ export default {
         longitude: this.$route.query.longitude,
         radius: this.$route.query.radius,
       });
-
       this.apartments = response;
+      const prices = this.apartments.map(apartment => apartment.price);
+      this.storeFilter.biggestPrice = Math.max(...prices);
+      this.storeFilter.lowerPrice = Math.min(...prices);
     },
     async searchAdvanced() {
       const response = await Apartment.searchByPosition({
@@ -273,5 +280,12 @@ li:hover {
     width: 50px;
     height: 50px;
   }
+}
+
+.filterContainer {
+  background-color: white;
+  padding: 30px 20px;
+  margin: 30px 0;
+  border-radius: 20px;
 }
 </style>
