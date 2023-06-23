@@ -52,7 +52,7 @@ const routes = [
             },
             {
                 name: 'add',
-                path: '/dashboard/apartments/:slug/add',
+                path: '/dashboard/apartments/add',
                 component: Add,
                 meta: {
                     requiresAuth: true

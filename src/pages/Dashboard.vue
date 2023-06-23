@@ -4,6 +4,7 @@
         <h2 class="text-center">Welcome {{ getUserInfo.name.toUpperCase() }}</h2>
         <h3 class="text-center"> Your Email is {{ getUserInfo.email }}</h3>
         <!-- in this page we'll add stats chats -->
+        <router-link class="btn btn-success"  :to="{name: 'add'}">Add a new apartment</router-link>
     </div>
 </template>
 
