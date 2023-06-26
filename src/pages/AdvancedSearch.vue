@@ -1,4 +1,6 @@
 <template>
+
+  <MapComponent/>
   <div class="container d-flex justify-content-center align-items-center">
     <div class="custom-container py-5">
       <!-- search bar -->
@@ -36,6 +38,7 @@
 import CardImg from "../components/PageAdvancedSearch/CardImg.vue";
 import ModalFilter from "../components/PageAdvancedSearch/ModalFilter.vue";
 import Apartment from "../api/Apartment";
+import MapComponent from "../components/PageAdvancedSearch/MapComponent.vue";
 import { storeFilter } from "../store/storeFilter";
 
 export default {
@@ -43,6 +46,7 @@ export default {
   components: {
     CardImg,
     ModalFilter,
+    MapComponent
   },
   data() {
     return {
