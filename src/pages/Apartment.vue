@@ -50,6 +50,7 @@
             </div>
         </div>
 
+        <AppMessage />
 
     </div>
 </template>
@@ -57,10 +58,14 @@
 <script>
 import Apartment from "../api/Apartment";
 import Service from '../api/Service';
+import AppMessage from "../components/PageDetails/AppMessage.vue";
 
 
 export default {
     name: "Apartment",
+    components: {
+        AppMessage
+    },
 
     data() {
         return {
@@ -69,7 +74,7 @@ export default {
             images: null,
             services: {
                 type: Object,
-    },
+            },
         };
     },
     async created() {
