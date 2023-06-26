@@ -48,10 +48,12 @@ export default {
       this.text = '';
     }
   },
+
 };
 </script>
 
 <template>
+<<<<<<< HEAD
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Raleway:100,300" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
@@ -106,7 +108,12 @@ export default {
         <!-- /form -->
       </div>
     </div>
+
   </div>
+
+</template>
+   
+
 
 </template>
 
@@ -114,10 +121,12 @@ export default {
 @import "../../assets/partials/variables";
 
 #content {
+
   background-color: $custom-black;
   margin-top: 40px;
   -webkit-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px, 0 5px 5px -3px;
   box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.3);
+
 }
 
 #content::after {
@@ -127,6 +136,7 @@ export default {
 }
 
 form {
+
   margin: 30px 0;
   color: $custom-white;
 }
@@ -134,6 +144,16 @@ form {
 #subject,
 #message {
   color: white;
+
+    margin: 30px 0;
+    color: $custom-black;
+}
+
+#email,
+#subject,
+#message {
+    color: $custom-black;
+
 }
 
 #loaders {
