@@ -5,3 +5,5 @@ const Message = {
         return Ajax.post('/apartment/message', data);
     }
 }
+
+export default Message;

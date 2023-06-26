@@ -50,7 +50,7 @@
             </div>
         </div>
 
-        <AppMessage />
+        <AppMessage :apartment_id="apartment.id"/>
 
     </div>
 </template>
