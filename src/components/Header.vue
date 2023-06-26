@@ -1,7 +1,9 @@
 <template>
-    <header class="p-1">
+    <header class="p-0">
         <div class="container d-flex justify-content-between align-items-center">
-            <div class="logo">BoolBnB</div>
+            <router-link class="logo" to="/">
+                <img class="logo-img" src="../assets/images/logo-no-background.png" alt="boolbnb">
+            </router-link>
             <div class="dropdown">
 
                 <font-awesome-icon data-bs-toggle="dropdown" aria-expanded="false" icon="fa-circle-user" class="icon" />
@@ -29,9 +31,12 @@ header {
     border-bottom: 0.125rem solid $custom-black;
 
     .logo {
-        font-size: 3.125rem;
-        color: $custom-red;
         cursor: pointer;
+        .logo-img{
+            height: 3.75rem;
+            margin: .625rem 0;
+        }
+
     }
 
     .dropdown {

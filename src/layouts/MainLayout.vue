@@ -1,12 +1,14 @@
 <template>
-    <Header />
+    <div class="body">
+        <Header />
 
 
-    <main>
-        <router-view></router-view> <!-- Contenuto dinamico -->
-    </main>
+        <main>
+            <router-view></router-view> <!-- Contenuto dinamico -->
+        </main>
 
-    <Footer />
+        <Footer />
+    </div>
 </template>
   
 
@@ -21,3 +23,15 @@ export default {
     }
 }
 </script>
+
+<style scoped lang="scss">
+.body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    main {
+        flex-grow: 1;
+    }
+}
+</style>
