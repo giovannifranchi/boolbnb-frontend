@@ -2,79 +2,83 @@
 export default {
     name: "AppMessage",
     data() {
-    return {
-      email: '',
-      subject: '',
-      message: '',
-      sendBtnDisabled: true
-    };
-  },
-  methods: {
-    startApp() {
-      this.sendBtnDisabled = true;
+        return {
+            email: '',
+            subject: '',
+            message: '',
+            sendBtnDisabled: true
+        };
     },
-    validateData() {
-      this.validateLength();
+    computed: {
+        isFormValid() {
+            return this.email !== '' && this.subject !== '' && this.message !== '';
+        },
+    },
+    methods: {
+        startApp() {
+            this.sendBtnDisabled = true;
+        },
+        validateData() {
+            this.validateLength();
 
-      if (this.email !== '' && this.subject !== '' && this.message !== '') {
-        const errors = document.querySelectorAll('.error');
+            if (this.email.trim !== '' || this.subject !== '' || this.message !== '') {
+                const errors = document.querySelectorAll('.error');
 
-        if (errors.length === 0) {
-          this.sendBtnDisabled = false;
+                if (errors.length === 0) {
+                    this.sendBtnDisabled = false;
+                }
+            } else {
+                this.sendBtnDisabled = true;
+            }
+        },
+        resetForm() {
+            this.email = '';
+            this.subject = '';
+            this.message = '';
+        },
+        sendEmail() {
+            const spinnerGif = document.querySelector('#spinner');
+            spinnerGif.style.display = 'block';
+
+            const sent = document.createElement('img');
+            sent.src = 'https://www.dropbox.com/s/0g5h91zyozcbenc/mail.gif?raw=1';
+            sent.style.display = 'block';
+
+            setTimeout(() => {
+                spinnerGif.style.display = 'none';
+                document.querySelector('#loaders').appendChild(sent);
+                setTimeout(() => {
+                    sent.remove();
+                    this.resetForm();
+                    this.sendBtnDisabled = true;
+                    window.location.href = link;
+                }, 1500);
+            }, 3000);
+        },
+        validateLength() {
+            const inputs = this.$el.querySelectorAll('input[type="email"], input[type="text"], textarea');
+            inputs.forEach(input => {
+                if (input.value.length > 0) {
+                    input.style.borderBottomColor = 'green';
+                    input.classList.remove('error');
+                } else {
+                    input.style.borderBottomColor = 'red';
+                    input.classList.add('error');
+                }
+            });
         }
-      } else {
-        this.sendBtnDisabled = true;
-      }
     },
-    resetForm() {
-      this.email = '';
-      this.subject = '';
-      this.message = '';
-    },
-    sendEmail() {
-      const spinnerGif = document.querySelector('#spinner');
-      spinnerGif.style.display = 'block';
-
-      const sent = document.createElement('img');
-      sent.src = 'https://www.dropbox.com/s/0g5h91zyozcbenc/mail.gif?raw=1';
-      sent.style.display = 'block';
-      const link = `mailto:${this.email}&subject=${encodeURIComponent(this.subject)}&body=${encodeURIComponent(this.message)}`;
-
-      setTimeout(() => {
-        spinnerGif.style.display = 'none';
-        document.querySelector('#loaders').appendChild(sent);
-        setTimeout(() => {
-          sent.remove();
-          this.resetForm();
-          this.sendBtnDisabled = true;
-          window.location.href = link;
-        }, 1500);
-      }, 3000);
-    },
-    validateLength() {
-      const inputs = this.$el.querySelectorAll('input[type="email"], input[type="text"], textarea');
-      inputs.forEach(input => {
-        if (input.value.length > 0) {
-          input.style.borderBottomColor = 'green';
-          input.classList.remove('error');
-        } else {
-          input.style.borderBottomColor = 'red';
-          input.classList.add('error');
-        }
-      });
+    mounted() {
+        this.startApp();
     }
-  },
-  mounted() {
-    this.startApp();
-  }
 };
 
 </script>
 
 <template>
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Raleway:100,300" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,300" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
     <div class="row">
         <div class="form-container col-lg-6 col-sm-12 s8 offset-s2">
@@ -83,20 +87,20 @@ export default {
                     Contatta il venditore
                 </header>
                 <!-- form -->
-                <form id="send-mail" action="" class="col s10 offset-s1">
+                <form id="send-mail" @submit.prevent="sendEmail" :disabled="sendBtnDisabled" class="col s10 offset-s1">
                     <div class="row">
-                        <div class="input-field col s12">
+                        <div class="input-field col-lg-6 col-sm-12 s12">
                             <label for="email">Da:</label>
                             <input v-model="email" id="email" type="email">
                         </div>
-                        <div class="input-field col s12">
+                        <div class="input-field col-lg-6 col-sm-12 s12">
                             <label for="subject">Oggetto:</label>
                             <input v-model="subject" id="subject" type="text">
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="input-field col s12">
+                        <div class="input-field col-12 s12">
                             <label for="message">Messaggio: </label>
                             <textarea v-model="message" id="message" class="materialize-textarea"></textarea>
                         </div>
@@ -115,7 +119,7 @@ export default {
                         </div>
                         <div class="col s6">
                             <button id="resetBtn" class="btn waves-effect waves-light light-blue darken-2"
-                                type="submit">Annulla
+                                @click="resetForm" type="button">Annulla
                                 <i class="material-icons right">delete</i>
                             </button>
                         </div>
@@ -125,8 +129,6 @@ export default {
             </div>
         </div>
     </div>
-<!--     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
 </template>
    
 
@@ -135,7 +137,7 @@ export default {
 @import '../../assets/partials/variables';
 
 #content {
-    background-color: $custom-black;
+    background-color: white;
     margin-top: 40px;
     -webkit-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px, 0 5px 5px -3px;
     box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.3);
@@ -158,10 +160,13 @@ header {
 
 form {
     margin: 30px 0;
-    color: $custom-white;
+    color: $custom-black;
 }
-#email, #subject, #message{
-    color: white;
+
+#email,
+#subject,
+#message {
+    color: $custom-black;
 }
 
 #loaders {
