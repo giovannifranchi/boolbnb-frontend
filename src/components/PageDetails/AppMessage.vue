@@ -33,6 +33,9 @@ export default {
         });
         if(response.message){
           this.isSuccessfull = true;
+          const succesStop = setTimeout(()=> {
+            this.isSuccessfull = false
+          }, 3000);
           this.name = '';
           this.lastname = '',
           this.email = '',
@@ -115,7 +118,6 @@ export default {
    
 
 
-</template>
 
 <style lang="scss" scoped>
 @import "../../assets/partials/variables";
@@ -168,7 +170,4 @@ form {
   display: block;
 }
 
-#spinner {
-  display: none;
-}
 </style>
