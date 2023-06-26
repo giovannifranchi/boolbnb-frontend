@@ -35,7 +35,7 @@ export default {
           this.isSuccessfull = true;
           const succesStop = setTimeout(()=> {
             this.isSuccessfull = false
-          }, 3000);
+          }, 4000);
           this.name = '';
           this.lastname = '',
           this.email = '',
@@ -57,53 +57,56 @@ export default {
 
 <template>
 
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css?family=Raleway:100,300" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-
+<!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+ -->
   <div class="row">
-    <div class="form-container col-lg-6 col-sm-12 s8 offset-s2">
+    <div class="form-container p-3 col-lg-6 col-sm-12 s8 ">
       <div id="content" class="m2">
-        <header id="header">Contatta il venditore</header>
+        <header id="header" class="p-3">
+            <h3>Contact vendor</h3>
+            </header>
         <!-- form -->
-        <form id="send-mail" class="col s10 offset-s1" @submit.prevent="submit">
+        <form id="send-mail" class="col-12 s10 " @submit.prevent="submit">
           <div class="row">
-            <div class="input-field col s12">
-              <label for="email">Da:</label>
-              <input v-model="email" id="email" type="email" />
+
+            <div class="input-field col-12">
+                <input  v-model="name" id="subject" type="text" />
+              <label class="ms-2" for="subject">Name:</label>
+
             </div>
-            <div class="input-field col s12">
-              <label for="subject">Name:</label>
-              <input v-model="name" id="subject" type="text" />
-            </div>
-            <div class="input-field col s12">
-              <label for="subject">Lastame:</label>
-              <input v-model="lastname" id="subject" type="text" />
+            <div class="input-field col-12">
+                <input v-model="lastname" id="subject" type="text" />
+              <label class="ms-2" for="subject">Lastname:</label>
+
             </div>
           </div>
+          <div class="input-field col-12">
+            <input v-model="email" id="email" type="email" />
+              <label for="email">Email:</label>
 
+            </div>
           <div class="row">
-            <div class="input-field col s12">
-              <label for="message">Message: </label>
-              <textarea v-model="text" id="message" class="materialize-textarea"></textarea>
+            <div class="input-field col-12">
+                <textarea v-model="text" id="message" class="materialize-textarea"></textarea>
+                <label class="ms-3" for="message">Message: </label>
             </div>
           </div>
 
           <div class="row" id="loaders">
-            <img :class="isSuccessfull ? 'ms-active' : 'd-none'" src="https://www.dropbox.com/s/0g5h91zyozcbenc/mail.gif?raw=1" width="150" />
+            <img :class="isSuccessfull ? 'ms-active' : 'd-none'" src="https://www.dropbox.com/s/0g5h91zyozcbenc/mail.gif?raw=1" width="100" />
           </div>
 
           <div class="row">
             <div class="col s6">
-              <button id="send" class="btn waves-effect waves-light pink darken-2" type="submit" name="action">
+              <button id="send" class="btn btn-success waves-effect waves-light pink darken-2" type="submit" name="action">
                 Invia
-                <i class="material-icons right">send</i>
+                <font-awesome-icon icon="fa-paper-plane"  />
               </button>
             </div>
             <div class="col s6">
-              <button id="resetBtn" class="btn waves-effect waves-light light-blue darken-2" type="button" @click="reset">
+              <button id="resetBtn" class="btn btn-warning waves-effect waves-light light-blue darken-2" type="button" @click="reset">
                 Annulla
-                <i class="material-icons right">delete</i>
+                <font-awesome-icon icon="fa-trash"  />
               </button>
             </div>
           </div>
@@ -122,40 +125,62 @@ export default {
 <style lang="scss" scoped>
 @import "../../assets/partials/variables";
 
-#content {
 
-  background-color: $custom-black;
-  margin-top: 40px;
-  -webkit-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px, 0 5px 5px -3px;
-  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.3);
-
+.form-container {
+  background: white;
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+  padding: 40px;
 }
 
-#content::after {
-  clear: both;
-  display: block;
-  content: "";
+.form-container h3 {
+  margin: 0 0 30px;
+  padding: 0;
+  color:black;
+  text-align: center;
 }
 
-form {
-
-  margin: 30px 0;
-  color: $custom-white;
-}
-#email,
-#subject,
-#message {
-  color: white;
-
-    margin: 30px 0;
-    color: $custom-black;
+.form-container .input-field {
+  position: relative;
 }
 
-#email,
-#subject,
-#message {
-    color: $custom-black;
+.form-container .input-field input,
+.form-container .input-field textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  color:black;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+  background: transparent;
+}
+.form-container .input-field label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: black;
+  pointer-events: none;
+  transition: .7s;
+}
 
+.form-container .input-field input:focus ~ label,
+.form-container .input-field input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: green;
+  font-size: 12px;
+}
+.form-container .input-field textarea:focus ~ label,
+.form-container .input-field textarea:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: green;
+  font-size: 12px;
 }
 
 #loaders {
