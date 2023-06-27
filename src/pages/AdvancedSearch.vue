@@ -30,11 +30,17 @@
           </ul>
         </div>
         <div class="collapse" id="collapseExample">
-          <div class="filterContainer">
-            <DistanceRange />
-            <PriceRange />
-            <button class="mt-4 ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
-              aria-controls="offcanvasScrolling">Filtri Avanzati</button>
+          <div class="filterContainer row">
+            <div class="col">
+              <DistanceRange />
+              <PriceRange />
+              <button class="mt-4 ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+                aria-controls="offcanvasScrolling">Filtri Avanzati</button>
+            </div>
+            <div class="col ms-4">
+              <Map :dataArray="apartments" />
+            </div>
+
           </div>
         </div>
       </div>
@@ -64,6 +70,7 @@
 
 <script>
 import CardImg from "../components/PageAdvancedSearch/CardImg.vue";
+import Map from "../components/PageAdvancedSearch/Map.vue";
 import ModalFilter from "../components/PageAdvancedSearch/ModalFilter.vue";
 import Apartment from "../api/Apartment";
 import DistanceRange from "../components/PageAdvancedSearch/DistanceRange.vue";
@@ -78,7 +85,8 @@ export default {
     CardImg,
     ModalFilter,
     DistanceRange,
-    PriceRange
+    PriceRange,
+    Map
   },
   data() {
     return {
@@ -95,6 +103,7 @@ export default {
     this.searchApartments();
   },
   watch: {
+
     getRadius(newValue) {
       this.searchAdvanced();
     },
@@ -125,6 +134,7 @@ export default {
       },
       deep: true,
     },
+
   },
   methods: {
     async searchApartments() {
@@ -290,8 +300,8 @@ li:hover {
 }
 
 @media (min-width: 992px) {
-    .offcanvas {
-      width: 25% !important;
-    }
+  .offcanvas {
+    width: 25% !important;
   }
+}
 </style>
