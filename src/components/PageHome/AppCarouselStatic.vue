@@ -8,7 +8,7 @@
         <div class="image-container col-lg-6 col-sm-6" v-for="highlighted in getHighlighted">
           <img :src="highlighted.thumb" alt="img" />
           <div class="logo">
-            <font-awesome-icon icon=" fa-paper-plane" />
+           <img src="../../assets/images/boolbnb-logo.png" alt="">
           </div>
           <div class="text-image ps-0 pt-3">
             <p>{{ highlighted.name }}</p>
@@ -181,10 +181,17 @@ export default {
       position: absolute;
       right: 15px;
       top: 35px;
-      color: $custom-green;
-      border: 2px solid $custom-green;
-      padding: 5px 10px;
-      border-radius: 20px;
+      
+      
+      
+      img{
+        width: 35px;
+        &:hover {
+        /*         border: 2px solid $custom-red; */
+        transform: scale(1.06);
+      }
+
+      }
 
   }
 }
