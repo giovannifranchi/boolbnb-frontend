@@ -1,5 +1,3 @@
-<!-- TODO: add link register to button -->
-
 <template>
     <div class="jumbotron container row align-items-center justify-content-around">
         <div class="image-container col-lg-6 col-sm-12" >
@@ -11,7 +9,7 @@
                 voluptatibus earum quod veniam, porro consectetur aliquam officiis corporis ipsa deserunt ipsum labore
                 fugiat.</p>
             <div class="button-container">
-                    <button>Rent your porperties with us</button>
+                    <button><a class="dropdown-item" href="http://127.0.0.1:8000/register">Rent your porperties with us</a></button>
             </div>
         </div>
     </div>

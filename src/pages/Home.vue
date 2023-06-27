@@ -5,7 +5,7 @@
 <template>
     <AppJumbo />
 
-    <!-- <AppShowHighlight /> -->
+    <AppShowHighlight />
 
     <AppCallToAction />
 </template>
