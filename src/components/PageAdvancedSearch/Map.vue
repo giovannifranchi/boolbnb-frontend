@@ -16,7 +16,7 @@ export default {
     data() {
         return {
             apartments: [],
-            map: null
+
         };
     },
     props: {
@@ -43,36 +43,43 @@ export default {
 
     watch: {
         dataArray: {
-            immediate: true, // Esegui il watcher subito all'inizio
             handler(newValue) {
                 if (newValue && newValue.length > 0) {
-                    newValue.forEach(Element => {
-                        // new tt.Marker().setLngLat([Element.longitude, Element.latitude]).addTo(map)
-                    })
-                }
-            }
-        }
-    },
-
-    async mounted() {
-        const response = await this.fetchApartments();
-        console.log(this.getApartments);
-        if (this.getApartments.length > 0) {
-            const apartmentSlice = this.getApartments.slice(0, 10);
-            const apartments = apartmentSlice.map((apartment) => {
-                return { lat: apartment.latitude, lng: apartment.longitude };
-            })
-
-            console.log(apartments);
-
-            this.map = tt.map({
+                    let map =  tt.map({
                 key: import.meta.env.VITE_TOMTOM_API_KEY,
                 container: "map",
                 center: [this.$route.query.longitude, this.$route.query.latitude], // Change this to your desired initial position
                 zoom: 11,
             });
+
+            this.dataArray.forEach(Element => {
+                         new tt.Marker().setLngLat([Element.longitude, Element.latitude]).addTo(map)
+                    })
+                }
+            },
+            deep: true
         }
     },
+
+   mounted() {
+
+
+
+            
+
+            let map =  tt.map({
+                key: import.meta.env.VITE_TOMTOM_API_KEY,
+                container: "map",
+                center: [this.$route.query.longitude, this.$route.query.latitude], // Change this to your desired initial position
+                zoom: 11,
+            });
+
+            this.dataArray.forEach(Element => {
+                         new tt.Marker().setLngLat([Element.longitude, Element.latitude]).addTo(map)
+                    })
+        }
+    
+    ,
 
 };
 </script>

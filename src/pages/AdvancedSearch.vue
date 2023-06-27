@@ -64,8 +64,8 @@
         <CardImg v-for="apartment in apartments" :dataApartment="apartment" />
       </div>
     </div>
-    <div class="col-lg-6 col-md-12 order-first order-lg-last">
-      <Map class="mobile-map" />
+    <div class="col-lg-6 col-md-12 order-first order-lg-last" v-if="apartments.length > 0">
+      <Map class="mobile-map" :data-array="apartments"/>
     </div>
   </div>
 </div>
