@@ -2,13 +2,15 @@
     <footer>
         <div class="container">
             <div class="row justify-content-between align-items-center py-4">
-                <div class="col-lg-6 footer-text">
-                    BoolBnb 2023 - Created by
+                <div class="footer-text col-lg-6 col-md-12 ">
+                    <p class="mb-1">BoolBnb 2023 | Classe 89</p>
+                    <p  class="mb-1"> Created with  
+                        <font-awesome-icon icon="fa-face-sad-cry" />
+                         by Filippo Bonafini, Giovanni Franchi, Riccardo Turella, Cosimo Petrarca, Giulia Tognali & Giovanni Franchi
+                        </p>  
                 </div>
-                <div  class="col-lg-6">
-
-
-                    <div class="social d-flex justify-content-end">
+                <div  class="social col col-lg-6 col-md-12">
+                    <div class="social-icons d-flex">
                         <a href="#">
                             <Instagram />
                         </a>
@@ -51,7 +53,7 @@ footer {
         font-size: 1rem;
     }
 
-    .social {
+    .social-icons {
         a {
             padding: 8px;
             color: $custom-white;
@@ -63,5 +65,21 @@ footer {
         }
 
     }
+    @media(min-width:992px){
+        .footer-text{
+            text-align: start;
+        }
+    .social-icons{
+        justify-content: end;
+    }
+}
+@media(max-width:992px){
+    .footer-text{
+            text-align: center;
+        }
+    .social-icons{
+        justify-content: center;
+    }
+}
 }
 </style>
