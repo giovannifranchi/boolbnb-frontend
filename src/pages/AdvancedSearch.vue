@@ -54,7 +54,7 @@
       <!-- /OFFCANVAS  -->
     </div>
   </div>
-  <div class="container">
+  <div class="container d-flex justify-content-center">
   <div class="row">
     <div class="col-lg-6 col-md-12">
       <div class="row">
