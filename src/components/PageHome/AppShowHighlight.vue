@@ -36,6 +36,7 @@ export default {
       <h1>Our best suggestions</h1>
       <div class="row">
         <CardImgHigh />
+
       </div>
     </div>
   </div>
