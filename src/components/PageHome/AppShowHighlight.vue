@@ -45,7 +45,6 @@ export default {
     <div class="wrapper" v-if="!isbusy">
       <h1>Our best suggestions</h1>
       <div class="row">
-        <div class="col-4"><CardImg /></div>
         
         <!-- <div class="image-container col-lg-6 col-sm-6" v-for="highlighted in getHighlighted">
           <img :src="highlighted.thumb" alt="img" />

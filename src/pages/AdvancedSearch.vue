@@ -45,7 +45,6 @@
       <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
         id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Offcanvas with body scrolling</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
@@ -63,7 +62,7 @@
       </div>
     </div>
     <div class="col-lg-6 col-md-12 order-first order-lg-last">
-      mappa tom tom
+      <Map/>
     </div>
   </div>
 </div>
@@ -246,6 +245,12 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/partials/variables";
+
+@media (max-width: 767px) {
+  .col-lg-6.col-md-12 {
+    padding-top: 20px; /* Aggiungi qui il valore del padding desiderato */
+  }
+}
 
 .icon {
   font-size: 1.75rem;

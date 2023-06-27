@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="map" style="height: 300px"></div>
+        <div id="map"></div>
     </div>
 </template>
   
@@ -76,3 +76,9 @@ export default {
 
 };
 </script>
+
+<style scoped>
+#map{
+    height: 80vh;
+}
+</style>
