@@ -1,32 +1,8 @@
-<template>
-  <div class="container">
-    <div class="wrapper" v-if="!isbusy">
-      <h1>Our best suggestions</h1>
-      <div class="row">
-      <div class="carousel d-flex gap-5" data-target="carousel">
-
-        <div class="image-container col-lg-6 col-sm-6" v-for="highlighted in getHighlighted">
-          <img :src="highlighted.thumb" alt="img" />
-          <div class="logo">
-           <img src="../../assets/images/boolbnb-logo.png" alt="">
-          </div>
-          <div class="text-image ps-0 pt-3">
-            <p>{{ highlighted.name }}</p>
-            <p>{{ highlighted.price }}/night</p>
-          </div>
-        </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</template>
-
 <script>
 import { mapActions, mapGetters } from "vuex";
 
 export default {
-  name: "AppCarousel",
+  name: "AppCarouselStatic",
   data() {
     return {
       isbusy: true,
@@ -53,47 +29,38 @@ export default {
   methods: {
     ...mapActions(["fetchHighlighted"]),
 
-    /*     startHorizontalScrolling() {
-          if (this.getHighlighted) {
-            const container = document.querySelector(".carousel");
-            const contentWidth = container.scrollWidth - container.clientWidth;
-    
-            this.scrollInterval = setInterval(() => {
-              container.scrollLeft += 1;
-              if (container.scrollLeft >= contentWidth) {
-                clearInterval(this.scrollInterval);
-                this.startReverseHorizontalScrolling();
-              }
-            }, 10);
-          }
-        },
-        startReverseHorizontalScrolling() {
-          const container = document.querySelector(".carousel");
-          const contentWidth = container.scrollWidth - container.clientWidth;
-    
-          this.scrollInterval = setInterval(() => {
-            container.scrollLeft -= 1;
-            if (container.scrollLeft <= 0) {
-              clearInterval(this.scrollInterval);
-              this.startHorizontalScrolling();
-            }
-          }, 10);
-        },
-        pauseScroll() {
-          clearInterval(this.scrollInterval);
-        },
-        resumeScroll() {
-          if (!this.isReverse) {
-            this.startHorizontalScrolling();
-          } else {
-            this.startReverseHorizontalScrolling();
-          }
-        }, */
   },
 
   
 };
 </script>
+
+
+<template>
+  <div class="container">
+    <div class="wrapper" v-if="!isbusy">
+      <h1>Our best suggestions</h1>
+      <div class="row">
+      <div class="carousel d-flex gap-5" data-target="carousel">
+
+        <div class="image-container col-lg-6 col-sm-6" v-for="highlighted in getHighlighted">
+          <img :src="highlighted.thumb" alt="img" />
+          <div class="logo">
+           <img src="../../assets/images/boolbnb-logo.png" alt="">
+          </div>
+          <div class="text-image ps-0 pt-3">
+            <p>{{ highlighted.name }}</p>
+            <p>{{ highlighted.price }}/night</p>
+          </div>
+        </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</template>
+
+
 
 <style scoped lang="scss">
 @import "../../assets/partials/variables";
