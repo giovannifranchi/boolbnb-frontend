@@ -1,7 +1,7 @@
 <template>
   <div class="container d-flex justify-content-center align-items-center">
     <div class="custom-container py-5">
-      <h2 class="mb-3">Ricerca avanzata</h2>
+      <h2 class="mb-3">Advanced Search</h2>
       <!-- search bar -->
       <div class="d-flex flex-column pb-5">
         <form @submit.prevent="sendPositionButton(foundedItems[0].address)">
@@ -30,11 +30,12 @@
           </ul>
         </div>
         <div class="collapse" id="collapseExample">
+
           <div class="filterContainer">
             <DistanceRange />
             <PriceRange />
             <button class="mt-4 ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
-              aria-controls="offcanvasScrolling">Filtri Avanzati</button>
+              aria-controls="offcanvasScrolling">Advanced Filters</button>
           </div>
         </div>
       </div>
@@ -44,7 +45,6 @@
       <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
         id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Offcanvas with body scrolling</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
@@ -52,18 +52,29 @@
         </div>
       </div>
       <!-- /OFFCANVAS  -->
-
-      <div class="container">
-        <div class="row justify-content-center">
-          <CardImg v-for="apartment in apartments" :dataApartment="apartment" />
-        </div>
-      </div>
     </div>
   </div>
+  <div class="container">
+    <div v-if="apartments.length > 0">
+      <h5>{{ apartments.length }} apartments found in {{ apartments[0]['city'] }}</h5>
+    </div>
+  <div class="row">
+    <div class="col-lg-6 col-md-12 ms-pad">
+      <div class="row">
+        <CardImg v-for="apartment in apartments" :dataApartment="apartment" />
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-12 order-first order-lg-last" v-if="apartments.length > 0">
+      <Map class="mobile-map" :data-array="apartments"/>
+    </div>
+  </div>
+</div>
+
 </template>
 
 <script>
 import CardImg from "../components/PageAdvancedSearch/CardImg.vue";
+import Map from "../components/PageAdvancedSearch/Map.vue";
 import ModalFilter from "../components/PageAdvancedSearch/ModalFilter.vue";
 import Apartment from "../api/Apartment";
 import DistanceRange from "../components/PageAdvancedSearch/DistanceRange.vue";
@@ -78,7 +89,8 @@ export default {
     CardImg,
     ModalFilter,
     DistanceRange,
-    PriceRange
+    PriceRange,
+    Map
   },
   data() {
     return {
@@ -95,6 +107,7 @@ export default {
     this.searchApartments();
   },
   watch: {
+
     getRadius(newValue) {
       this.searchAdvanced();
     },
@@ -125,6 +138,7 @@ export default {
       },
       deep: true,
     },
+
   },
   methods: {
     async searchApartments() {
@@ -290,8 +304,8 @@ li:hover {
 }
 
 @media (min-width: 992px) {
-    .offcanvas {
-      width: 25% !important;
-    }
+  .offcanvas {
+    width: 25% !important;
   }
+}
 </style>

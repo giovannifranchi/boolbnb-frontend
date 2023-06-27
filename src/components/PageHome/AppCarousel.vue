@@ -1,6 +1,6 @@
 <template>
   <div class="carousel-row" v-if="!isbusy">
-    <h1 class="container">Grandi occasioni</h1>
+    <h1>Grandi occasioni</h1>
     <div class="carousel d-flex gap-5" @mouseenter="pauseScroll" @mouseleave="resumeScroll">
       <div class="image-container" v-for="highlighted in getHighlighted">
         <img :src="highlighted.thumb" alt="img" />
@@ -13,7 +13,7 @@
 import { mapActions, mapGetters } from "vuex";
 
 export default {
-  name: "AppCarousel",
+  name: "AppCarouselStatic",
   data() {
     return {
       isbusy: true,
@@ -110,7 +110,7 @@ export default {
   }
 
   h1 {
-    color: $custom-white;
+    color: $custom-black;
     padding-top: 15px;
   }
 

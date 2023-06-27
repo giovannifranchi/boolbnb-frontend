@@ -46,9 +46,9 @@
       </div>
       <!-- /carosello -->
       <div class="info-card">
-        <h5 class="card-title pt-2">{{ dataApartment.address }}, {{ dataApartment.city }}</h5>
-        <p>{{ dataApartment.name }}</p>
-        <p>{{ dataApartment.price }}$ /Notte</p>
+        <h5 class="card-title pt-2">{{ dataApartment.name }}</h5>
+        <p>{{ dataApartment.address }}, {{ dataApartment.city }}</p>
+        <p><strong>{{ dataApartment.price }} €</strong> /Notte</p>
       </div>
     </router-link>
   </div>
