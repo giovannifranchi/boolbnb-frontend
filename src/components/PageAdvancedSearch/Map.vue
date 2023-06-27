@@ -65,24 +65,12 @@ export default {
             // Array of your apartments with latitude and longitude
 
             // Add marker for each apartment
-            // apartments.forEach((apartment) => {
-            //     new tt.Marker().setLngLat([apartment.lng, apartment.lat]).addTo(map);
-            // });
+            apartments.forEach((apartment) => {
+                new tt.Marker().setLngLat([apartment.lng, apartment.lat]).addTo(map);
+            });
         }
     },
-    watch: {
-        dataArray: {
-            immediate: true, // Esegui il watcher subito all'inizio
-            handler(newValue) {
-                if (newValue && newValue.length > 0) {
-                    // La prop dataArray è stata modificata e ha elementi
-                    newValue.forEach(element => {
-                        new tt.Marker().setLngLat([element.longitude, element.latitude]).addTo(map);
-                    });
-                }
-            }
-        }
-    }
+
 };
 </script>
   
