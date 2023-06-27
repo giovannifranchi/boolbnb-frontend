@@ -2,7 +2,7 @@
     <div class="jumbotron container d-flex align-items-center justify-content-center mt-5 mb-5">
         <form class="form-container d-flex flex-column" @submit.prevent="sendPositionButton()">
 
-            <h2>Find where to go</h2>
+            <h2>Find where to stay</h2>
             <label for="search" class="pb-3">Book unique accommodations, homes, and more on with us!</label>
             <input placeholder="Search here" type="text" name="search" id="search" v-model="inputSearch" @input="autoComplete(inputSearch)">
             <ul v-if="inputSearch">

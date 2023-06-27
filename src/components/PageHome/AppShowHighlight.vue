@@ -33,7 +33,7 @@ export default {
 <template>
   <div class="container">
     <div v-if="!isbusy">
-      <h1>Our best suggestions</h1>
+      <h1>OUR CHOICES</h1>
       <div class="row">
         <CardImgHigh />
 
