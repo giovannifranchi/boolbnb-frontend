@@ -4,8 +4,7 @@
     <router-link
       :to="{name:'apartment', params: { slug: dataApartment.slug, id: dataApartment.id } }"
       class="text-decoration-none text-reset"
-      @click="addView(dataApartment.id)"
-    >
+      @click="addView(dataApartment.id)">
       <div :id="'carouselIndicators_' + uniqueId" class="carousel slide">
         <ul class="carousel-indicators">
           <li

@@ -3,20 +3,21 @@
 - INSERIRE I LINK A TUTTI I PULSANTI 
 - RIVEDERE HEADER E LE VARIE AZIONI -->
 
+import AppCarouselStatic from '../components/PageHome/AppCarouselStatic.vue';
 <template>
     <AppJumbo />
 
-    <AppCarousel />
+    <AppCarouselStatic />
 
     <AppCallToAction />
 </template>
 
 <script>
 import AppJumbo from '../components/PageHome/AppJumbo.vue';
-import AppCarousel from '../components/PageHome/AppCarousel.vue';
+import AppCarouselStatic from '../components/PageHome/AppCarouselStatic.vue';
 import AppCallToAction from '../components/PageHome/AppCallToAction.vue';
 export default {
     name: "Home",
-    components: { AppJumbo, AppCarousel, AppCallToAction }
+    components: { AppJumbo, AppCallToAction, AppCarouselStatic }
 }
 </script>
