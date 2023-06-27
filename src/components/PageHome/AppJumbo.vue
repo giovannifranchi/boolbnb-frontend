@@ -2,9 +2,9 @@
     <div class="jumbotron container d-flex align-items-center justify-content-center mt-5 mb-5">
         <form class="form-container d-flex flex-column" @submit.prevent="sendPositionButton()">
 
-            <h2>Trova alloggi su BoolBnB</h2>
-            <label for="search" class="pb-3">Dove?</label>
-            <input type="text" name="search" id="search" v-model="inputSearch" @input="autoComplete(inputSearch)">
+            <h2>Find where to go</h2>
+            <label for="search" class="pb-3">Book unique accommodations, homes, and more on with us!</label>
+            <input placeholder="Search here" type="text" name="search" id="search" v-model="inputSearch" @input="autoComplete(inputSearch)">
             <ul v-if="inputSearch">
                 <li class="list" v-for="element in foundedItems" @click="sendPosition(element.position)">
                     {{ element.address.streetName || '' + ' '
@@ -14,7 +14,7 @@
                     }}
                 </li>
             </ul>
-            <div class="button-container"><button type="submit">Cerca</button></div>
+            <div class="button-container"><button type="submit">Search</button></div>
 
         </form>
         <div class="image-container" v-if="randomHighlight">
@@ -83,9 +83,9 @@ export default {
 
 .form-container {
     position: relative;
-    transform: translateX(35%);
+ /*    transform: translateX(25%); */
     padding: 30px;
-    background-color: $custom-white;
+    background-color: white;
     box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.18);
     border-radius: 10px;
 
@@ -106,9 +106,9 @@ export default {
 
     input,
     li {
-        border: none;
+        border: 1px solid $custom-black;
         font-size: 20px;
-        border-radius: 10px;
+        border-radius: 5px;
         padding: 5px 20px;
         width: 400px;
     }
@@ -119,18 +119,17 @@ export default {
 
     .button-container {
         display: flex;
-        justify-content: flex-end;
 
         button {
             border: none;
-            width: 20%;
-            margin-top: 15px;
-            padding: 7px 0;
+            width: 100%;
+            margin-top: 25px;
+            padding: 10px 0;
             font-size: 20px;
             font-weight: bolder;
             border-radius: 10px;
             color: $custom-white;
-            background-color: $custom-red;
+            background-color:$custom-green;
         }
     }
 
@@ -143,7 +142,6 @@ export default {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.18);
-
     img {
         width: 100%;
         height: 100%;
