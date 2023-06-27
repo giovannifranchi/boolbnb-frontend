@@ -1,7 +1,7 @@
 <template>
   <div class="container d-flex justify-content-center align-items-center">
     <div class="custom-container py-5">
-      <h2 class="mb-3">Ricerca avanzata</h2>
+      <h2 class="mb-3">Advanced Search</h2>
       <!-- search bar -->
       <div class="d-flex flex-column pb-5">
         <form @submit.prevent="sendPositionButton(foundedItems[0].address)">
@@ -34,7 +34,7 @@
             <DistanceRange />
             <PriceRange />
             <button class="mt-4 ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
-              aria-controls="offcanvasScrolling">Filtri Avanzati</button>
+              aria-controls="offcanvasScrolling">Advanced Filters</button>
           </div>
         </div>
       </div>
@@ -52,14 +52,21 @@
         </div>
       </div>
       <!-- /OFFCANVAS  -->
-
-      <div class="container">
-        <div class="row justify-content-center">
-          <CardImg v-for="apartment in apartments" :dataApartment="apartment" />
-        </div>
-      </div>
     </div>
   </div>
+  <div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-12">
+      <div class="row">
+        <CardImg v-for="apartment in apartments" :dataApartment="apartment" />
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-12">
+      mappa tom tom
+    </div>
+  </div>
+</div>
+
 </template>
 
 <script>

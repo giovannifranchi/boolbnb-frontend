@@ -1,5 +1,5 @@
 <template>
-  <div class="card col-lg-4 col-md-4 col-sm-12 mb-5">
+  <div class="card col-lg-3 col-md-6 col-sm-12 mb-5">
     <!-- carosello -->
     <router-link
       :to="{name:'apartment', params: { slug: dataApartment.slug, id: dataApartment.id } }"
@@ -46,9 +46,9 @@
       </div>
       <!-- /carosello -->
       <div class="info-card">
-        <h5 class="card-title pt-2">{{ dataApartment.address }}, {{ dataApartment.city }}</h5>
-        <p>{{ dataApartment.name }}</p>
-        <p>{{ dataApartment.price }}$ /Notte</p>
+        <h5 class="card-title pt-2">{{ dataApartment.name }}</h5>
+        <p>{{ dataApartment.address }}, {{ dataApartment.city }}</p>
+        <p><strong>{{ dataApartment.price }} €</strong> /Notte</p>
       </div>
     </router-link>
   </div>
