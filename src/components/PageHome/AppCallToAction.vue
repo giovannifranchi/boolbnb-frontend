@@ -1,17 +1,17 @@
+<!-- TODO: add link register to button -->
+
 <template>
-    <div class="jumbotron container d-flex align-items-center justify-content-around mt-5 mb-5">
-        <div class="image-container">
+    <div class="jumbotron container row align-items-center justify-content-around">
+        <div class="image-container col-lg-6 col-sm-12" >
             <img src="../../assets/images/home-banner.svg" alt="">
         </div>
-        <div class="box">
+        <div class="box col-lg-6 col-sm-12">
             <h2 class="mb-4">Affitta in sicurezza</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt quia similique modi cumque quam possimus
                 voluptatibus earum quod veniam, porro consectetur aliquam officiis corporis ipsa deserunt ipsum labore
-                fugiat. Id.</p>
-            <div class="row justify-content-end">
-                <div class="col-auto">
-                    <button>Bottone a destra</button>
-                </div>
+                fugiat.</p>
+            <div class="button-container">
+                    <button>Rent your porperties with us</button>
             </div>
         </div>
     </div>
@@ -25,7 +25,12 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/partials/variables';
-
+.container{
+    background-color: white;
+    box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.18);
+    border-radius: 10px;
+    margin: 50px auto;
+}
 
 .image-container {
     width: 550px;
@@ -40,8 +45,8 @@ export default {
 }
 
 .box {
-    max-width: 40%;
-
+/*     max-width: 40%;
+ */
     h2 {
         font-weight: bolder;
         font-size: 40px;
@@ -54,13 +59,16 @@ export default {
     }
 
     button {
-        background-color: $custom-red;
+        background-color: $custom-green;
+        width: 100%;
         padding: 14px 24px;
         color: $custom-white;
         font-size: 23px;
         font-weight: bold;
         border-radius: 10px;
         border: none;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 }
 </style>
