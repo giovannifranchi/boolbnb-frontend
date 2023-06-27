@@ -61,11 +61,11 @@ export default {
 
 
   <div class="row py-5">
-    <div class="form-container p-5 col-lg-6 col-sm-12 s8 ">
+    <div class="form-container">
       <div id="content" class="m2">
         <header id="header">
-            <h3>Contact vendor</h3>
-            </header>
+          <h3>Contact vendor</h3>
+        </header>
 
         <!-- form -->
         <form id="send-mail" class="col-12 s10 " @submit.prevent="submit">
@@ -89,12 +89,12 @@ export default {
           </div>
           <div class="row">
 
-            
-          
+
+
 
             <div class="input-field col-12 pb-5">
-                <textarea v-model="text" id="message" class="materialize-textarea"></textarea>
-                <label class="ms-3" for="message">Message: </label>
+              <textarea v-model="text" id="message" class="materialize-textarea"></textarea>
+              <label class="ms-3" for="message">Message: </label>
 
             </div>
           </div>
@@ -143,18 +143,17 @@ export default {
   border-radius: 10px;
   padding: 40px;
 }
-#header{
-  background-color: $custom-green;
+
+#header {
+
   border-radius: 10px;
   padding: 10px 0;
   margin-bottom: 20px;
 }
+
 .form-container h3 {
   padding: 0;
-
   margin: 0;
-  color: white;
-
   text-align: center;
 }
 
@@ -167,8 +166,8 @@ export default {
   width: 100%;
 
   padding-top: 20px;
-  font-size: 20px;
-  color:black;
+  font-size: 15px;
+  color: black;
 
   margin-bottom: 30px;
   border: none;
@@ -193,18 +192,20 @@ export default {
   top: -20px;
   left: 0;
   color: $custom-green;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .form-container .input-field textarea:focus~label,
 .form-container .input-field textarea:valid~label {
   top: -20px;
   left: 0;
-  color:$custom-green;
-  font-size: 20px;
+  color: $custom-green;
+  font-size: 15px;
 }
-.btn-send{
+
+.btn-send {
   background-color: $custom-green;
+  color: white;
 }
 
 #loaders {
@@ -213,6 +214,7 @@ export default {
 
 #resetBtn {
   float: right;
+  color: white;
 }
 
 .ms-active {
