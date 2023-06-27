@@ -30,6 +30,7 @@
           </ul>
         </div>
         <div class="collapse" id="collapseExample">
+
           <div class="filterContainer">
             <DistanceRange />
             <PriceRange />
@@ -71,6 +72,7 @@
 
 <script>
 import CardImg from "../components/PageAdvancedSearch/CardImg.vue";
+import Map from "../components/PageAdvancedSearch/Map.vue";
 import ModalFilter from "../components/PageAdvancedSearch/ModalFilter.vue";
 import Apartment from "../api/Apartment";
 import DistanceRange from "../components/PageAdvancedSearch/DistanceRange.vue";
@@ -85,7 +87,8 @@ export default {
     CardImg,
     ModalFilter,
     DistanceRange,
-    PriceRange
+    PriceRange,
+    Map
   },
   data() {
     return {
@@ -102,6 +105,7 @@ export default {
     this.searchApartments();
   },
   watch: {
+
     getRadius(newValue) {
       this.searchAdvanced();
     },
@@ -132,6 +136,7 @@ export default {
       },
       deep: true,
     },
+
   },
   methods: {
     async searchApartments() {
@@ -297,8 +302,8 @@ li:hover {
 }
 
 @media (min-width: 992px) {
-    .offcanvas {
-      width: 25% !important;
-    }
+  .offcanvas {
+    width: 25% !important;
   }
+}
 </style>

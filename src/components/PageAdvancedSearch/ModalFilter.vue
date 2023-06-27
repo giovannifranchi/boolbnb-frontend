@@ -113,7 +113,7 @@ export default {
     <!-- services -->
     <div v-if="!isbusy">
         <h5>Servizi</h5>
-        <div class="row">
+        <div class="row ps-3">
             <div class="form-check col-6" v-for="service in getServices">
                 <input class="form-check-input" type="checkbox" :value="service.id" id="check-service"
                     @change="getSelectedServices.includes(service.id) ? removeService(service.id) : selectService(service.id)"
@@ -133,14 +133,6 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/partials/variables';
-/* .modal-content {
-    
-    border: solid 3px $custom-blu;
-    border-radius: 1.5625rem;
-
-    .modal-title {
-        color: $custom-red;
-    } */
 
 button {
     border: solid 1px $custom-black;

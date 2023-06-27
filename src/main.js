@@ -10,10 +10,10 @@ import VueApexCharts from 'vue3-apexcharts' //this is a library for charts, find
 import Toast, { POSITION } from "vue-toastification"; //this is a library for toasts, find docs @'https://github.com/Maronato/vue-toastification'!!
 import "vue-toastification/dist/index.css";
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { fa5, faUtensils, faTrash, faPaperPlane, faMagnifyingGlass, faPersonSwimming, faSliders, faCircleUser, faBaby, faHandshake, faBicycle, faSpa, faTableTennisPaddleBall, faBasketball, faCarOn, faPersonHiking, faDumbbell, faLanguage, faChildren, faWifi, faMugSaucer, faSquareParking, faBellConcierge, faVanShuttle, faInfo, faJugDetergent, faCampground, faPaw, faSnowflake } from '@fortawesome/free-solid-svg-icons' //this is just an example, each new icon used needs to be registered here;
+import { fa5, faUtensils, faFaceSadCry, faTrash, faPaperPlane, faMagnifyingGlass, faPersonSwimming, faSliders, faCircleUser, faBaby, faHandshake, faBicycle, faSpa, faTableTennisPaddleBall, faBasketball, faCarOn, faPersonHiking, faDumbbell, faLanguage, faChildren, faWifi, faMugSaucer, faSquareParking, faBellConcierge, faVanShuttle, faInfo, faJugDetergent, faCampground, faPaw, faSnowflake } from '@fortawesome/free-solid-svg-icons' //this is just an example, each new icon used needs to be registered here;
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(fa5, faCircleUser, faTrash, faPaperPlane, faMagnifyingGlass, faPersonSwimming, faSliders, faUtensils, faBaby, faHandshake, faBicycle, faSpa, faTableTennisPaddleBall, faBasketball, faCarOn, faPersonHiking, faDumbbell, faLanguage, faChildren, faWifi, faMugSaucer, faSquareParking, faBellConcierge, faVanShuttle, faInfo, faJugDetergent, faCampground, faPaw, faSnowflake); //icons must be registered also here, remeber to use them in components without fa-regular, fa-solid, fa-light etc...
+library.add(fa5, faCircleUser, faTrash, faFaceSadCry, faPaperPlane, faMagnifyingGlass, faPersonSwimming, faSliders, faUtensils, faBaby, faHandshake, faBicycle, faSpa, faTableTennisPaddleBall, faBasketball, faCarOn, faPersonHiking, faDumbbell, faLanguage, faChildren, faWifi, faMugSaucer, faSquareParking, faBellConcierge, faVanShuttle, faInfo, faJugDetergent, faCampground, faPaw, faSnowflake); //icons must be registered also here, remeber to use them in components without fa-regular, fa-solid, fa-light etc...
 
 
 createApp(App)

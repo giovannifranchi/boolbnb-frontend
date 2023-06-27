@@ -59,10 +59,10 @@ export default {
 
 <!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
  -->
-  <div class="row">
-    <div class="form-container p-3 col-lg-6 col-sm-12 s8 ">
+  <div class="row py-5">
+    <div class="form-container p-5 col-lg-6 col-sm-12 s8 ">
       <div id="content" class="m2">
-        <header id="header" class="p-3">
+        <header id="header">
             <h3>Contact vendor</h3>
             </header>
         <!-- form -->
@@ -86,7 +86,7 @@ export default {
 
             </div>
           <div class="row">
-            <div class="input-field col-12">
+            <div class="input-field col-12 pb-5">
                 <textarea v-model="text" id="message" class="materialize-textarea"></textarea>
                 <label class="ms-3" for="message">Message: </label>
             </div>
@@ -98,7 +98,7 @@ export default {
 
           <div class="row">
             <div class="col s6">
-              <button id="send" class="btn btn-success waves-effect waves-light pink darken-2" type="submit" name="action">
+              <button id="send" class="btn btn-send" type="submit" name="action">
                 Invia
                 <font-awesome-icon icon="fa-paper-plane"  />
               </button>
@@ -133,11 +133,16 @@ export default {
   border-radius: 10px;
   padding: 40px;
 }
-
+#header{
+  background-color: $custom-green;
+  border-radius: 10px;
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
 .form-container h3 {
-  margin: 0 0 30px;
   padding: 0;
-  color:black;
+  margin: 0;
+  color: white;
   text-align: center;
 }
 
@@ -148,8 +153,8 @@ export default {
 .form-container .input-field input,
 .form-container .input-field textarea {
   width: 100%;
-  padding: 10px;
-  font-size: 16px;
+  padding-top: 20px;
+  font-size: 20px;
   color:black;
   margin-bottom: 30px;
   border: none;
@@ -162,7 +167,7 @@ export default {
   top:0;
   left: 0;
   padding: 10px 0;
-  font-size: 16px;
+  font-size: 20px;
   color: black;
   pointer-events: none;
   transition: .7s;
@@ -172,15 +177,18 @@ export default {
 .form-container .input-field input:valid ~ label {
   top: -20px;
   left: 0;
-  color: green;
-  font-size: 12px;
+  color: $custom-green;
+  font-size: 20px;
 }
 .form-container .input-field textarea:focus ~ label,
 .form-container .input-field textarea:valid ~ label {
   top: -20px;
   left: 0;
-  color: green;
-  font-size: 12px;
+  color:$custom-green;
+  font-size: 20px;
+}
+.btn-send{
+  background-color: $custom-green;
 }
 
 #loaders {
