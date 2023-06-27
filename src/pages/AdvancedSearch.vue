@@ -54,14 +54,14 @@
       <!-- /OFFCANVAS  -->
     </div>
   </div>
-  <div class="container-fluid">
-  <div class="row justify-content-center">
-    <div class="col-lg-8 col-md-12">
+  <div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-md-12">
       <div class="row">
         <CardImg v-for="apartment in apartments" :dataApartment="apartment" />
       </div>
     </div>
-    <div class="col-lg-4 col-md-12">
+    <div class="col-lg-6 col-md-12 order-first order-lg-last">
       mappa tom tom
     </div>
   </div>

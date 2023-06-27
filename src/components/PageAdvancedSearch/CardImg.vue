@@ -1,5 +1,5 @@
 <template>
-  <div class="card col-lg-3 col-md-6 col-sm-12 mb-5">
+  <div class="card col-lg-6 col-md-6 col-sm-12 mb-5">
     <!-- carosello -->
     <router-link
       :to="{name:'apartment', params: { slug: dataApartment.slug, id: dataApartment.id } }"
