@@ -4,12 +4,12 @@
             <img src="../../assets/images/home-banner.svg" alt="">
         </div>
         <div class="box col-lg-6 col-sm-12">
-            <h2 class="mb-4">Affitta in sicurezza</h2>
+            <h2 class="mb-4">Safety first</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt quia similique modi cumque quam possimus
                 voluptatibus earum quod veniam, porro consectetur aliquam officiis corporis ipsa deserunt ipsum labore
                 fugiat.</p>
             <div class="button-container">
-                    <button><a class="dropdown-item" href="http://127.0.0.1:8000/register">Rent your porperties with us</a></button>
+                    <button><a class="dropdown-item" href="http://127.0.0.1:8000/register">Rent your apartments with us</a></button>
             </div>
         </div>
     </div>

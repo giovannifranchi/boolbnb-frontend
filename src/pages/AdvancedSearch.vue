@@ -1,7 +1,7 @@
 <template>
   <div class="container d-flex justify-content-center align-items-center">
-    <div class="custom-container py-5">
-      <h2 class="mb-3">Advanced Search</h2>
+    <div class="container py-5">
+      <h2 class="mb-4">ADVANCE SEARCH</h2>
       <!-- search bar -->
       <div class="d-flex flex-column pb-5">
         <form @submit.prevent="sendPositionButton(foundedItems[0].address)">
@@ -34,7 +34,7 @@
           <div class="filterContainer">
             <DistanceRange />
             <PriceRange />
-            <button class="mt-4 ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+            <button class="btn btn-advance mt-4 ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
               aria-controls="offcanvasScrolling">Advanced Filters</button>
           </div>
         </div>
@@ -251,7 +251,7 @@ export default {
 
 .icon {
   font-size: 1.75rem;
-  color: $custom-black;
+  color: white;
 }
 
 ul {
@@ -281,18 +281,27 @@ li {
 li:hover {
   background-color: rgba(0, 0, 0, 0.144);
 }
-
+.btn-advance{
+  background-color: $custom-green;
+  padding:15px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color:white;
+}
 .buttons-container {
   display: flex;
+  
 
   button {
     display: flex;
+    background-color: $custom-green;
     justify-content: center;
     align-items: center;
     margin: 0;
     padding: 0;
     width: 50px;
     height: 50px;
+    border-radius: 10px;
   }
 }
 

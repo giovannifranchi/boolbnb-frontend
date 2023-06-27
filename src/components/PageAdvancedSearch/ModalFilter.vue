@@ -142,9 +142,10 @@ button {
 }
 
 .active {
-    background-color: $custom-blu;
-    color: $custom-black;
-    font-weight: 600;
+    background-color: $custom-green;
+    color: white;
+    font-weight: bold;
+    border: 1px $custom-black solid;
 }
 
 

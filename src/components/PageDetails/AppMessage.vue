@@ -101,7 +101,7 @@ export default {
 
           <div class="row" id="loaders">
             <img :class="isSuccessfull ? 'ms-active' : 'd-none'"
-              src="https://www.dropbox.com/s/0g5h91zyozcbenc/mail.gif?raw=1" width="100" />
+              src="https://www.dropbox.com/s/0g5h91zyozcbenc/mail.gif?raw=1" width="50" />
           </div>
 
           <div class="row">
@@ -114,7 +114,7 @@ export default {
               </button>
             </div>
             <div class="col s6">
-              <button id="resetBtn" class="btn btn-warning waves-effect waves-light light-blue darken-2" type="button"
+              <button id="resetBtn" class="btn btn-danger waves-effect waves-light light-blue darken-2" type="button"
                 @click="reset">
                 Annulla
                 <font-awesome-icon icon="fa-trash" />
