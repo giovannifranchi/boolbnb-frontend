@@ -58,7 +58,7 @@ export default {
             const map = tt.map({
                 key: import.meta.env.VITE_TOMTOM_API_KEY,
                 container: "map",
-                center: [13.411436, 52.523429], // Change this to your desired initial position
+                center: [this.$route.query.longitude, this.$route.query.latitude], // Change this to your desired initial position
                 zoom: 11,
             });
 
