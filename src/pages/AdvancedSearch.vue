@@ -1,7 +1,7 @@
 <template>
   <div class="container d-flex justify-content-center align-items-center">
     <div class="custom-container py-5">
-      <h2 class="mb-3">Ricerca avanzata</h2>
+      <h2 class="mb-3">Advanced Search</h2>
       <!-- search bar -->
       <div class="d-flex flex-column pb-5">
         <form @submit.prevent="sendPositionButton(foundedItems[0].address)">
@@ -30,17 +30,12 @@
           </ul>
         </div>
         <div class="collapse" id="collapseExample">
-          <div class="filterContainer row">
-            <div class="col">
-              <DistanceRange />
-              <PriceRange />
-              <button class="mt-4 ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
-                aria-controls="offcanvasScrolling">Filtri Avanzati</button>
-            </div>
-            <div class="col ms-4">
-              <Map :dataArray="apartments" />
-            </div>
 
+          <div class="filterContainer">
+            <DistanceRange />
+            <PriceRange />
+            <button class="mt-4 ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+              aria-controls="offcanvasScrolling">Advanced Filters</button>
           </div>
         </div>
       </div>
@@ -58,14 +53,21 @@
         </div>
       </div>
       <!-- /OFFCANVAS  -->
-
-      <div class="container">
-        <div class="row justify-content-center">
-          <CardImg v-for="apartment in apartments" :dataApartment="apartment" />
-        </div>
-      </div>
     </div>
   </div>
+  <div class="container d-flex justify-content-center">
+  <div class="row">
+    <div class="col-lg-6 col-md-12">
+      <div class="row">
+        <CardImg v-for="apartment in apartments" :dataApartment="apartment" />
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-12 order-first order-lg-last">
+      mappa tom tom
+    </div>
+  </div>
+</div>
+
 </template>
 
 <script>
