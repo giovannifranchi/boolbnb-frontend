@@ -113,54 +113,56 @@ export default {
     <!-- services -->
     <div v-if="!isbusy">
         <h5>Servizi</h5>
-        <div class="form-check" v-for="service in getServices">
-            <input class="form-check-input" type="checkbox" :value="service.id" id="check-service"
-                @change="getSelectedServices.includes(service.id) ? removeService(service.id) : selectService(service.id)"
-                :selected="getSelectedServices.includes(service.id)">
-            <label class="form-check-label" for="check-service">
-                <div>
-                    <font-awesome-icon aria-expanded="false" :icon="service.icon_url" class="icon" />
-                    {{ service.name }}
+        <div class="row">
+            <div class="form-check col-6" v-for="service in getServices">
+                <input class="form-check-input" type="checkbox" :value="service.id" id="check-service"
+                    @change="getSelectedServices.includes(service.id) ? removeService(service.id) : selectService(service.id)"
+                    :selected="getSelectedServices.includes(service.id)">
+                <label class="form-check-label" for="check-service">
+                    <div>
+                        <font-awesome-icon aria-expanded="false" :icon="service.icon_url" class="icon" />
+                        {{ service.name }}
 
-                </div>
-            </label>
+                    </div>
+                </label>
+            </div>
         </div>
     </div>
     <!-- /services -->
 </template>
 
 <style lang="scss" scoped>
-.modal-content {
-    @import '../../assets/partials/variables';
+@import '../../assets/partials/variables';
+/* .modal-content {
+    
     border: solid 3px $custom-blu;
     border-radius: 1.5625rem;
 
     .modal-title {
         color: $custom-red;
-    }
+    } */
 
-    .filter-select {
-        button {
-            border: solid 1px $custom-black;
-            border-radius: 1.5625rem;
-            margin-right: 10px;
-            padding: 3px 15px;
-        }
+button {
+    border: solid 1px $custom-black;
+    border-radius: 1.5625rem;
+    margin-right: 10px;
+    padding: 3px 15px;
+}
 
-        .active {
-            background-color: $custom-blu;
-            color: $custom-black;
-            font-weight: 600;
-        }
-    }
+.active {
+    background-color: $custom-blu;
+    color: $custom-black;
+    font-weight: 600;
+}
 
 
-    .btn-positive {
-        background-color: $custom-blu;
-    }
 
-    .btn-negative {
-        background-color: $custom-red;
-    }
+.btn-positive {
+    background-color: $custom-blu;
+}
+
+.btn-negative {
+    background-color: $custom-red;
+    /*  } */
 }
 </style>
