@@ -2,22 +2,20 @@
 - GRAFICA RESPONSIVE ANCORA DA IMPLEMENTARE 
 - INSERIRE I LINK A TUTTI I PULSANTI 
 - RIVEDERE HEADER E LE VARIE AZIONI -->
-
-import AppCarouselStatic from '../components/PageHome/AppCarouselStatic.vue';
 <template>
     <AppJumbo />
 
-    <AppCarouselStatic />
+    <AppShowHighlight />
 
     <AppCallToAction />
 </template>
 
 <script>
 import AppJumbo from '../components/PageHome/AppJumbo.vue';
-import AppCarouselStatic from '../components/PageHome/AppCarouselStatic.vue';
+import AppShowHighlight from '../components/PageHome/AppShowHighlight.vue';
 import AppCallToAction from '../components/PageHome/AppCallToAction.vue';
 export default {
     name: "Home",
-    components: { AppJumbo, AppCallToAction, AppCarouselStatic }
+    components: { AppJumbo, AppCallToAction, AppShowHighlight }
 }
 </script>

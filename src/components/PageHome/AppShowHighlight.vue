@@ -1,8 +1,12 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
+import CardImg from "../PageAdvancedSearch/CardImg.vue";
 
 export default {
-  name: "AppCarouselStatic",
+  name: "AppShowHighlight",
+  components: {
+    CardImg
+  },
   data() {
     return {
       isbusy: true,
@@ -31,7 +35,7 @@ export default {
 
   },
 
-  
+
 };
 </script>
 
@@ -41,19 +45,19 @@ export default {
     <div class="wrapper" v-if="!isbusy">
       <h1>Our best suggestions</h1>
       <div class="row">
-      <div class="carousel d-flex gap-5" data-target="carousel">
-
-        <div class="image-container col-lg-6 col-sm-6" v-for="highlighted in getHighlighted">
+        <div class="col-4"><CardImg /></div>
+        
+        <!-- <div class="image-container col-lg-6 col-sm-6" v-for="highlighted in getHighlighted">
           <img :src="highlighted.thumb" alt="img" />
           <div class="logo">
-           <img src="../../assets/images/boolbnb-logo.png" alt="">
+            <img src="../../assets/images/boolbnb-logo.png" alt="">
           </div>
           <div class="text-image ps-0 pt-3">
             <p>{{ highlighted.name }}</p>
             <p>{{ highlighted.price }}/night</p>
           </div>
-        </div>
-        </div>
+        </div> -->
+
 
       </div>
     </div>
@@ -64,29 +68,31 @@ export default {
 
 <style scoped lang="scss">
 @import "../../assets/partials/variables";
-.container{
+
+.container {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.18);
   padding: 10px 30px;
 }
+
 .wrapper {
   height: 500px;
   width: 100%;
   position: relative;
   overflow: hidden;
   margin: 0 auto;
-  
-  
+
+
 }
 
-.carousel{
-  
+.carousel {
+
   height: 100%;
   position: relative;
   padding: 15px 0;
 
-  
+
 
   &::before {
     content: "";
@@ -131,10 +137,11 @@ export default {
     width: 300px;
     padding: 20px 0;
     border-radius: 20px;
+
     &:hover {
-        /*         border: 2px solid $custom-red; */
-        transform: scale(1.06);
-      }
+      /*         border: 2px solid $custom-red; */
+      transform: scale(1.06);
+    }
 
     img {
       width: 100%;
@@ -142,24 +149,25 @@ export default {
       object-fit: cover;
       border-radius: 10px;
 
-      }
     }
-    .logo{
-      position: absolute;
-      right: 15px;
-      top: 35px;
-      
-      
-      
-      img{
-        width: 35px;
-        &:hover {
+  }
+
+  .logo {
+    position: absolute;
+    right: 15px;
+    top: 35px;
+
+
+
+    img {
+      width: 35px;
+
+      &:hover {
         /*         border: 2px solid $custom-red; */
         transform: scale(1.06);
       }
 
-      }
+    }
 
   }
-}
-</style>
+}</style>
