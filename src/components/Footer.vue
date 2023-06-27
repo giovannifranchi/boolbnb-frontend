@@ -1,22 +1,30 @@
 <template>
     <footer>
-        <div class="container d-flex justify-content-between align-items-center p-5">
-            <div class="footer-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </div>
-            <div class="social d-flex">
-                <a href="#">
-                    <Instagram />
-                </a>
-                <a href="#">
-                    <Tiktok />
-                </a>
-                <a href="#">
-                    <Twitter />
-                </a>
-                <a href="#">
-                    <Facebook />
-                </a>
+        <div class="container">
+            <div class="row justify-content-between align-items-center py-4">
+                <div class="footer-text col-lg-6 col-md-12 ">
+                    <p class="mb-1">BoolBnb 2023 | Classe 89</p>
+                    <p  class="mb-1"> Created with  
+                        <font-awesome-icon icon="fa-face-sad-cry" />
+                         by Filippo Bonafini, Giovanni Franchi, Riccardo Turella, Cosimo Petrarca, Giulia Tognali & Giovanni Franchi
+                        </p>  
+                </div>
+                <div  class="social col col-lg-6 col-md-12">
+                    <div class="social-icons d-flex">
+                        <a href="#">
+                            <Instagram />
+                        </a>
+                        <a href="#">
+                            <Tiktok />
+                        </a>
+                        <a href="#">
+                            <Twitter />
+                        </a>
+                        <a href="#">
+                            <Facebook />
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
@@ -42,20 +50,36 @@ footer {
     color: $custom-white;
 
     .footer-text {
-        font-size: 1.25rem;
+        font-size: 1rem;
     }
 
-    .social {
+    .social-icons {
         a {
             padding: 8px;
             color: $custom-white;
             font-size: 37px;
 
             &:hover {
-                color: $custom-red;
+                color: $custom-green;
             }
         }
 
     }
+    @media(min-width:992px){
+        .footer-text{
+            text-align: start;
+        }
+    .social-icons{
+        justify-content: end;
+    }
+}
+@media(max-width:992px){
+    .footer-text{
+            text-align: center;
+        }
+    .social-icons{
+        justify-content: center;
+    }
+}
 }
 </style>

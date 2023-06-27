@@ -298,4 +298,10 @@ li:hover {
   margin: 30px 0;
   border-radius: 20px;
 }
+
+@media (min-width: 992px) {
+    .offcanvas {
+      width: 25% !important;
+    }
+  }
 </style>

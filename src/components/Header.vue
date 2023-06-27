@@ -2,7 +2,8 @@
     <header class="p-0">
         <div class="container d-flex justify-content-between align-items-center">
             <router-link class="logo" to="/">
-                <img class="logo-img" src="../assets/images/logo-no-background.png" alt="boolbnb">
+                <img class="logo-img" src="../assets/images/boolbnb-name-logo.png" alt="boolbnb">
+                <img class="logo-img-small " src="../assets/images/boolbnb-logo.png" alt="">
             </router-link>
             <div class="dropdown">
 
@@ -32,7 +33,8 @@ header {
 
     .logo {
         cursor: pointer;
-        .logo-img{
+        .logo-img,
+        .logo-img-small{
             height: 3.75rem;
             margin: .625rem 0;
         }
@@ -47,6 +49,18 @@ header {
         font-size: 3.4375rem;
         color: $custom-black;
     }
-
+    @media (min-width: 600px){
+        .logo-img-small{
+            display: none;
+        }
+    }
+    @media (max-width: 600px) {
+        .logo-img{
+            display:none;
+        }
+        .logo-img-small{
+            display: block;
+        }
+    }
 }
 </style>
