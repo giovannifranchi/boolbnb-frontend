@@ -16,6 +16,7 @@ export default {
     data() {
         return {
             apartments: [],
+            map: null
         };
     },
     props: {
@@ -40,9 +41,23 @@ export default {
         ...mapActions(["fetchApartments"]),
     },
 
-    //   async created() {
-
-    //   },
+    watch: {
+        dataArray: {
+            immediate: true, // Esegui il watcher subito all'inizio
+            handler(newValue) {
+                if (newValue && newValue.length > 0) {
+                    // La prop dataArray è stata modificata e ha elementi
+                    // newValue.forEach(element => {
+                    //     leaflet.marker([element.latitude, element.longitude]).addTo(this.map);
+                    // });
+                    newValue.forEach(Element => {
+                        console.log(Element)
+                        new tt.Marker().setLngLat([Element.longitude, Element.latitude]).addTo(map)
+                    })
+                }
+            }
+        }
+    },
 
     async mounted() {
         const response = await this.fetchApartments();
@@ -55,19 +70,18 @@ export default {
 
             console.log(apartments);
 
-            const map = tt.map({
+            this.map = tt.map({
                 key: import.meta.env.VITE_TOMTOM_API_KEY,
                 container: "map",
                 center: [this.$route.query.longitude, this.$route.query.latitude], // Change this to your desired initial position
                 zoom: 11,
             });
 
-            // Array of your apartments with latitude and longitude
 
-            // Add marker for each apartment
-            apartments.forEach((apartment) => {
-                new tt.Marker().setLngLat([apartment.lng, apartment.lat]).addTo(map);
-            });
+            //     // Add marker for each apartment
+            //     apartments.forEach((apartment) => {
+            //         new tt.Marker().setLngLat([apartment.lng, apartment.lat]).addTo(map);
+            //     });
         }
     },
 
