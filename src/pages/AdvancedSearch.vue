@@ -300,8 +300,8 @@ li:hover {
 }
 
 @media (min-width: 992px) {
-    .offcanvas {
-      width: 25% !important;
-    }
+  .offcanvas {
+    width: 25% !important;
   }
+}
 </style>
