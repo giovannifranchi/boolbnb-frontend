@@ -8,6 +8,7 @@
 import { mapGetters, mapActions } from "vuex";
 import tt from '@tomtom-international/web-sdk-maps';
 import '@tomtom-international/web-sdk-maps/dist/maps.css';
+import { storeFilter } from "../../store/storeFilter";
 
 
 export default {
@@ -16,6 +17,7 @@ export default {
     data() {
         return {
             apartments: [],
+            storeFilter,
 
         };
     },
@@ -49,7 +51,7 @@ export default {
                 key: import.meta.env.VITE_TOMTOM_API_KEY,
                 container: "map",
                 center: [this.$route.query.longitude, this.$route.query.latitude], // Change this to your desired initial position
-                zoom: 11,
+                zoom: Math.floor(20 / this.storeFilter.range ),
             });
 
             this.dataArray.forEach(Element => {
@@ -62,10 +64,6 @@ export default {
     },
 
    mounted() {
-
-
-
-            
 
             let map =  tt.map({
                 key: import.meta.env.VITE_TOMTOM_API_KEY,
