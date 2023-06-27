@@ -54,15 +54,18 @@
       <!-- /OFFCANVAS  -->
     </div>
   </div>
-  <div class="container d-flex justify-content-center">
+  <div class="container">
+    <div v-if="apartments.length > 0">
+      <h5>{{ apartments.length }} apartments found in {{ apartments[0]['city'] }}</h5>
+    </div>
   <div class="row">
-    <div class="col-lg-6 col-md-12">
+    <div class="col-lg-6 col-md-12 ms-pad">
       <div class="row">
         <CardImg v-for="apartment in apartments" :dataApartment="apartment" />
       </div>
     </div>
     <div class="col-lg-6 col-md-12 order-first order-lg-last">
-      <Map/>
+      <Map class="mobile-map" />
     </div>
   </div>
 </div>
@@ -245,12 +248,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/partials/variables";
-
-@media (max-width: 767px) {
-  .col-lg-6.col-md-12 {
-    padding-top: 20px; /* Aggiungi qui il valore del padding desiderato */
-  }
-}
 
 .icon {
   font-size: 1.75rem;

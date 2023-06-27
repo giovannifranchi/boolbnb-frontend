@@ -1,10 +1,11 @@
 <template>
-  <div class="card col-lg-6 col-md-6 col-sm-12 mb-5">
+  <div class="card col-lg-4 col-md-4 col-sm-12 mb-5">
     <!-- carosello -->
     <router-link
       :to="{name:'apartment', params: { slug: dataApartment.slug, id: dataApartment.id } }"
       class="text-decoration-none text-reset"
-      @click="addView(dataApartment.id)">
+      @click="addView(dataApartment.id)"
+    >
       <div :id="'carouselIndicators_' + uniqueId" class="carousel slide">
         <ul class="carousel-indicators">
           <li
@@ -103,7 +104,7 @@ export default {
 
     .carousel-item {
       img {
-        height: 300px; // Altezza fissa desiderata
+        height: 200px; // Altezza fissa desiderata
         max-width: 100%; // Imposta l'ampiezza massima come 100% del contenitore
         object-fit: cover; // Ridimensiona l'immagine in modo da coprire l'area specificata senza distorcere l'aspetto
       }
@@ -115,6 +116,5 @@ export default {
       margin: 0.3125rem 0;
     }
   }
-
 }
 </style>

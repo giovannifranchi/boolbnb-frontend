@@ -79,6 +79,22 @@ export default {
 
 <style scoped>
 #map{
-    height: 80vh;
+  height: 20vh;
+  margin-bottom: 50px;
 }
+
+@media (min-width: 767px) {
+    #map {
+        height: 50vh;
+       
+    }
+}
+
+@media (min-width: 992px) {
+    #map {
+        height: 70vh;
+    
+    }
+}
+
 </style>
