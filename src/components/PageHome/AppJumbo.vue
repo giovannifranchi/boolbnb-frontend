@@ -14,8 +14,9 @@
                     }}
                 </li>
             </ul>
-            <div class="button-container"><button type="submit">Search</button></div>
-
+            <div class="button-container">
+                <button type="submit">Search</button>
+            </div>
         </form>
         <div class="image-container" v-if="randomHighlight">
             <img :src="randomHighlight.thumb" alt="">
@@ -83,7 +84,7 @@ export default {
 
 .form-container {
     position: relative;
- /*    transform: translateX(25%); */
+    transform: translateX(5%);
     padding: 30px;
     background-color: white;
     box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.18);
@@ -139,6 +140,8 @@ export default {
 .image-container {
     width: 1000px;
     height: 600px;
+    transform: translateX(-5%);
+    z-index: -1;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.18);
@@ -149,4 +152,22 @@ export default {
 
     }
 }
+
+@media (max-width: 992px) {
+    .jumbotron{
+        padding: 0;
+    }
+    .image-container {
+      display:none;
+    }
+    .form-container{
+        transform: translateX(0%);
+        width: 100%;
+        input,
+    li {
+        width: 100%;
+    }
+        
+    }
+  }
 </style>

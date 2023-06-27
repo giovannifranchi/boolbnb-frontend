@@ -1,22 +1,28 @@
 <template>
     <footer>
-        <div class="container d-flex justify-content-between align-items-center p-5">
-            <div class="footer-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </div>
-            <div class="social d-flex">
-                <a href="#">
-                    <Instagram />
-                </a>
-                <a href="#">
-                    <Tiktok />
-                </a>
-                <a href="#">
-                    <Twitter />
-                </a>
-                <a href="#">
-                    <Facebook />
-                </a>
+        <div class="container">
+            <div class="row justify-content-between align-items-center py-4">
+                <div class="col-lg-6 footer-text">
+                    BoolBnb 2023 - Created by
+                </div>
+                <div  class="col-lg-6">
+
+
+                    <div class="social d-flex justify-content-end">
+                        <a href="#">
+                            <Instagram />
+                        </a>
+                        <a href="#">
+                            <Tiktok />
+                        </a>
+                        <a href="#">
+                            <Twitter />
+                        </a>
+                        <a href="#">
+                            <Facebook />
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
@@ -42,7 +48,7 @@ footer {
     color: $custom-white;
 
     .footer-text {
-        font-size: 1.25rem;
+        font-size: 1rem;
     }
 
     .social {
@@ -52,7 +58,7 @@ footer {
             font-size: 37px;
 
             &:hover {
-                color: $custom-red;
+                color: $custom-green;
             }
         }
 
