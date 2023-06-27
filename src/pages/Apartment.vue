@@ -1,5 +1,5 @@
 <template>
-    <div class="container" v-if="!isbusy">
+    <div class="container my-container" v-if="!isbusy">
         <h1 class="d-flex justify-content-center">{{ apartment.name }}</h1>
         <div class="my-subtitle">
             <h4>Published by: {{ apartment.user.name }}</h4>
@@ -45,7 +45,8 @@
                         <h3 class="my-info d-flex justify-content-center">Services</h3>
                         <ul class="d-flex gap-3 flex-wrap">
                             <li v-for="(service, index) in apartment.services" class="">
-                                <p><i :class="['fa-solid', faIcons[index]]"></i> {{ service.name }}</p>
+                                <p><font-awesome-icon aria-expanded="false" :icon="service.icon_url" class="icon" /> {{
+                                    service.name }}</p>
 
                             </li>
                         </ul>
@@ -90,7 +91,7 @@ export default {
             images: [],
             activePic: null,
             indexOfActive: 0,
-            faIcons: [],
+
 
         };
     },
@@ -124,9 +125,6 @@ export default {
             return [];
         },
 
-        getIcons(index) {
-            return this.apartment ? this.apartment.services.map(icon => icon.icon_url) : [];
-        }
     },
 
     methods: {
@@ -146,6 +144,14 @@ h1 {
 
 p {
     margin: 0;
+}
+
+.my-container {
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    background-color: white;
+    border-radius: 10px;
+    padding: 1.875rem 0 1.875rem 0;
+    margin: 1.875rem auto 1.875rem auto;
 }
 
 .services-container {
@@ -200,3 +206,5 @@ p {
     margin-bottom: 6.25rem;
 }
 </style>
+
+
