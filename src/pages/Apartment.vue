@@ -19,41 +19,40 @@
             <div class=" row mt-5 ">
                 <div class="col-lg-6 d-flex justify-content-center">
                     <div>
-                        <h3>Info principali</h3>
+                        <h3 class="my-info d-flex justify-content-center ">Main Info</h3>
                         <ul class="ps-0">
                             <li>
-                                Prezzo: {{ apartment.price }}€
+                                Price: {{ apartment.price }}€
                             </li>
                             <li>
-                                Metratura: {{ apartment.square_meters }} mq
+                                M²: {{ apartment.square_meters }} mq
                             </li>
                             <li>
-                                N° Stanze: {{ apartment.rooms }}
+                                Rooms: {{ apartment.rooms }}
                             </li>
                             <li>
-                                N° Bagni: {{ apartment.bathrooms }}
+                                Bathrooms: {{ apartment.bathrooms }}
                             </li>
+
                             <li>
-                                N° Bagni: {{ apartment.bathrooms }}
-                            </li>
-                            <li>
-                                In affitto da: {{ apartment.created_at }} <!-- modificare formato ora -->
+                                For Rent From: {{ apartment.created_at }} <!-- modificare formato ora -->
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-6 d-flex justify-content-center">
-                    <h3>Servizi</h3>
-                    <ul>
-                        <li v-for="service in services">
-                            <p> {{ services.name }}</p>
+                <div class="col-lg-6 d-flex justify-content-center services-container">
+                    <div>
+                        <h3 class="my-info d-flex justify-content-center">Services</h3>
+                        <ul class="d-flex gap-3 flex-wrap">
+                            <li v-for="(service, index) in apartment.services" class="">
+                                <p><i :class="['fa-solid', faIcons[index]]"></i> {{ service.name }}</p>
 
-                        </li>
-                    </ul>
-
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div>
-                    <h3>Descrizione</h3>
+                <div class="description-container">
+                    <h3 class="my-info d-flex justify-content-center">Description</h3>
                     <p>{{ apartment.description }}
                     </p>
                 </div>
@@ -71,6 +70,7 @@
 import Apartment from "../api/Apartment";
 import Service from '../api/Service';
 import AppMessage from "../components/PageDetails/AppMessage.vue";
+import { watchEffect } from 'vue';
 
 
 export default {
@@ -89,7 +89,8 @@ export default {
             },
             images: [],
             activePic: null,
-            indexOfActive: 0
+            indexOfActive: 0,
+            faIcons: [],
 
         };
     },
@@ -98,21 +99,34 @@ export default {
         // response.error ? this.$router.push({name:'notFound'}) : ()=>{this.apartment=response;this.isbusy = false;}
         this.apartment = response;
         this.isbusy = false;
+        if (this.apartment) {
+            this.images.push(this.apartment.thumb);
+            this.apartment.images.forEach((image) => {
+                this.images.push(image.path);
+            });
+        }
     },
+    mounted() {
+        watchEffect(() => {
+            if (this.images.length > 0) {
+                this.activePic = this.images[0];
+            }
+        });
+    },
+
 
     computed: {
         getAllImages() {
             if (this.apartment) {
-                // let images = [this.apartment.thumb];
-                this.images.push(this.apartment.thumb);
-                this.apartment.images.forEach((image) => {
-                    this.images.push(image.path);
-                });
-                console.log(this.images)
-                return this.images;
-
+                const allImages = [this.apartment.thumb, ...this.apartment.images.map(image => image.path)];
+                return allImages;
             }
+            return [];
         },
+
+        getIcons(index) {
+            return this.apartment ? this.apartment.services.map(icon => icon.icon_url) : [];
+        }
     },
 
     methods: {
@@ -130,11 +144,31 @@ h1 {
     margin: 3.125rem 0 3.125rem 0;
 }
 
+p {
+    margin: 0;
+}
+
+.services-container {
+    padding-right: 165px;
+    padding-left: 70px;
+
+}
+
+.description-container {
+    padding: 0 165px 0 165px;
+    margin: 2.5rem 0 2.5rem 0;
+}
+
 .my-subtitle {
-    border-top: 5px solid rgb(46, 204, 113);
-    border-bottom: 5px solid rgb(46, 204, 113);
+    border-top: 3px solid rgb(46, 204, 113);
+    border-bottom: 3px solid rgb(46, 204, 113);
     margin: 0 2.5rem 5rem 2.5rem;
     padding: 1rem 0 1rem 0;
+}
+
+.my-info {
+    border-top: 3px solid rgb(46, 204, 113);
+    border-bottom: 3px solid rgb(46, 204, 113);
 }
 
 .thumbnail {
@@ -163,6 +197,6 @@ h1 {
 .my-message-container {
     margin: auto;
     width: 50%;
-
+    margin-bottom: 6.25rem;
 }
 </style>
