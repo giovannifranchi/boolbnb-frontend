@@ -35,7 +35,7 @@ export default {
     <div v-if="!isbusy">
       <h1>OUR CHOICES</h1>
       <div class="row">
-        <div class="col-12" v-for="highlighted in getHighlighted">
+        <div class="col-lg-4 col-sm-12" v-for="highlighted in getHighlighted">
           <CardImg :dataApartment="highlighted"/>
         </div>
       </div>
