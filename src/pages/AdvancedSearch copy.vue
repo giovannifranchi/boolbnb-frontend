@@ -9,11 +9,9 @@
             <input type="text" name="search" id="search" v-model="inputSearch" :placeholder="position"
               @input="autoComplete(inputSearch)">
             <div class="buttons-container">
-              <button class="btn  icon">
-                <font-awesome-icon icon="magnifying-glass" class="icon" />
-              </button>
-              <button @click="isOpen = !isOpen" class="btn icon" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+              <button class="btn  icon"><font-awesome-icon icon="magnifying-glass" class="icon" /></button>
+              <button type="button" class="btn icon" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                aria-expanded="false" aria-controls="collapseExample">
                 <font-awesome-icon icon="sliders" />
               </button>
             </div>
@@ -23,49 +21,56 @@
         <div>
           <ul v-if="inputSearch">
             <li class="list" v-for="element in foundedItems" @click="sendPosition(element.position, element.address)">
-              {{ element.address.streetName || '' + ' ' +
+              {{ element.address.streetName || '' + ' '
+                +
                 element.address.municipality + ' ' +
-                element.address.country }}
+                element.address.country
+              }}
             </li>
           </ul>
         </div>
-      </div>
-      <!-- /search bar -->
-    </div>
-  </div>
+        <div class="collapse" id="collapseExample">
 
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <div v-if="apartments.length > 0">
-          <h5>{{ apartments.length }} apartments found in {{ apartments[0]['city'] }}</h5>
-        </div>
-        <div class="row">
-          <div :class="isOpen ? 'col-lg-4' : ''" class="col-lg-3 col-md-4 col-sm-12" v-for="apartment in  apartments "
-            :key="apartment.id">
-            <CardImg :dataApartment="apartment" />
-          </div>
-        </div>
-      </div>
-      <div :class="isOpen ? 'col-4' : 'd-none'">
-        <!-- OFFCANVAS  -->
-
-        <div class="">
           <div class="filterContainer">
-            <Map :data-array="apartments" />
-            <!-- Filtri -->
             <DistanceRange />
             <PriceRange />
+            <button class="btn btn-advance mt-4 ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+              aria-controls="offcanvasScrolling">Advanced Filters</button>
           </div>
+        </div>
+      </div>
+      <!-- /search bar -->
+
+      <!-- OFFCANVAS  -->
+      <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+        id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas-header">
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
           <ModalFilter />
         </div>
-        <!-- /OFFCANVAS  -->
+      </div>
+      <!-- /OFFCANVAS  -->
+    </div>
+  </div>
+  <div class="container">
+    <div v-if="apartments.length > 0">
+      <h5>{{ apartments.length }} apartments found in {{ apartments[0]['city'] }}</h5>
+    </div>
+  <div class="row">
+    <div class="col-lg-6 col-md-12 ms-pad">
+      <div class="row ms-row">
+        <CardImg v-for="apartment in apartments" :dataApartment="apartment" />
       </div>
     </div>
-
+    <div class="col-lg-6 col-md-12 order-first order-lg-last" v-if="apartments.length > 0">
+      <Map class="mobile-map" :data-array="apartments"/>
+    </div>
   </div>
-</template>
+</div>
 
+</template>
 
 <script>
 import CardImg from "../components/PageAdvancedSearch/CardImg.vue";
@@ -76,6 +81,7 @@ import DistanceRange from "../components/PageAdvancedSearch/DistanceRange.vue";
 import PriceRange from "../components/PageAdvancedSearch/PriceRange.vue";
 import { storeFilter } from "../store/storeFilter";
 import Search from '../api/Search'
+
 
 export default {
   name: "AdvancedSearch",
@@ -90,41 +96,49 @@ export default {
     return {
       storeFilter,
       apartments: [],
+
       inputSearch: '',
       foundedItems: [],
       searchRadius: 20,
-      position: null,
-      isOpen: false
+      position: null
     };
   },
   mounted() {
     this.searchApartments();
   },
   watch: {
+
     getRadius(newValue) {
       this.searchAdvanced();
     },
+
     getMinPrice(newValue) {
       this.searchAdvanced();
     },
+
     getMaxPrice(newValue) {
       this.searchAdvanced();
     },
+
     getRooms(newValue) {
       this.searchAdvanced();
     },
+
     getBeds(newValue) {
       this.searchAdvanced();
     },
+
     getBaths(newValue) {
       this.searchAdvanced();
     },
+
     getServices: {
       handler(newValue) {
         this.searchAdvanced();
       },
       deep: true,
     },
+
   },
   methods: {
     async searchApartments() {
@@ -167,9 +181,12 @@ export default {
         }
       });
       this.inputSearch = ''
-      this.position = address.streetName || '' + ' ' +
+      this.position = address.streetName || '' + ' '
+        +
         address.municipality + ' ' +
         address.country
+
+
     },
     async sendPositionButton(address) {
       this.$router.push({
@@ -178,6 +195,7 @@ export default {
           latitude: this.foundedItems[0].position.lat,
           longitude: this.foundedItems[0].position.lon,
           radius: this.searchRadius
+
         }
       });
       const response = await Apartment.searchByPosition({
@@ -185,32 +203,42 @@ export default {
         longitude: this.foundedItems[0].position.lon,
         radius: this.searchRadius,
       });
+
       this.apartments = response
+
       this.inputSearch = ''
-      this.position = address.streetName || '' + ' ' +
+      this.position = address.streetName || '' + ' '
+        +
         address.municipality + ' ' +
         address.country
+
     }
   },
   computed: {
     getRadius() {
       return this.storeFilter.range;
     },
+
     getMinPrice() {
       return this.storeFilter.minPrice;
     },
+
     getMaxPrice() {
       return this.storeFilter.maxPrice;
     },
+
     getRooms() {
       return this.storeFilter.rooms;
     },
+
     getBaths() {
       return this.storeFilter.baths;
     },
+
     getBeds() {
       return this.storeFilter.beds;
     },
+
     getServices() {
       return this.storeFilter.selectedServices;
     },
@@ -231,9 +259,10 @@ export default {
   overflow-y: auto;
 }
 
+
+
 ul {
   padding: 0;
-  overflow-x: hidden;
 
   li {
     margin: 4px 0;
@@ -242,6 +271,7 @@ ul {
     a {
       color: $custom-black;
       text-decoration: none;
+
     }
   }
 }
@@ -258,17 +288,16 @@ li {
 li:hover {
   background-color: rgba(0, 0, 0, 0.144);
 }
-
-.btn-advance {
+.btn-advance{
   background-color: $custom-green;
-  padding: 15px;
+  padding:15px;
   font-size: 1.25rem;
   font-weight: bold;
-  color: white;
+  color:white;
 }
-
 .buttons-container {
   display: flex;
+  
 
   button {
     display: flex;
@@ -283,18 +312,25 @@ li:hover {
   }
 }
 
+.filterContainer {
+  background-color: white;
+  padding: 30px 20px;
+  margin: 30px 0;
+  border-radius: 20px;
+}
 
 @media (min-width: 767px) {
-  .ms-row {
-    height: 50vh;
-  }
+
+.ms-row {
+  height: 50vh;
+}
 }
 
 @media (min-width: 992px) {
+
   .ms-row {
     height: 70vh;
   }
-
   .offcanvas {
     width: 25% !important;
   }
