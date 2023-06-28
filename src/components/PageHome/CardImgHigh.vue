@@ -1,6 +1,9 @@
 <template>
   <div class="row">
     <div class="card col col-lg-3 col-sm-12" v-for="highlighted in getHighlighted">
+      <router-link
+      :to="{name:'apartment', params: { slug: highlighted.slug, id: highlighted.id } }"
+      class="text-decoration-none text-reset">
       <div class="image-container">
         <div class="logo">
           <img class="miniature" src="../../../src/assets/images/boolbnb-logo.png" alt="">
@@ -13,6 +16,7 @@
         <p>{{ highlighted.address }}, {{ highlighted.city }}</p>
         <p><strong>{{ highlighted.price }} €</strong> /Notte</p>
       </div>
+      </router-link>
     </div>
     
   </div>
