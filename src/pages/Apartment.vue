@@ -36,7 +36,7 @@
                                 </li>
 
                                 <li>
-                                    For Rent From: <strong>{{ apartment.created_at }}</strong>
+                                    For Rent From: <strong>{{ convertDateFormat(apartment.create_at) }}</strong>
                                     <!-- modificare formato ora -->
                                 </li>
                             </ul>
@@ -81,7 +81,7 @@ import Apartment from "../api/Apartment";
 import Service from '../api/Service';
 import AppMessage from "../components/PageDetails/AppMessage.vue";
 import { watchEffect } from 'vue';
-
+import moment from 'moment';
 
 export default {
     name: "Apartment",
@@ -100,7 +100,7 @@ export default {
             images: [],
             activePic: null,
             indexOfActive: 0,
-
+            timeStamp: null,
 
         };
     },
@@ -134,6 +134,8 @@ export default {
             return [];
         },
 
+
+
     },
 
     methods: {
@@ -141,7 +143,12 @@ export default {
             this.activePic = this.getAllImages[index];
             this.indexOfActive = index;
             console.log(this.activePic)
+        },
+
+        convertDateFormat(date) {
+            return moment(date).format('DD-MM-YYYY');
         }
+
     }
 }
 </script>
@@ -160,10 +167,12 @@ export default {
         display: flex;
         justify-content: space-between;
         margin: 20px 50px;
+
     }
 
     .my-detail {
         width: 50%;
+
     }
 
     .my-info-container {
@@ -191,6 +200,8 @@ export default {
     }
 
     .services-container {
+        padding-top: 15px;
+
         ul {
             padding: 0;
         }
@@ -202,7 +213,7 @@ export default {
     }
 
     .description-container {
-
+        padding-top: 30px;
 
         h3 {
             display: flex;
