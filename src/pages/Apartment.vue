@@ -17,9 +17,9 @@
                 </div>
             </div>
             <div class=" row mt-5 ">
-                <div class="col-lg-6 d-flex justify-content-center my-info-container">
+                <div class="col-lg-6 my-info-container">
                     <div>
-                        <h3 class="my-info d-flex justify-content-center ">Main Info</h3>
+                        <h3 class="my-info d-flex justify-content-center">Main Info</h3>
                         <ul class="ps-0">
                             <li>
                                 Price: <strong>{{ apartment.price }}€</strong>
@@ -138,13 +138,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@media only screen and (min-width: 1194px) {
+@media only screen and (min-width: 993px) {
     h1 {
         margin: 3.125rem 0 3.125rem 0;
     }
 
     p {
         margin: 0;
+    }
+
+    .my-info-container {
+        padding-right: 70px;
+        padding-left: 165px;
+
+        h3 {
+            display: flex;
+            justify-content: center;
+        }
     }
 
     .my-img-thumb-container {
@@ -165,18 +175,30 @@ export default {
         padding-right: 165px;
         padding-left: 70px;
 
+        h3 {
+            display: flex;
+            justify-content: center;
+        }
     }
 
     .description-container {
         padding: 0 165px 0 165px;
         margin: 2.5rem 0 2.5rem 0;
+
+        h3 {
+            display: flex;
+            justify-content: center;
+        }
     }
 
     .my-subtitle {
+
         border-top: 3px solid rgb(46, 204, 113);
         border-bottom: 3px solid rgb(46, 204, 113);
         margin: 0 2.5rem 5rem 2.5rem;
         padding: 1rem 0 1rem 0;
+
+
     }
 
     .my-info {
@@ -199,11 +221,11 @@ export default {
 
     .my-img {
 
-        max-width: 800px;
+        max-width: 75%;
     }
 
     .my-img-thumb {
-        width: 200px;
+        width: 70%;
         margin-left: 10px;
         display: flex;
         flex-direction: column;
@@ -218,207 +240,27 @@ export default {
     .my-img-container {
         display: flex;
         justify-content: center;
+        margin-left: 40px;
     }
 }
 
-@media only screen and (min-width: 993px) and (max-width: 1194px) {
+@media only screen and (min-width: 577px) and (max-width: 992px) {
 
     h1 {
         margin: 3.125rem 0 3.125rem 0;
+        text-align: center;
     }
 
     p {
         margin: 0;
     }
 
-    .my-img-thumb-container {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .my-img-container {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-    }
-
-    .my-container {
-        box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
-        background-color: white;
-        border-radius: 10px;
-        padding: 1.875rem 0 1.875rem 0;
-        margin: 1.875rem auto 1.875rem auto;
-    }
-
-    .services-container {
-        padding-right: 8.125rem;
-        padding-left: 4.375rem;
-
-    }
-
-    .description-container {
-        padding: 0 165px 0 165px;
-        margin: 2.5rem 0 2.5rem 0;
-    }
-
-    .my-subtitle {
-        border-top: 3px solid rgb(46, 204, 113);
-        border-bottom: 3px solid rgb(46, 204, 113);
-        margin: 0 2.5rem 5rem 2.5rem;
-        padding: 1rem 0 1rem 0;
-    }
-
-    .my-info {
-        border-top: 3px solid rgb(46, 204, 113);
-        border-bottom: 3px solid rgb(46, 204, 113);
-    }
-
-    .thumbnail {
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-
-    .thumbnail:hover {
-        scale: 1.04;
-    }
-
-    .active {
-        border: 2px solid rgb(46, 204, 113);
-    }
-
-    .my-img {
-
-        max-width: 500px;
-        height: 100%;
-    }
-
-    .my-img-thumb {
-        width: 130px;
-        margin-left: 10px;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .my-message-container {
-        margin: auto;
-        width: 60%;
-        margin-bottom: 6.25rem;
-    }
-
-    .my-info-container {
-        padding-left: 110px;
-    }
-
-}
-
-@media only screen and (min-width: 890px) and (max-width: 993px) {
-    h1 {
-        margin: 3.125rem 0 3.125rem 0;
-    }
-
-    p {
-        margin: 0;
-    }
-
-    .my-img-thumb-container {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .my-img-container {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-    }
-
-    .my-container {
-        box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
-        background-color: white;
-        border-radius: 10px;
-        padding: 1.875rem 0 1.875rem 0;
-        margin: 1.875rem auto 1.875rem auto;
-    }
-
-    .services-container {
-        margin-top: 1.875rem;
-        padding: 0 12.5rem 0 12.5rem;
-
-        ul {
-            display: flex;
-            flex-wrap: wrap;
-        }
-    }
-
-    .description-container {
-        padding: 0 165px 0 165px;
-        margin: 2.5rem 0 2.5rem 0;
-    }
-
-    .my-subtitle {
-        border-top: 3px solid rgb(46, 204, 113);
-        border-bottom: 3px solid rgb(46, 204, 113);
-        margin: 0 2.5rem 5rem 2.5rem;
-        padding: 1rem 0 1rem 0;
-    }
-
-    .my-info {
-        border-top: 3px solid rgb(46, 204, 113);
-        border-bottom: 3px solid rgb(46, 204, 113);
-    }
-
-    .thumbnail {
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-
-    .thumbnail:hover {
-        scale: 1.04;
-    }
-
-    .active {
-        border: 2px solid rgb(46, 204, 113);
-    }
-
-    .my-img {
-
-        max-width: 500px;
-        height: 100%;
-    }
-
-    .my-img-thumb {
-        width: 130px;
-        margin-left: 10px;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .my-message-container {
-        margin: auto;
-        width: 60%;
-        margin-bottom: 6.25rem;
-    }
-
-
-}
-
-@media only screen and (min-width: 768px) and (max-width: 890px) {
-    h1 {
-        margin: 3.125rem 0 3.125rem 0;
-    }
-
-    p {
-        margin: 0;
-    }
 
     .my-img-thumb-container {
         display: flex;
         flex-direction: row;
 
-        gap: 2px;
+
     }
 
     .my-img-thumb {
@@ -434,16 +276,15 @@ export default {
     }
 
     .my-container {
-        box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+
         background-color: white;
-        border-radius: 10px;
-        padding: 1.875rem 0 1.875rem 0;
-        margin: 1.875rem auto 1.875rem auto;
+        width: 100vw;
+
     }
 
     .services-container {
         margin-top: 1.875rem;
-        padding: 0 200px 0 200px;
+        padding: 0px 6.25rem;
 
         ul {
             display: flex;
@@ -452,8 +293,9 @@ export default {
     }
 
     .description-container {
-        padding: 0 120px 0 120px;
-        margin: 2.5rem 0 2.5rem 0;
+
+        margin: 2.5rem 0;
+        padding: 0 50px;
     }
 
     .my-subtitle {
@@ -482,21 +324,138 @@ export default {
     }
 
     .my-img {
-        margin: 0 0 0 110px;
-        max-width: 500px;
+        margin-left: 15%;
+        max-width: 70%;
 
     }
 
     .my-img-thumb {
-        width: 130px;
-        margin-left: 10px;
+        max-width: 17%;
+        height: auto;
+        margin: 1% 1%;
     }
 
     .my-message-container {
         margin: auto;
-        width: 60%;
+        width: 80%;
         margin-bottom: 6.25rem;
     }
+
+    .my-info-container {
+        display: flex;
+        justify-content: center;
+    }
+
+}
+
+
+@media only screen and (max-width: 576px) {
+    h1 {
+        margin: 3.125rem 0 3.125rem 0;
+        padding-top: 1.875rem;
+        text-align: center;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    .my-img-thumb-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+    }
+
+    .my-img-thumb {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .my-img-container {
+        margin: 0px 0px 60px 10px;
+        padding: 0;
+
+    }
+
+    .my-container {
+
+        background-color: white;
+        width: 100%;
+
+    }
+
+    .services-container {
+        margin-top: 1.875rem;
+        padding: 0 50px;
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+
+    .description-container {
+
+        margin: 2.5rem 0;
+        padding: 0 50px;
+    }
+
+    .my-subtitle {
+        border-top: 3px solid rgb(46, 204, 113);
+        border-bottom: 3px solid rgb(46, 204, 113);
+        margin: 0 2.5rem 5rem 2.5rem;
+        padding: 1rem 0 1rem 0;
+    }
+
+    .my-info {
+        border-top: 3px solid rgb(46, 204, 113);
+        border-bottom: 3px solid rgb(46, 204, 113);
+    }
+
+    .thumbnail {
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .thumbnail:hover {
+        scale: 1.04;
+    }
+
+    .active {
+        border: 2px solid rgb(46, 204, 113);
+    }
+
+    .my-img {
+        margin-left: 1%;
+        max-width: 95%;
+
+    }
+
+    .my-img-thumb {
+        max-width: 30%;
+        height: auto;
+        margin: 1% 1%;
+    }
+
+    .my-message-container {
+        margin: auto;
+        width: 100%;
+        margin-bottom: 6.25rem;
+    }
+
+    .my-info-container {
+        padding: 0 50px;
+        ;
+
+        h3 {
+            display: flex;
+            justify-content: center;
+        }
+
+    }
+
 
 
 }
