@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="card col col-lg-3 col-sm-12" v-for="highlighted in getHighlighted">
+    <div class="card col col-xl-3 col-lg-4 col-md-6 col-sm-12" v-for="highlighted in getHighlighted">
       <router-link
       :to="{name:'apartment', params: { slug: highlighted.slug, id: highlighted.id } }"
       class="text-decoration-none text-reset">
@@ -58,8 +58,8 @@ export default {
   border:none;
     .image-container {
     position: relative;
-    height: 290px;
-    width: 290px;
+    height: 290px; // Altezza fissa desiderata
+        max-width: 100%;
     padding: 20px 0;
     border-radius: 20px;
 
