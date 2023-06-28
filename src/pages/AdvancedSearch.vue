@@ -60,7 +60,7 @@
     </div>
   <div class="row">
     <div class="col-lg-6 col-md-12 ms-pad">
-      <div class="row">
+      <div class="row ms-row">
         <CardImg v-for="apartment in apartments" :dataApartment="apartment" />
       </div>
     </div>
@@ -254,6 +254,13 @@ export default {
   color: white;
 }
 
+.ms-row {
+  height: 20vh;
+  overflow-y: auto;
+}
+
+
+
 ul {
   padding: 0;
 
@@ -312,7 +319,18 @@ li:hover {
   border-radius: 20px;
 }
 
+@media (min-width: 767px) {
+
+.ms-row {
+  height: 50vh;
+}
+}
+
 @media (min-width: 992px) {
+
+  .ms-row {
+    height: 70vh;
+  }
   .offcanvas {
     width: 25% !important;
   }
