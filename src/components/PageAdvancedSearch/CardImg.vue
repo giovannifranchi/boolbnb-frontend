@@ -1,5 +1,5 @@
 <template>
-  <div class="card col-lg-4 col-md-4 col-sm-12 mb-5">
+  <div class="card">
     <!-- carosello -->
     <router-link :to="{ name: 'apartment', params: { slug: dataApartment.slug, id: dataApartment.id } }"
       class="text-decoration-none text-reset" @click="addView(dataApartment.id)">
@@ -111,8 +111,6 @@ export default {
     right:15px;
     top: 20px;
     z-index: 2;
-/*     height: 50px;
-    width: 50px; */
     background-color: rgba(255, 255, 255, 0.563);
     border-radius: 25px;
 
