@@ -6,7 +6,7 @@
       <div :id="'carouselIndicators_' + uniqueId" class="carousel slide">
         
         
-        <div v-if="dataApartment.is_sponsored" class="logo d-felx justify-content-center">
+        <div v-if="highlight" class="logo d-felx justify-content-center">
           <img class="miniature" src="../../../src/assets/images/boolbnb-logo.png" alt="">
         </div>
         
