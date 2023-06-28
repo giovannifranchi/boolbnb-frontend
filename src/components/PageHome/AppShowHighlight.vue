@@ -1,11 +1,11 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
-import CardImgHigh from "../PageHome/CardImgHigh.vue";
+import CardImg from "../PageAdvancedSearch/CardImg.vue";
 
 export default {
   name: "AppShowHighlight",
   components: {
-    CardImgHigh
+    CardImg
   },
   data() {
     return {
@@ -35,8 +35,9 @@ export default {
     <div v-if="!isbusy">
       <h1>OUR CHOICES</h1>
       <div class="row">
-        <CardImgHigh />
-
+        <div class="col-12" v-for="highlighted in getHighlighted">
+          <CardImg :dataApartment="highlighted"/>
+        </div>
       </div>
     </div>
   </div>
