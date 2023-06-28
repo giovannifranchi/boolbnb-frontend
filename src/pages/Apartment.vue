@@ -16,54 +16,63 @@
 
                 </div>
             </div>
-            <div class=" row mt-5 ">
-                <div class="col-lg-6 my-info-container">
-                    <div>
-                        <h3 class="my-info d-flex justify-content-center">Main Info</h3>
-                        <ul class="ps-0">
-                            <li>
-                                Price: <strong>{{ apartment.price }}€</strong>
-                            </li>
-                            <li>
-                                M²: <strong>{{ apartment.square_meters }} mq</strong>
-                            </li>
-                            <li>
-                                Rooms: <strong>{{ apartment.rooms }}</strong>
-                            </li>
-                            <li>
-                                Bathrooms: <strong>{{ apartment.bathrooms }}</strong>
-                            </li>
+            <div class="my-detail-container">
+                <div class="my-detail">
+                    <div class="col-lg-6 my-info-container">
+                        <div>
+                            <h3 class="my-info d-flex justify-content-center">Main Info</h3>
+                            <ul class="ps-0">
+                                <li>
+                                    Price: <strong>{{ apartment.price }}€</strong>
+                                </li>
+                                <li>
+                                    M²: <strong>{{ apartment.square_meters }} mq</strong>
+                                </li>
+                                <li>
+                                    Rooms: <strong>{{ apartment.rooms }}</strong>
+                                </li>
+                                <li>
+                                    Bathrooms: <strong>{{ apartment.bathrooms }}</strong>
+                                </li>
 
-                            <li>
-                                For Rent From: <strong>{{ apartment.created_at }}</strong> <!-- modificare formato ora -->
-                            </li>
-                        </ul>
+                                <li>
+                                    For Rent From: <strong>{{ apartment.created_at }}</strong>
+                                    <!-- modificare formato ora -->
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6 d-flex justify-content-center services-container">
-                    <div>
-                        <h3 class="my-info d-flex justify-content-center">Services</h3>
-                        <ul class="d-flex gap-3 flex-wrap">
-                            <li v-for="(service, index) in apartment.services" class="">
-                                <p><font-awesome-icon aria-expanded="false" :icon="service.icon_url" class="icon" /> {{
-                                    service.name }}</p>
+                    <div class="col-lg-6 d-flex justify-content-center services-container">
+                        <div>
+                            <h3 class="my-info d-flex justify-content-center">Services</h3>
+                            <ul class="d-flex gap-3 flex-wrap">
+                                <li v-for="(service, index) in apartment.services" class="">
+                                    <p><font-awesome-icon aria-expanded="false" :icon="service.icon_url" class="icon" /> {{
+                                        service.name }}</p>
 
-                            </li>
-                        </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
+                    <div class="description-container">
+                        <h3 class="my-info d-flex justify-content-center">Description</h3>
+                        <p>{{ apartment.description }}
+                        </p>
+                    </div>
+
                 </div>
-                <div class="description-container">
-                    <h3 class="my-info d-flex justify-content-center">Description</h3>
-                    <p>{{ apartment.description }}
-                    </p>
+
+                <div class="my-message-container">
+                    <AppMessage :apartment_id="apartment.id" />
                 </div>
+
+
+
             </div>
 
 
         </div>
-        <div class="my-message-container mt-5">
-            <AppMessage :apartment_id="apartment.id" />
-        </div>
+
     </div>
 </template>
 
@@ -147,9 +156,19 @@ export default {
         margin: 0;
     }
 
+    .my-detail-container {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 50px;
+    }
+
+    .my-detail {
+        width: 50%;
+    }
+
     .my-info-container {
-        padding-right: 70px;
-        padding-left: 165px;
+        margin-top: 50px;
+
 
         h3 {
             display: flex;
@@ -172,8 +191,9 @@ export default {
     }
 
     .services-container {
-        padding-right: 165px;
-        padding-left: 70px;
+        ul {
+            padding: 0;
+        }
 
         h3 {
             display: flex;
@@ -182,8 +202,7 @@ export default {
     }
 
     .description-container {
-        padding: 0 165px 0 165px;
-        margin: 2.5rem 0 2.5rem 0;
+
 
         h3 {
             display: flex;
@@ -232,9 +251,9 @@ export default {
     }
 
     .my-message-container {
-        margin: auto;
-        width: 50%;
-        margin-bottom: 6.25rem;
+        margin: 0 50px 0 0;
+        width: 40%;
+
     }
 
     .my-img-container {
