@@ -8,7 +8,7 @@
   <form class="form-container d-flex flex-column" @submit.prevent="sendPositionButton()">
         <h2>Find where to stay</h2>
         <label for="search">Book unique accommodations, homes, and more on with us!</label>
-        <div class="input-container row align-item-center ">
+        <div class="input-container row align-item-center pb-2 ">
           <div class="col-lg-10 col-sm-12 pt-3">          
             <input
           placeholder="Search here"
