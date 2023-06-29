@@ -104,6 +104,25 @@ export default {
 
             let markerElement = marker.getElement();
 
+            let tooltip = document.createElement("div");
+            tooltip.className = "marker-tooltip";
+            tooltip.textContent = `Price: ${Element.price}`;
+            tooltip.style.display = "none";
+
+            markerElement.append(tooltip);
+
+            markerElement.addEventListener("mouseenter", () => {
+              // Show the tooltip
+              tooltip.style.display = "block";
+              this.storeFilter.activeApartment = Element.id;
+            });
+
+            markerElement.addEventListener("mouseleave", () => {
+              // Hide the tooltip
+              tooltip.style.display = "none";
+              this.storeFilter.activeApartment = null;
+            });
+
             // Add a click event listener to the marker's DOM element
             markerElement.addEventListener("click", () => {
               console.log("Marker clicked:", Element.id);
@@ -136,13 +155,22 @@ export default {
 
       let markerElement = marker.getElement();
 
-      markerElement.addEventListener('mouseenter', ()=> {
-        markerElement.style.background = 'red';
-      })
+      let tooltip = document.createElement("div");
+      tooltip.className = "marker-tooltip";
+      tooltip.textContent = `Price: ${Element.price}`;
+      tooltip.style.display = "none";
 
-      markerElement.addEventListener('mouseleave', ()=> {
-        markerElement.style.background = 'none';
-      })
+      markerElement.append(tooltip);
+
+      markerElement.addEventListener("mouseenter", () => {
+        // Show the tooltip
+        tooltip.style.display = "block";
+      });
+
+      markerElement.addEventListener("mouseleave", () => {
+        // Hide the tooltip
+        tooltip.style.display = "none";
+      });
 
       // Add a click event listener to the marker's DOM element
       markerElement.addEventListener("click", () => {
@@ -165,6 +193,17 @@ export default {
 #map {
   height: 350px;
   border-radius: 10px;
+}
+
+.marker-tooltip {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 5px;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
 }
 
 @media (min-width: 767px) {
