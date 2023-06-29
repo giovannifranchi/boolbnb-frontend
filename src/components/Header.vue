@@ -49,12 +49,12 @@ header {
         font-size: 3.4375rem;
         color: $custom-black;
     }
-    @media (min-width: 600px){
+    @media (min-width:576px){
         .logo-img-small{
             display: none;
         }
     }
-    @media (max-width: 600px) {
+    @media (max-width: 576px) {
         .logo-img{
             display:none;
         }
