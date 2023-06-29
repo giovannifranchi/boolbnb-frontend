@@ -239,6 +239,7 @@ export default {
     .thumbnail {
         cursor: pointer;
         transition: all 0.2s;
+
     }
 
     .thumbnail:hover {
@@ -256,6 +257,7 @@ export default {
 
     .my-img-thumb {
         width: 70%;
+        max-height: 120px;
         margin-left: 10px;
         display: flex;
         flex-direction: column;
@@ -297,6 +299,8 @@ export default {
         display: flex;
         justify-content: center;
         margin-top: 10px;
+        width: 70%;
+        max-height: 100px;
     }
 
     .my-img-container {
@@ -401,6 +405,8 @@ export default {
         display: flex;
         justify-content: center;
         margin-top: 10px;
+        width: 70%;
+        max-height: 120px;
     }
 
     .my-img-container {
