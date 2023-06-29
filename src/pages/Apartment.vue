@@ -3,11 +3,8 @@
   <!-- card details -->
   <div class="container pt-3 " v-if="!isbusy">
     <button class="btn-back my-3"> <a href="/">Go Back</a></button> <!-- add link -->
-    <div class="title">
+    <div class="title mb-4">
       <h1>{{ apartment.name }}</h1>
-      <div class="my-subtitle mb-3">
-        <h4>Published by: {{ apartment.user.name }}</h4>
-      </div>
     </div>
 
     <div class="container-card ">
@@ -33,11 +30,18 @@
         <h3>Main Info:</h3>
         <ul class="ps-0">
           <li>
-            Price: <strong>{{ apartment.price }}€/night</strong>
+            Published by: <strong>{{ apartment.user.name }}</strong>
           </li>
           <li>
             Location: <strong>{{ apartment.city }}</strong>
           </li>
+          <li>
+          Address: <strong>{{ apartment.address }}</strong>
+          </li>
+          <li>
+            Price: <strong>{{ apartment.price }}€/night</strong>
+          </li>
+
           <li>
             Square footage: <strong>{{ apartment.square_meters }} m²</strong>
           </li>

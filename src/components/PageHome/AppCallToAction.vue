@@ -63,7 +63,7 @@ export default {
         color: $custom-white;
         font-size: 23px;
         font-weight: bold;
-       /*  border-radius: 10px; */
+        /* border-radius: 10px; */
         border: none;
         margin-top: 20px;
         margin-bottom: 20px;

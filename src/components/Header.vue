@@ -48,7 +48,7 @@ header {
 
     .icon {
         font-size: 3.4375rem;
-        color: $custom-black;
+        color: $custom-green;
     }
     @media (min-width:576px){
         .logo-img-small{
