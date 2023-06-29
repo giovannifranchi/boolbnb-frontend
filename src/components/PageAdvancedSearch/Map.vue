@@ -136,6 +136,14 @@ export default {
 
       let markerElement = marker.getElement();
 
+      markerElement.addEventListener('mouseenter', ()=> {
+        markerElement.style.background = 'red';
+      })
+
+      markerElement.addEventListener('mouseleave', ()=> {
+        markerElement.style.background = 'none';
+      })
+
       // Add a click event listener to the marker's DOM element
       markerElement.addEventListener("click", () => {
         console.log("Marker clicked:", Element.id);
