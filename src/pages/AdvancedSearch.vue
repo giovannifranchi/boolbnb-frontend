@@ -151,7 +151,7 @@ export default {
         services: this.storeFilter.selectedServices,
       });
       this.apartments = response;
-      console.log("call");
+
     },
     async autoComplete(inputSearch) {
       const response = await Search.autocomplete(inputSearch)

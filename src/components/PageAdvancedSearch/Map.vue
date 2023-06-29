@@ -103,12 +103,37 @@ export default {
                     });
 
                     this.dataArray.forEach(Element => {
-                        new tt.Marker().setLngLat([Element.longitude, Element.latitude]).addTo(map)
-                    })
+                        let marker = new tt.Marker().setLngLat([Element.longitude, Element.latitude]).addTo(map);
+
+                        // marker.on("click", () => {
+                        //     // Azioni da eseguire quando viene cliccato il marker
+                        //     // Puoi accedere alle informazioni del marker o eseguire altre azioni qui
+                        //     console.log("Marker cliccato:", Element);
+                        // });
+
+                        marker.getElement().style.cursor = "pointer";
+                    });
+
+                    // map.on('click', function (e) {
+                    //     // Using the "featuresAt" function to return features under the point
+                    //     // You can change the radius as you need
+                    //     map.featuresAt(e.point, { radius: 10 }, function (err, features) {
+                    //         if (err) throw err;
+                    //         // If there is a feature (marker) under the point where you clicked, log the message
+                    //         if (features.length) {
+                    //             console.log("Marker clicked:", features[0]);
+                    //         }
+
+                    //     })
+                    // })
+
+
+
                     map.on("zoomend", () => {
                         const zoomLevel = map.getZoom();
                         this.storeFilter.range = this.calculateRadius(zoomLevel)
                     });
+
                 }
             },
             deep: true
@@ -128,8 +153,17 @@ export default {
 
 
         this.dataArray.forEach(Element => {
-            new tt.Marker().setLngLat([Element.longitude, Element.latitude]).addTo(map)
+            let marker = new tt.Marker().setLngLat([Element.longitude, Element.latitude]).addTo(map);
+
+            // marker.on("click", () => {
+            //     console.log("Marker cliccato:", Element);
+            // });
+
+            marker.getElement().style.cursor = "pointer";
         });
+
+
+
 
         map.on("zoomend", () => {
             const zoomLevel = map.getZoom();
