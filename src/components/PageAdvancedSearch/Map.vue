@@ -28,8 +28,10 @@ export default {
     },
 
     computed: {
-        ...mapGetters(["getApartments"]),
-
+        ...mapGetters(["getApartments", "getStoreFilter"]),
+        storeFilter() {
+            return this.getStoreFilter;
+        },
         getLongLat() {
             if (this.apartments.length > 0) {
                 return this.apartments.map((apartment) => {
@@ -41,65 +43,111 @@ export default {
 
     methods: {
         ...mapActions(["fetchApartments"]),
-    },
+        calculateZoom(radius) {
+            // Initial radius is 20 and initial zoom is 11
+            const initialRadius = 20;
+            const initialZoom = 11;
 
+            // Calculate difference in radius from initial value
+            let radiusDiff = radius - initialRadius;
+
+            // Each change of 20 in radius corresponds to a change of 1 in zoom
+            let zoomChange = Math.floor(radiusDiff / 20);
+
+            // Subtract the zoomChange from initial zoom to make it inverse
+            let zoom = initialZoom - zoomChange;
+
+            // Ensure zoom does not go below 6 and above 16
+            if (zoom < 6) {
+                zoom = 6;
+            } else if (zoom > 16) {
+                zoom = 16;
+            }
+
+            return zoom;
+        },
+        calculateRadius(zoom) {
+            // Initial radius is 20 and initial zoom is 11
+            const initialRadius = 20;
+            const initialZoom = 11;
+
+            // Calculate difference in zoom from initial value
+            let zoomDiff = initialZoom - zoom;
+
+            // Each change of 1 in zoom corresponds to a change of 20 in radius
+            let radiusChange = zoomDiff * 20;
+
+            // Add the radiusChange to initial radius to make it inverse
+            let radius = initialRadius + radiusChange;
+
+            // Ensure radius does not go below 2 and above 200
+            if (radius < 2) {
+                radius = 2;
+            } else if (radius > 200) {
+                radius = 200;
+            }
+
+            return radius;
+
+        }
+    },
     watch: {
         dataArray: {
             handler(newValue) {
                 if (newValue && newValue.length > 0) {
-                    let map =  tt.map({
-                key: import.meta.env.VITE_TOMTOM_API_KEY,
-                container: "map",
-                center: [this.$route.query.longitude, this.$route.query.latitude], // Change this to your desired initial position
-                zoom: Math.floor(20 / this.storeFilter.range ),
-            });
+                    let map = tt.map({
+                        key: import.meta.env.VITE_TOMTOM_API_KEY,
+                        container: "map",
+                        center: [this.$route.query.longitude, this.$route.query.latitude], // Change this to your desired initial position
+                        zoom: this.calculateZoom(this.storeFilter.range)
+                    });
 
-            this.dataArray.forEach(Element => {
-                         new tt.Marker().setLngLat([Element.longitude, Element.latitude]).addTo(map)
+                    this.dataArray.forEach(Element => {
+                        new tt.Marker().setLngLat([Element.longitude, Element.latitude]).addTo(map)
                     })
+                    map.on("zoomend", () => {
+                        const zoomLevel = map.getZoom();
+                        this.storeFilter.range = this.calculateRadius(zoomLevel)
+                    });
                 }
             },
             deep: true
+
         }
     },
 
-   mounted() {
+    mounted() {
 
-            let map =  tt.map({
-                key: import.meta.env.VITE_TOMTOM_API_KEY,
-                container: "map",
-                center: [this.$route.query.longitude, this.$route.query.latitude], // Change this to your desired initial position
-                zoom: 11,
-            });
+        let map = tt.map({
+            key: import.meta.env.VITE_TOMTOM_API_KEY,
+            container: "map",
+            center: [this.$route.query.longitude, this.$route.query.latitude], // Change this to your desired initial position
+            zoom: this.calculateZoom(this.storeFilter.range)
+        });
 
-            this.dataArray.forEach(Element => {
-                         new tt.Marker().setLngLat([Element.longitude, Element.latitude]).addTo(map)
-                    })
-        }
-    
-    ,
 
-};
+
+        this.dataArray.forEach(Element => {
+            new tt.Marker().setLngLat([Element.longitude, Element.latitude]).addTo(map)
+        });
+
+        map.on("zoomend", () => {
+            const zoomLevel = map.getZoom();
+            this.storeFilter.range = this.calculateRadius(zoomLevel)
+        });
+    }
+
+}
+
 </script>
 
 <style scoped>
-#map{
-  height: 20vh;
-  margin-bottom: 50px;
+#map {
+    height: 350px;
+    border-radius: 10px;
 }
 
-@media (min-width: 767px) {
-    #map {
-        height: 50vh;
-       
-    }
-}
+@media (min-width: 767px) {}
 
-@media (min-width: 992px) {
-    #map {
-        height: 70vh;
-    
-    }
-}
-
+@media (min-width: 992px) {}
 </style>

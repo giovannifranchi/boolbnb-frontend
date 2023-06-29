@@ -50,9 +50,9 @@ export default {
 
 .container {
   background-color: white;
-  border-radius: 10px;
-  box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.18);
-  padding: 10px 30px;
+  /* border-radius: 10px; */
+/*   box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.18);
+ */  padding: 10px 30px 20px 30px;
 }
 
   h1 {

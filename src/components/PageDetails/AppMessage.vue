@@ -35,7 +35,7 @@ export default {
           this.isSuccessfull = true;
           const succesStop = setTimeout(() => {
             this.isSuccessfull = false
-          }, 4000);
+          }, 6000);
           this.name = '';
           this.lastname = '',
             this.email = '',
@@ -57,8 +57,10 @@ export default {
 
 <template>
 
+
   <div class="row">
     <div class="form-container col">
+
       <div id="content" class="m2">
         <header id="header">
           <h3>Contact the seller</h3>
@@ -69,12 +71,12 @@ export default {
           <div class="row">
 
             <div class="input-field col-12">
-              <input v-model="name" id="subject" type="text" />
+              <input v-model="name" id="subject" type="text" required />
               <label class="ms-2" for="subject">Name:</label>
 
             </div>
             <div class="input-field col-12">
-              <input v-model="lastname" id="subject" type="text" />
+              <input v-model="lastname" id="subject" type="text" required/>
               <label class="ms-2" for="subject">Lastname:</label>
 
             </div>
@@ -89,18 +91,17 @@ export default {
 
 
 
-            <div class="input-field col-12 pb-5">
-              <textarea v-model="text" id="message" class="materialize-textarea"></textarea>
+            <div class="input-field col-12">
+              <textarea v-model="text" id="message" class="materialize-textarea" required ></textarea>
               <label class="ms-3" for="message">Message: </label>
 
             </div>
           </div>
 
-          <div class="row" id="loaders">
-            <img :class="isSuccessfull ? 'ms-active' : 'd-none'"
+          <div class="row" id="loaders">          
+                      <img :class="isSuccessfull ? 'ms-active' : 'd-none'"
               src="https://www.dropbox.com/s/0g5h91zyozcbenc/mail.gif?raw=1" width="50" />
-          </div>
-
+            </div>
           <div class="row">
             <div class="col s6">
 
@@ -159,11 +160,9 @@ export default {
 .form-container .input-field input,
 .form-container .input-field textarea {
   width: 100%;
-
-  padding-top: 20px;
+  padding-top: 10px;
   font-size: 15px;
   color: black;
-
   margin-bottom: 30px;
   border: none;
   border-bottom: 1px solid black;
@@ -173,38 +172,29 @@ export default {
 
 .form-container .input-field label {
   position: absolute;
-  top: 0;
+  top: -20px;
   left: 0;
-  padding: 10px 0;
-  font-size: 20px;
-  color: black;
+  color: $custom-green;
+  font-size: 15px;
   pointer-events: none;
   transition: .7s;
 }
-
-.form-container .input-field input:focus~label,
-.form-container .input-field input:valid~label {
-  top: -20px;
-  left: 0;
-  color: $custom-green;
-  font-size: 15px;
+.text{
+  padding-bottom: 200px;
 }
-
-.form-container .input-field textarea:focus~label,
-.form-container .input-field textarea:valid~label {
-  top: -20px;
-  left: 0;
-  color: $custom-green;
-  font-size: 15px;
-}
-
 .btn-send {
   background-color: $custom-green;
   color: white;
 }
 
 #loaders {
+  justify-content: center;
   text-align: center;
+  padding-bottom: 20px;
+  img{
+
+    width: 300px;
+  }
 }
 
 #resetBtn {

@@ -3,7 +3,7 @@
         <div class="container d-flex justify-content-between align-items-center">
             <router-link class="logo" to="/">
                 <img class="logo-img" src="../assets/images/boolbnb-name-logo.png" alt="boolbnb">
-                <img class="logo-img-small " src="../assets/images/boolbnb-logo.png" alt="">
+                <img class="logo-img-small " src="../assets/images/boolbnb-logo.png" alt="boolbnb-logo">
             </router-link>
             <div class="dropdown">
 
@@ -29,7 +29,8 @@ export default {
 @import '../assets/partials/variables';
 
 header {
-    border-bottom: 0.125rem solid $custom-black;
+    height: 80px;
+    border-bottom: 1px solid $custom-black;
 
     .logo {
         cursor: pointer;
@@ -49,12 +50,12 @@ header {
         font-size: 3.4375rem;
         color: $custom-black;
     }
-    @media (min-width: 600px){
+    @media (min-width:576px){
         .logo-img-small{
             display: none;
         }
     }
-    @media (max-width: 600px) {
+    @media (max-width: 576px) {
         .logo-img{
             display:none;
         }
