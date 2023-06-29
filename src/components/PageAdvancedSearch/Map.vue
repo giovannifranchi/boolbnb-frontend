@@ -107,6 +107,7 @@ export default {
             // Add a click event listener to the marker's DOM element
             markerElement.addEventListener("click", () => {
               console.log("Marker clicked:", Element.id);
+              this.storeFilter.activeApartment = Element.id;
             });
 
             marker.getElement().style.cursor = "pointer";
@@ -138,6 +139,7 @@ export default {
       // Add a click event listener to the marker's DOM element
       markerElement.addEventListener("click", () => {
         console.log("Marker clicked:", Element.id);
+        this.storeFilter.activeApartment = Element.id;
       });
 
       marker.getElement().style.cursor = "pointer";

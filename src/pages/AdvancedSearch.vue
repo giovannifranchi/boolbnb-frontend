@@ -41,7 +41,7 @@
         <div class="row">
           <div :class="isOpen ? 'col-lg-4' : ''" class="col-lg-3 col-md-4 col-sm-12 my-4"
             v-for="apartment in  apartments " :key="apartment.id">
-            <CardImg :dataApartment="apartment" />
+            <CardImg :dataApartment="apartment" :class="storeFilter.activeApartment === apartment.id ? 'ms-active' : ''"/>
           </div>
         </div>
       </div>
@@ -315,6 +315,10 @@ li:hover {
     height: 50px;
     border-radius: 10px;
   }
+}
+
+.ms-active {
+  border: 2px solid green;
 }
 
 
