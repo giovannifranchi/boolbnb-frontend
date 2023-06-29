@@ -235,13 +235,14 @@ export default {
 
 .ms-col.open {
   transition: all .3s ease-in-out;
-  max-width: 1300px;
+  width: 70%;
+  
 }
 
 .ms-filter-open {
   transition: all .3s ease-in-out;
   width: 30%;
-  max-width: 10000000px;
+  
 }
 
 .ms-filter-close {
