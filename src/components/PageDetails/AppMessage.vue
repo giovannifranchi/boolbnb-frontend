@@ -57,11 +57,13 @@ export default {
 
 <template>
 
-  <div class="row py-5">
-    <div class="form-container">
+
+  <div class="row">
+    <div class="form-container col">
+
       <div id="content" class="m2">
         <header id="header">
-          <h3>Contact vendor</h3>
+          <h3>Contact the seller</h3>
         </header>
 
         <!-- form -->
@@ -141,8 +143,6 @@ export default {
 }
 
 #header {
-
-  border-radius: 10px;
   padding: 10px 0;
   margin-bottom: 20px;
 }
