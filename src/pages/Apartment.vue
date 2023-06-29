@@ -5,7 +5,7 @@
             <h4>Published by: {{ apartment.user.name }}</h4>
         </div>
         <div>
-            <div class="row">
+            <div>
                 <div class="my-img-container">
                     <img :src="activePic" alt="..." class="my-img rounded" id="thumbnail" />
                     <div class="my-img-thumb-container">
@@ -19,7 +19,7 @@
             <div class="my-detail-container">
                 <div class="my-detail">
                     <div class="col-lg-6 my-info-container">
-                        <div>
+                        <div class="my-info-width">
                             <h3 class="my-info d-flex justify-content-center">Main Info</h3>
                             <ul class="ps-0">
                                 <li>
@@ -288,6 +288,9 @@ export default {
         margin: 0;
     }
 
+    .my-info-width {
+        width: 21.875rem;
+    }
 
     .my-img-thumb-container {
         display: flex;
@@ -314,6 +317,11 @@ export default {
 
         background-color: white;
         width: 100vw;
+        box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+        background-color: white;
+        border-radius: 3px;
+        padding: .1875rem 0 1.5rem 0;
+        margin: 1.875rem auto 1.875rem auto;
 
     }
 
@@ -478,7 +486,7 @@ export default {
     }
 
     .my-message-container {
-        margin: auto;
+        margin: 0 auto;
         width: 100%;
         margin-bottom: 6.25rem;
     }
