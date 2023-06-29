@@ -3,33 +3,37 @@
   backgroundImage: 'url(' + cities[randomInt(0, cities.length - 1)] + ')',
   backgroundPosition: 'center',
   backgroundSize: 'cover',
-  backgroundRepeat: 'no-repeat'
-}">
-    <div class="jumbotron container d-flex align-items-center justify-content-center mb-5">
-      <form class="form-container d-flex flex-column" @submit.prevent="sendPositionButton()">
+  backgroundRepeat: 'no-repeat' }" class="background-img d-flex align-items-center mb-5">
+<div class="container">
+  <form class="form-container d-flex flex-column" @submit.prevent="sendPositionButton()">
         <h2>Find where to stay</h2>
-        <label for="search" class="pb-3">Book unique accommodations, homes, and more on with us!</label>
-        <input
+        <label for="search">Book unique accommodations, homes, and more on with us!</label>
+        <div class="input-container row align-item-center ">
+          <div class="col-lg-10 col-sm-12 pt-3">          
+            <input
           placeholder="Search here"
           type="text"
           name="search"
           id="search"
           v-model="inputSearch"
-          @input="autoComplete(inputSearch)"
-        />
+          @input="autoComplete(inputSearch)"/>
+
         <ul v-if="inputSearch">
           <li class="list" v-for="element in foundedItems" @click="sendPosition(element.position)">
             {{ element.address.streetName || "" + " " + element.address.municipality + " " + element.address.country }}
           </li>
         </ul>
+      </div>
+      <div class="col-lg-2 col-sm-12 pt-3">
         <div class="button-container">
           <button type="submit">Search</button>
         </div>
-      </form>
-      <div class="image-container" v-if="randomHighlight">
-        <img :src="randomHighlight.thumb" alt="" />
       </div>
-    </div>
+
+        </div>
+
+      </form>
+</div>
   </div>
 </template>
 
@@ -92,15 +96,17 @@ export default {
 <style lang="scss" scoped>
 @import "../../assets/partials/variables";
 
-
+.background-img{
+  height: 500px;
+}
 
 .form-container {
-  position: relative;
-  transform: translateX(5%);
-  padding: 30px;
+/*   position: relative;
+  transform: translateX(5%); */
+  padding:10px 30px;
   background-color: white;
   box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.18);
-  border-radius: 10px;
+/*   border-radius: 10px; */
 
   ul {
     padding: 0;
@@ -115,14 +121,19 @@ export default {
       }
     }
   }
-
+  .input-container{
+    align-items: center;
+    input{
+      width: 100%;
+    }
+  }
   input,
   li {
+    
     border: 1px solid $custom-black;
     font-size: 20px;
-    border-radius: 5px;
+/*     border-radius: 5px; */
     padding: 5px 20px;
-    width: 400px;
   }
 
   li:hover {
@@ -135,12 +146,11 @@ export default {
     button {
       border: none;
       width: 100%;
-      margin-top: 25px;
-      padding: 10px 0;
+      padding: 7px 10px;
       font-size: 20px;
       font-weight: bolder;
-      border-radius: 10px;
-      color: $custom-white;
+/*       border-radius: 10px; */
+      color: white;
       background-color: $custom-green;
     }
   }
@@ -169,7 +179,6 @@ export default {
     display: none;
   }
   .form-container {
-    transform: translateX(0%);
     width: 100%;
     input,
     li {
