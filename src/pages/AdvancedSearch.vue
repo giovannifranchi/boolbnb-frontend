@@ -1,25 +1,23 @@
 <template>
-  <div class="container d-flex justify-content-center align-items-center">
-    <div class="container py-5">
+  <div class="container d-flex justify-content-center align-items-center mb-4">
+    <div class="container">
       <h2 class="mb-4">ADVANCE SEARCH</h2>
       <!-- search bar -->
-      <div class="d-flex flex-column pb-5">
+      <div class="d-flex flex-column">
         <form @submit.prevent="sendPositionButton(foundedItems[0].address)">
           <div class="d-flex">
             <input type="text" name="search" id="search" v-model="inputSearch" :placeholder="position"
               @input="autoComplete(inputSearch)">
             <div class="buttons-container">
-              <button class="btn  icon">
+              <button class="btn  icon mx-4">
                 <font-awesome-icon icon="magnifying-glass" class="icon" />
               </button>
-              <button @click="isOpen = !isOpen" class="btn icon" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+              <button @click="collapse()" class="btn icon" type="button">
                 <font-awesome-icon icon="sliders" />
               </button>
             </div>
           </div>
         </form>
-
         <div>
           <ul v-if="inputSearch">
             <li class="list" v-for="element in foundedItems" @click="sendPosition(element.position, element.address)">
@@ -34,23 +32,24 @@
     </div>
   </div>
 
-  <div class="container">
+  <div :class="isOpen ? ' container-fluid px-5' : 'container'">
     <div class="row">
       <div class="col">
         <div v-if="apartments.length > 0">
           <h5>{{ apartments.length }} apartments found in {{ apartments[0]['city'] }}</h5>
         </div>
         <div class="row">
-          <div :class="isOpen ? 'col-lg-4' : ''" class="col-lg-3 col-md-4 col-sm-12" v-for="apartment in  apartments "
-            :key="apartment.id">
+          <div :class="isOpen ? 'col-lg-4' : ''" class="col-lg-3 col-md-4 col-sm-12 my-4"
+            v-for="apartment in  apartments " :key="apartment.id">
             <CardImg :dataApartment="apartment" />
           </div>
         </div>
       </div>
-      <div :class="isOpen ? 'col-4' : 'd-none'">
-        <!-- OFFCANVAS  -->
 
-        <div class="">
+
+      <div :class="isOpen ? 'col-4 mx-5' : ''" v-if="isOpen">
+        <!-- OFFCANVAS  -->
+        <div>
           <div class="filterContainer">
             <Map :data-array="apartments" />
             <!-- Filtri -->
@@ -94,7 +93,8 @@ export default {
       foundedItems: [],
       searchRadius: 20,
       position: null,
-      isOpen: false
+      isOpen: false,
+      isOpenFilter: false,
     };
   },
   mounted() {
@@ -190,6 +190,12 @@ export default {
       this.position = address.streetName || '' + ' ' +
         address.municipality + ' ' +
         address.country
+    },
+    collapse() {
+      this.isOpen = !this.isOpen
+      // setTimeout(() => {
+      //   this.isOpen = !this.isOpen
+      // }, 1000)
     }
   },
   computed: {
@@ -220,6 +226,10 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/partials/variables";
+
+.square-image {
+  aspect-ratio: 1/1;
+}
 
 .icon {
   font-size: 1.75rem;
@@ -299,4 +309,20 @@ li:hover {
     width: 25% !important;
   }
 }
+
+// .slide-enter-active {
+//   transition: transform 0.5s ease;
+// }
+
+// .slide-enter {
+//   transform: translateX(100%);
+// }
+
+// .slide-leave-active {
+//   transition: transform 0.5s ease;
+// }
+
+// .slide-leave-to {
+//   transform: translateX(100%);
+// }
 </style>
