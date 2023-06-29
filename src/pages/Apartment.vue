@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <div class="info-section row mt-4">
+    <div class="info-section row mt-5">
       <div class="col-lg-6 col-sm-12 px-3">
         <h3>Main Info:</h3>
         <ul class="ps-0">
