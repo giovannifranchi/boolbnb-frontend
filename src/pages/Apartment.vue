@@ -2,7 +2,7 @@
   		
   <!-- card details -->
   <div class="container pt-3 " v-if="!isbusy">
-    <button class="btn-back my-3"> <a href="/">Go Back</a></button> <!-- add link -->
+    <!-- <button class="btn-back my-3"> <a href="/advanced-search">Go Back</a></button> add link  -->
     <div class="title mb-4">
       <h1>{{ apartment.name }}</h1>
     </div>
@@ -11,13 +11,13 @@
       <div class="row">
         <!-- main img -->
         <div class="main-img col-lg-10 col-sm-12">
-          <img :src="activePic" alt="..." class=" w-100" id="thumbnail" />
+          <img :src="activePic" alt="..." class=" w-100 square-image" id="thumbnail" />
         </div>
         <!-- others -->
         <div class="list-img col-lg-2 col-sm-12">
           <div class="row flex-lg-column gap-3 mt-3 mt-lg-0">
             <div class="col-sm-12" v-for="(images, index) in getAllImages">
-              <img :src="images" alt="" class=" w-100 h-100" :class="{ active: index == indexOfActive ? true : false }"
+              <img :src="images" alt="" class=" w-100 square-image" :class="{ active: index == indexOfActive ? true : false }"
                 @click="selectedImage(index)" />
             </div>
           </div>
@@ -150,6 +150,11 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/partials/variables";
+
+.square-image {
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
 .container-card{
   background-color: white;
   padding: 25px;
