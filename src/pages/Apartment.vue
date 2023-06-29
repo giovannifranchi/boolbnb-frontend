@@ -8,7 +8,7 @@
             <div>
                 <div class="my-img-container">
                     <img :src="activePic" alt="..." class="my-img rounded" id="thumbnail" />
-                    <div class="my-img-thumb-container">
+                    <div class="my-img-thumb-container ">
                         <img :src="images" alt="" class="my-img-thumb rounded thumbnail"
                             :class="{ active: index == indexOfActive ? true : false }" @click="selectedImage(index)"
                             v-for="(images, index) in getAllImages">
@@ -42,8 +42,8 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-6 d-flex justify-content-center services-container">
-                        <div>
+                    <div class="d-flex services-container">
+                        <div class="my-service-width">
                             <h3 class="my-info d-flex justify-content-center">Services</h3>
                             <ul class="d-flex gap-3 flex-wrap">
                                 <li v-for="(service, index) in apartment.services" class="">
@@ -163,6 +163,10 @@ export default {
         margin: 0;
     }
 
+    .my-service-width {
+        width: 50%;
+    }
+
     .my-detail-container {
         display: flex;
         justify-content: space-between;
@@ -188,6 +192,7 @@ export default {
     .my-img-thumb-container {
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
         gap: 10px;
     }
 
@@ -258,7 +263,7 @@ export default {
 
     .my-img-thumb {
         width: 70%;
-        max-height: 120px;
+        height: 110px;
         margin-left: 10px;
         display: flex;
         flex-direction: column;
@@ -288,6 +293,10 @@ export default {
         margin: 0;
     }
 
+    .my-service-width {
+        width: 65%;
+    }
+
     .my-info-width {
         width: 21.875rem;
     }
@@ -295,7 +304,7 @@ export default {
     .my-img-thumb-container {
         display: flex;
         flex-direction: row;
-
+        justify-content: space-between;
 
     }
 
@@ -304,7 +313,7 @@ export default {
         justify-content: center;
         margin-top: 10px;
         width: 70%;
-        max-height: 100px;
+        height: 80px;
     }
 
     .my-img-container {
@@ -328,6 +337,7 @@ export default {
     .services-container {
         margin-top: 1.875rem;
         padding: 0px 6.25rem;
+        justify-content: center;
 
         ul {
             display: flex;
@@ -374,7 +384,7 @@ export default {
 
     .my-img-thumb {
         max-width: 17%;
-        height: auto;
+        max-height: 100px;
         margin: 1% 1%;
     }
 
@@ -403,25 +413,32 @@ export default {
         margin: 0;
     }
 
+    .my-service-width {
+        width: 95%;
+    }
+
     .my-img-thumb-container {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-
+        margin-left: 15px;
+        margin-right: 15px;
+        gap: .3125rem;
+        justify-content: center;
     }
 
     .my-img-thumb {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         margin-top: 10px;
         width: 70%;
-        max-height: 120px;
+        height: 70px;
     }
 
     .my-img-container {
         margin: 0px 0px 60px 10px;
         padding: 0;
-
+        justify-content: center;
     }
 
     .my-container {
@@ -434,6 +451,7 @@ export default {
     .services-container {
         margin-top: 1.875rem;
         padding: 0 50px;
+        justify-content: center;
 
         ul {
             display: flex;
@@ -474,15 +492,16 @@ export default {
     }
 
     .my-img {
-        margin-left: 1%;
+        margin: auto;
         max-width: 95%;
-
+        max-height: 215px;
+        display: flex;
     }
 
     .my-img-thumb {
-        max-width: 30%;
-        height: auto;
-        margin: 1% 1%;
+        max-width: 6.25rem;
+        max-height: 3.75rem;
+
     }
 
     .my-message-container {
