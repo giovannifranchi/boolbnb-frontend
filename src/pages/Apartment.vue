@@ -1,40 +1,45 @@
 <template>
-  <div class="container p-3 bg-white" v-if="!isbusy">
-    <h1 class="d-flex justify-content-center">{{ apartment.name }}</h1>
-    <div class="my-subtitle">
-      <h4>Published by: {{ apartment.user.name }}</h4>
+  		
+  <!-- card details -->
+  <div class="container pt-3 " v-if="!isbusy">
+    <button class="btn-back my-3"> <a href="/">Go Back</a></button> <!-- add link -->
+    <div class="title">
+      <h1>{{ apartment.name }}</h1>
+      <div class="my-subtitle mb-3">
+        <h4>Published by: {{ apartment.user.name }}</h4>
+      </div>
     </div>
 
-    <div>
+    <div class="container-card">
       <div class="row">
-        <div class="col-12 col-lg-10">
-          <img :src="activePic" alt="..." class="rounded w-100 h-100" id="thumbnail" />
+        <!-- main img -->
+        <div class="main-img col-lg-10 col-sm-12">
+          <img :src="activePic" alt="..." class=" w-100" id="thumbnail" />
         </div>
-        <div class="col-12 col-lg-2">
+        <!-- others -->
+        <div class="list-img col-lg-2 col-sm-12">
           <div class="row flex-lg-column gap-3 mt-3 mt-lg-0">
-            <div class="col" v-for="(images, index) in getAllImages">
-              <img
-                :src="images"
-                alt=""
-                class="rounded w-100 h-100"
-                :class="{ active: index == indexOfActive ? true : false }"
-                @click="selectedImage(index)"
-              />
+            <div class="col-sm-12" v-for="(images, index) in getAllImages">
+              <img :src="images" alt="" class=" w-100 h-100" :class="{ active: index == indexOfActive ? true : false }"
+                @click="selectedImage(index)" />
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="row mt-3">
-      <div class="col-12 col-lg-6">
-        <h3>Main Info</h3>
+    <div class="info-section row mt-4">
+      <div class="col-lg-6 col-sm-12 px-3">
+        <h3>Main Info:</h3>
         <ul class="ps-0">
           <li>
-            Price: <strong>{{ apartment.price }}€</strong>
+            Price: <strong>{{ apartment.price }}€/night</strong>
           </li>
           <li>
-            M²: <strong>{{ apartment.square_meters }} mq</strong>
+            Location: <strong>{{ apartment.city }}</strong>
+          </li>
+          <li>
+            Square footage: <strong>{{ apartment.square_meters }} m²</strong>
           </li>
           <li>
             Rooms: <strong>{{ apartment.rooms }}</strong>
@@ -48,17 +53,19 @@
           </li>
         </ul>
 
-        <h3 class="mb-3">Services</h3>
-        <ul class="d-flex gap-3 flex-wrap">
-          <li v-for="(service, index) in apartment.services" class="">
-            <p><font-awesome-icon aria-expanded="false" :icon="service.icon_url" class="icon" /> {{ service.name }}</p>
+        <h3 class="mb-3">Services:</h3>
+        <ul class="d-flex p-0 gap-3 flex-wrap">
+          <li v-for="(service, index) in apartment.services">
+            <p class="mb-1"><font-awesome-icon aria-expanded="false" :icon="service.icon_url" class="icon" /> {{
+              service.name }}</p>
           </li>
         </ul>
 
-        <h3>Description</h3>
+        <h3>Description:</h3>
         <p>{{ apartment.description }}</p>
       </div>
-      <div class="col-12 col-lg-6">
+      <!-- message card -->
+      <div class="col-lg-6 col-sm-12 px-4">
         <AppMessage :apartment_id="apartment.id" />
       </div>
     </div>
@@ -138,8 +145,51 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/partials/variables";
+.main-img{
+  max-height: 100;
+}
 .active {
   border: 2px solid rgb(46, 204, 113);
 }
+.btn-back{
+		margin-top: 20px;
+		border: 2px solid $custom-green;
+		padding:10px 20px;
+		color:$custom-green;
+		border-radius: 25px;
+		font-weight: 600;
+	}
+	.btn-back:hover{
+		/* scale: 1.05; */
+		transition: transform 0.2s ease-in-out;
+		background-color: $custom-green;
+		color:white;	
+	}
+a{
+  color:inherit;
+  text-decoration: none;
+}
+.info-section{
+    margin-bottom: 40px;
+  }
+@media (max-width: 576px) {
+  .title{
+    padding: 0 10px;
+  }
+  .info-section{
+    padding: 0 10px;
+  }
+  .main-img {
+    display: none;
+  }
 
+  .list-img {
+    padding: 0;
+  }
+
+  .active {
+    border: none;
+  }
+}
 </style>

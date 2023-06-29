@@ -56,15 +56,12 @@ export default {
 </script>
 
 <template>
-  <!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
- -->
 
-
-  <div class="row py-5">
-    <div class="form-container">
+  <div class="row">
+    <div class="form-container col">
       <div id="content" class="m2">
         <header id="header">
-          <h3>Contact vendor</h3>
+          <h3>Contact the seller</h3>
         </header>
 
         <!-- form -->
@@ -140,13 +137,11 @@ export default {
   background: white;
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
-  border-radius: 10px;
+/*   border-radius: 10px; */
   padding: 40px;
 }
 
 #header {
-
-  border-radius: 10px;
   padding: 10px 0;
   margin-bottom: 20px;
 }
