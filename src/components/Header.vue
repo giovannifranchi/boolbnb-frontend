@@ -29,7 +29,8 @@ export default {
 @import '../assets/partials/variables';
 
 header {
-    border-bottom: 0.125rem solid $custom-black;
+    height: 80px;
+    border-bottom: 1px solid $custom-black;
 
     .logo {
         cursor: pointer;
