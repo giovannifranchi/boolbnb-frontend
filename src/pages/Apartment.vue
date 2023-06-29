@@ -194,7 +194,7 @@ export default {
     .my-container {
         box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
         background-color: white;
-        border-radius: 10px;
+        border-radius: 3px;
         padding: 1.875rem 0 1.875rem 0;
         margin: 1.875rem auto 1.875rem auto;
     }
@@ -253,6 +253,7 @@ export default {
     .my-img {
 
         max-width: 75%;
+        max-height: 46rem;
     }
 
     .my-img-thumb {
