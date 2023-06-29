@@ -3,7 +3,7 @@
         <div class="container d-flex justify-content-between align-items-center">
             <router-link class="logo" to="/">
                 <img class="logo-img" src="../assets/images/boolbnb-name-logo.png" alt="boolbnb">
-                <img class="logo-img-small " src="../assets/images/boolbnb-logo.png" alt="">
+                <img class="logo-img-small " src="../assets/images/boolbnb-logo.png" alt="boolbnb-logo">
             </router-link>
             <div class="dropdown">
 
