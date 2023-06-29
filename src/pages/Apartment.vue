@@ -10,7 +10,7 @@
       </div>
     </div>
 
-    <div class="container-card">
+    <div class="container-card ">
       <div class="row">
         <!-- main img -->
         <div class="main-img col-lg-10 col-sm-12">
@@ -146,6 +146,10 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/partials/variables";
+.container-card{
+  background-color: white;
+  padding: 25px;
+}
 .main-img{
   max-height: 100;
 }
@@ -174,6 +178,10 @@ a{
     margin-bottom: 40px;
   }
 @media (max-width: 576px) {
+  .container-card{
+  background-color:transparent;
+  padding: 0;
+}
   .title{
     padding: 0 10px;
   }
