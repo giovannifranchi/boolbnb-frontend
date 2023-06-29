@@ -7,8 +7,10 @@
         <div>
             <div>
                 <div class="my-img-container">
-                    <img :src="activePic" alt="..." class="my-img rounded" id="thumbnail" />
-                    <div class="my-img-thumb-container ">
+                    <div class="col-12 col-lg-10 my-img-position">
+                        <img :src="activePic" alt="..." class="my-img rounded" id="thumbnail" />
+                    </div>
+                    <div class="my-img-thumb-container col-12 col-lg-2 ">
                         <img :src="images" alt="" class="my-img-thumb rounded thumbnail"
                             :class="{ active: index == indexOfActive ? true : false }" @click="selectedImage(index)"
                             v-for="(images, index) in getAllImages">
@@ -37,7 +39,7 @@
 
                                 <li>
                                     For Rent From: <strong>{{ convertDateFormat(apartment.create_at) }}</strong>
-                                    <!-- modificare formato ora -->
+
                                 </li>
                             </ul>
                         </div>
@@ -163,6 +165,11 @@ export default {
         margin: 0;
     }
 
+    .my-img-position {
+        display: flex;
+        justify-content: center;
+    }
+
     .my-service-width {
         width: 50%;
     }
@@ -192,7 +199,7 @@ export default {
     .my-img-thumb-container {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+
         gap: 10px;
     }
 
@@ -265,8 +272,7 @@ export default {
         width: 70%;
         height: 110px;
         margin-left: 10px;
-        display: flex;
-        flex-direction: column;
+
     }
 
     .my-message-container {
@@ -277,8 +283,8 @@ export default {
 
     .my-img-container {
         display: flex;
-        justify-content: center;
-        margin-left: 40px;
+
+
     }
 }
 
@@ -304,7 +310,7 @@ export default {
     .my-img-thumb-container {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+
 
     }
 
