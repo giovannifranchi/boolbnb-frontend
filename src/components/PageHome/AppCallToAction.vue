@@ -25,8 +25,8 @@ export default {
 @import '../../assets/partials/variables';
 .container{
     background-color: white;
-    box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.18);
-    border-radius: 10px;
+/*     box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.18); */
+/*     border-radius: 10px; */
     margin: 50px auto;
 }
 
@@ -63,7 +63,7 @@ export default {
         color: $custom-white;
         font-size: 23px;
         font-weight: bold;
-        border-radius: 10px;
+       /*  border-radius: 10px; */
         border: none;
         margin-top: 20px;
         margin-bottom: 20px;
