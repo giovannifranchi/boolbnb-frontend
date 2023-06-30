@@ -2,6 +2,7 @@
   		
   <!-- card details -->
   <div class="container pt-3 " v-if="!isbusy">
+    <BackBtn/>
     <!-- <button class="btn-back my-3"> <a href="/advanced-search">Go Back</a></button> add link  -->
     <div class="title mb-4">
       <h1>{{ apartment.name }}</h1>
@@ -83,11 +84,13 @@ import Service from "../api/Service";
 import AppMessage from "../components/PageDetails/AppMessage.vue";
 import { watchEffect } from "vue";
 import moment from "moment";
+import BackBtn from "../components/PageDetails/BackBtn.vue";
 
 export default {
   name: "Apartment",
   components: {
     AppMessage,
+    BackBtn
   },
 
   data() {
@@ -165,20 +168,7 @@ export default {
 .active {
   border: 2px solid rgb(46, 204, 113);
 }
-.btn-back{
-		margin-top: 20px;
-		border: 2px solid $custom-green;
-		padding:10px 20px;
-		color:$custom-green;
-		border-radius: 25px;
-		font-weight: 600;
-	}
-	.btn-back:hover{
-		/* scale: 1.05; */
-		transition: transform 0.2s ease-in-out;
-		background-color: $custom-green;
-		color:white;	
-	}
+
 a{
   color:inherit;
   text-decoration: none;
