@@ -136,6 +136,7 @@ export default {
       const prices = this.apartments.map(apartment => apartment.price);
       this.storeFilter.biggestPrice = Math.max(...prices);
       this.storeFilter.lowerPrice = Math.min(...prices);
+      console.log(storeFilter.biggestPrice);
     },
     async searchAdvanced() {
       const response = await Apartment.searchByPosition({
@@ -189,6 +190,10 @@ export default {
       this.position = address.streetName || '' + ' ' +
         address.municipality + ' ' +
         address.country
+        const prices = this.apartments.map(apartment => apartment.price);
+       this.storeFilter.biggestPrice = Math.max(...prices);
+       this.storeFilter.lowerPrice = Math.min(...prices);
+        console.log('send position button');
     },
     collapse() {
       this.isOpen = !this.isOpen

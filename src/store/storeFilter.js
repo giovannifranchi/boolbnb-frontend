@@ -1,8 +1,8 @@
 import { reactive } from "vue";
 
 export const storeFilter = reactive({
-    biggestPrice: 0,
-    lowerPrice: 0,
+    biggestPrice: null,
+    lowerPrice: null,
     range: 20,
     minPrice: null,
     maxPrice: null,
@@ -11,4 +11,5 @@ export const storeFilter = reactive({
     rooms: 0,
     baths: 0,
     activeApartment: null,
+    priceRange: []
 })
