@@ -32,22 +32,22 @@
     </div>
   </div>
 
-  <div :class="isOpen ? ' container-fluid px-5' : 'container'">
-    <div class="row">
-      <div class="col">
+  <div :class="isOpen ? ' container-fluid px-5' : 'container-fluid'">
+    <div class="d-flex">
+      <div class="ms-col" :class="isOpen ? 'open' : 'close'">
         <div v-if="apartments.length > 0">
           <h5>{{ apartments.length }} apartments found in {{ apartments[0]['city'] }}</h5>
         </div>
         <div class="row">
           <div :class="isOpen ? 'col-lg-4' : ''" class="col-lg-3 col-md-4 col-sm-12 my-4"
             v-for="apartment in  apartments " :key="apartment.id">
-            <CardImg :dataApartment="apartment" />
+            <CardImg :dataApartment="apartment" :class="storeFilter.activeApartment === apartment.id ? 'ms-active' : ''"/>
           </div>
         </div>
       </div>
 
 
-      <div :class="isOpen ? 'col-4 mx-5' : ''" v-if="isOpen">
+      <div :class="isOpen ? 'mx-5 ms-filter-open' : 'ms-filter-close'">
         <!-- OFFCANVAS  -->
         <div>
           <div class="filterContainer">
@@ -151,7 +151,7 @@ export default {
         services: this.storeFilter.selectedServices,
       });
       this.apartments = response;
-      console.log("call");
+
     },
     async autoComplete(inputSearch) {
       const response = await Search.autocomplete(inputSearch)
@@ -227,6 +227,31 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/partials/variables";
 
+.ms-col.close {
+  transition: all .3s ease-in-out;
+
+  width: 100%;
+}
+
+.ms-col.open {
+  transition: all .3s ease-in-out;
+  width: 70%;
+  
+}
+
+.ms-filter-open {
+  transition: all .3s ease-in-out;
+  width: 30%;
+  
+}
+
+.ms-filter-close {
+  transition: all .3s ease-in-out;
+
+  overflow: hidden;
+  width: 0;
+}
+
 .square-image {
   aspect-ratio: 1/1;
 }
@@ -291,6 +316,10 @@ li:hover {
     height: 50px;
     border-radius: 10px;
   }
+}
+
+.ms-active {
+  border: 2px solid green;
 }
 
 

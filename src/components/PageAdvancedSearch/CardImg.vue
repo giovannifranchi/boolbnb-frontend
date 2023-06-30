@@ -69,7 +69,6 @@ export default {
     },
     getAllImages() {
       if (this.dataApartment) {
-        console.log(this.dataApartment);
         const images = [this.dataApartment.thumb];
         this.dataApartment.images.forEach((image) => {
           images.push(image.path);

@@ -10,4 +10,5 @@ export const storeFilter = reactive({
     beds: 0,
     rooms: 0,
     baths: 0,
+    activeApartment: null,
 })
