@@ -35,8 +35,8 @@ export default {
     <div v-if="!isbusy">
       <h1>OUR CHOICES</h1>
       <div class="row">
-        <div class="col-lg-4 col-sm-12" v-for="highlighted in getHighlighted">
-          <CardImg :dataApartment="highlighted" :highlight="true"/>
+        <div class="mb-4 col-lg-4 col-sm-12" v-for="highlighted in getHighlighted">
+          <CardImg :dataApartment="highlighted" :highlight="true" />
         </div>
       </div>
     </div>
@@ -51,13 +51,13 @@ export default {
 .container {
   background-color: white;
   /* border-radius: 10px; */
-/*   box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.18);
- */  padding: 10px 30px 20px 30px;
+  /*   box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.18);
+ */
+  padding: 10px 30px 20px 30px;
 }
 
-  h1 {
-    color: $custom-black;
-    padding: 15px;
-  }
-
+h1 {
+  color: $custom-black;
+  padding: 15px;
+}
 </style>
