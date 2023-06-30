@@ -23,6 +23,11 @@ export default {
     dataArray: {
       type: Array,
     },
+
+    isOpen: {
+      type: Boolean,
+      required: true,
+    }
   },
 
   computed: {
@@ -87,106 +92,78 @@ export default {
 
       return radius;
     },
-  },
-  watch: {
-    dataArray: {
-      handler(newValue) {
-        if (newValue && newValue.length > 0) {
-          let map = tt.map({
-            key: import.meta.env.VITE_TOMTOM_API_KEY,
-            container: "map",
-            center: [this.$route.query.longitude, this.$route.query.latitude], // Change this to your desired initial position
-            zoom: this.calculateZoom(this.storeFilter.range),
-          });
 
-          this.dataArray.forEach((Element) => {
-            let marker = new tt.Marker().setLngLat([Element.longitude, Element.latitude]).addTo(map);
-
-            let markerElement = marker.getElement();
-
-            let tooltip = document.createElement("div");
-            tooltip.className = "marker-tooltip";
-            tooltip.textContent = `Price: ${Element.price}`;
-            tooltip.style.display = "none";
-
-            markerElement.append(tooltip);
-
-            markerElement.addEventListener("mouseenter", () => {
-              // Show the tooltip
-              tooltip.style.display = "block";
-              this.storeFilter.activeApartment = Element.id;
-            });
-
-            markerElement.addEventListener("mouseleave", () => {
-              // Hide the tooltip
-              tooltip.style.display = "none";
-              this.storeFilter.activeApartment = null;
-            });
-
-            // Add a click event listener to the marker's DOM element
-            markerElement.addEventListener("click", () => {
-              console.log("Marker clicked:", Element.id);
-              this.$router.push({name: "apartment", params: {id: Element.id, slug: Element.slug}})
-            });
-
-            marker.getElement().style.cursor = "pointer";
-          });
-
-          map.on("zoomend", () => {
-            const zoomLevel = map.getZoom();
-            this.storeFilter.range = this.calculateRadius(zoomLevel);
-          });
-        }
-      },
-      deep: true,
-    },
-  },
-
-  mounted() {
-    let map = tt.map({
-      key: import.meta.env.VITE_TOMTOM_API_KEY,
-      container: "map",
-      center: [this.$route.query.longitude, this.$route.query.latitude], // Change this to your desired initial position
-      zoom: this.calculateZoom(this.storeFilter.range),
-    });
-
-    this.dataArray.forEach((Element) => {
-      let marker = new tt.Marker().setLngLat([Element.longitude, Element.latitude]).addTo(map);
-
-      let markerElement = marker.getElement();
-
-      let tooltip = document.createElement("div");
-      tooltip.className = "marker-tooltip";
-      tooltip.textContent = `Price: ${Element.price}`;
-      tooltip.style.display = "none";
-
-      markerElement.append(tooltip);
-
-      markerElement.addEventListener("mouseenter", () => {
-        // Show the tooltip
-        tooltip.style.display = "block";
+    createMap() {
+      let map = tt.map({
+        key: import.meta.env.VITE_TOMTOM_API_KEY,
+        container: "map",
+        center: [this.$route.query.longitude, this.$route.query.latitude], // Change this to your desired initial position
+        zoom: this.calculateZoom(this.storeFilter.range),
       });
 
-      markerElement.addEventListener("mouseleave", () => {
-        // Hide the tooltip
+      this.dataArray.forEach((Element) => {
+        let marker = new tt.Marker().setLngLat([Element.longitude, Element.latitude]).addTo(map);
+
+        let markerElement = marker.getElement();
+
+        let tooltip = document.createElement("div");
+        tooltip.className = "marker-tooltip";
+        tooltip.textContent = `Price: ${Element.price}`;
         tooltip.style.display = "none";
-      });
+
+        markerElement.append(tooltip);
+
+        markerElement.addEventListener("mouseenter", () => {
+          // Show the tooltip
+          tooltip.style.display = "block";
+        });
+
+        markerElement.addEventListener("mouseleave", () => {
+          // Hide the tooltip
+          tooltip.style.display = "none";
+        });
+
+        // Add a click event listener to the marker's DOM element
+        markerElement.addEventListener("click", () => {
+          console.log("Marker clicked:", Element.id);
+          this.storeFilter.activeApartment = Element.id;
+        });
+
+
+        marker.getElement().style.cursor = "pointer";
 
       // Add a click event listener to the marker's DOM element
       markerElement.addEventListener("click", () => {
         console.log("Marker clicked:", Element.id);
         this.storeFilter.activeApartment = Element.id;
         this.$router.push({name: "apartment", params: {id: Element.id, slug: Element.slug}})
+
       });
 
-      marker.getElement().style.cursor = "pointer";
-    });
-
-    map.on("zoomend", () => {
-      const zoomLevel = map.getZoom();
-      this.storeFilter.range = this.calculateRadius(zoomLevel);
-    });
+      map.on("zoomend", () => {
+        const zoomLevel = map.getZoom();
+        this.storeFilter.range = this.calculateRadius(zoomLevel);
+      });
+    },
   },
+  watch: {
+    dataArray: {
+      handler(newValue) {
+        if (newValue && newValue.length > 0) {
+          this.createMap();
+        }
+      },
+      deep: true,
+    },
+
+    isOpen(newValue){
+      if(newValue){
+        this.createMap();
+      }
+    }
+  },
+
+  
 };
 </script>
 
