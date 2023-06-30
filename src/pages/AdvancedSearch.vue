@@ -93,8 +93,7 @@ export default {
       foundedItems: [],
       searchRadius: 20,
       position: null,
-      isOpen: false,
-      isOpenFilter: false,
+      isOpen: true,
     };
   },
   mounted() {
