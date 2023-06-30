@@ -1,6 +1,6 @@
 <template>
   <div :style="{
-  backgroundImage: 'url(' + cities[randomInt(0, cities.length - 1)] + ')',
+  backgroundImage: 'url(' + cities[0] + ')',
   backgroundPosition: 'center',
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat' }" class="background-img d-flex align-items-center mb-5">
