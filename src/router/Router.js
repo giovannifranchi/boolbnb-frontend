@@ -22,67 +22,106 @@ const routes = [
             {
                 name: 'home',
                 path: '/',
-                component: Home
+                component: Home,
+                meta: {
+                    title: "Home"
+                }
             },
             {
                 name: 'login',
                 path: '/login',
-                component: Login
+                component: Login,
+                meta: {
+                    title: "Login"
+                }
             },
             {
                 name: 'register',
                 path: '/register',
-                component: Register
+                component: Register,
+                meta: {
+                    title: "Register"
+                }
             },
             {
                 name: 'dashboard',
                 path: '/dashboard',
-                component: Dashboard
+                component: Dashboard,
+                meta: {
+                    title: "Dashboard"
+                }
             },
             {
                 name: 'apartments',
                 path: '/dashboard/apartments',
-                component: Apartments
+                component: Apartments,
+                meta: {
+                    title: "Apartments"
+                }
             },
             {
                 name: 'add',
                 path: '/dashboard/apartments/:slug/add',
-                component: Add
+                component: Add,
+                meta: {
+                    title: "Add"
+                }
             },
             {
                 name: 'edit',
                 path: '/dashboard/apartments/:slug/edit',
-                component: Edit
+                component: Edit,
+                meta: {
+                    title: "Edit"
+                }
             },
             {
                 name: 'statistics',
                 path: '/dashboard/apartments/:slug/statistics',
-                component: Statistics
+                component: Statistics,
+                meta: {
+                    title: "Statistics"
+                }
             },
             {
                 name: 'sponsor',
                 path: '/dashboard/apartments/:slug/sponsor',
-                component: Sponsor
+                component: Sponsor,
+                meta: {
+                    title: "Sponsor"
+                }
             },
             {
                 name: 'apartment',
                 path: '/apartment/:slug/:id',
-                component: Apartment
+                component: Apartment,
+                meta: {
+                    title: "Apartment"
+                }
             },
             {
                 path: '/advanced-search',
                 name: 'AdvancedSearch',
                 component: AdvancedSearch,
+                meta: {
+                    title: "Advanced Search"
+                }
             },
             {
                 name: 'successSend',
                 path: '/apartment/:slug/success',
-                component: SuccessSend
+                component: SuccessSend,
+                meta: {
+                    title: "Success Send"
+                }
             },
             {
                 name: 'notFound',
                 path: '/:pathMatch(.*)*',
-                component: PageNotFound
+                component: PageNotFound,
+                meta: {
+                    title: "Page Not Found"
+                }
             },
         ]
     },
@@ -92,5 +131,10 @@ const router = createRouter({
     history: createWebHistory(),
     routes
 });
+
+router.beforeEach((to, from, next) => {
+    document.title = `${to.meta.title}`;
+    next();
+})
 
 export default router;
