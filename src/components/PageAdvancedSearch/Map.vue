@@ -129,7 +129,15 @@ export default {
           this.storeFilter.activeApartment = Element.id;
         });
 
+
         marker.getElement().style.cursor = "pointer";
+
+      // Add a click event listener to the marker's DOM element
+      markerElement.addEventListener("click", () => {
+        console.log("Marker clicked:", Element.id);
+        this.storeFilter.activeApartment = Element.id;
+        this.$router.push({name: "apartment", params: {id: Element.id, slug: Element.slug}})
+
       });
 
       map.on("zoomend", () => {

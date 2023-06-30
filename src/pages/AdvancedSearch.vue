@@ -319,7 +319,7 @@ li:hover {
 }
 
 .ms-active {
-  border: 2px solid green;
+  background-color: #c1c1c1;
 }
 
 

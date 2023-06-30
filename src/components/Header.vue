@@ -29,7 +29,8 @@ export default {
 @import '../assets/partials/variables';
 
 header {
-    border-bottom: 0.125rem solid $custom-black;
+    height: 80px;
+    border-bottom: 1px solid $custom-black;
 
     .logo {
         cursor: pointer;
@@ -47,7 +48,7 @@ header {
 
     .icon {
         font-size: 3.4375rem;
-        color: $custom-black;
+        color: $custom-green;
     }
     @media (min-width:576px){
         .logo-img-small{

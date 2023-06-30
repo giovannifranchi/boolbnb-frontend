@@ -92,6 +92,14 @@ export default {
 .card {
   background-color: transparent;
   border: none;
+  padding-top: 10px;
+
+  &:hover {
+    transition: 0.2s;
+    transform: scale(1.02);
+    background-color: rgba(0, 0, 0, 0.108);
+
+  }
 
   .carousel-inner {
     margin: 0;
@@ -104,6 +112,7 @@ export default {
         width: 100%;
         aspect-ratio: 1/1;
         object-fit: cover; // Ridimensiona l'immagine in modo da coprire l'area specificata senza distorcere l'aspetto
+
       }
     }
   }
@@ -116,13 +125,16 @@ export default {
     background-color: rgba(255, 255, 255, 0.563);
     border-radius: 25px;
 
-    &:hover {
-      transform: scale(1.06);
-    }
+    // &:hover {
+
+    //   transition: 0.2s;
+    //   transform: scale(1.06);
+    // }
 
     .miniature {
       width: 40px;
       margin: 4px;
+
     }
   }
 
