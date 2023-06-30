@@ -51,7 +51,7 @@
         <!-- OFFCANVAS  -->
         <div>
           <div class="filterContainer">
-            <Map :data-array="apartments" />
+            <Map :data-array="apartments"  :is-open="isOpen"/>
             <!-- Filtri -->
             <DistanceRange />
             <PriceRange />
@@ -228,25 +228,25 @@ export default {
 @import "../assets/partials/variables";
 
 .ms-col.close {
-  transition: all .3s ease-in-out;
+  transition: all .2s ease-in-out;
 
   width: 100%;
 }
 
 .ms-col.open {
-  transition: all .3s ease-in-out;
+  transition: all .2s ease-in-out;
   width: 70%;
   
 }
 
 .ms-filter-open {
-  transition: all .3s ease-in-out;
+  transition: all .2s ease-in-out;
   width: 30%;
   
 }
 
 .ms-filter-close {
-  transition: all .3s ease-in-out;
+  transition: all .2s ease-in-out;
 
   overflow: hidden;
   width: 0;
@@ -339,19 +339,4 @@ li:hover {
   }
 }
 
-// .slide-enter-active {
-//   transition: transform 0.5s ease;
-// }
-
-// .slide-enter {
-//   transform: translateX(100%);
-// }
-
-// .slide-leave-active {
-//   transition: transform 0.5s ease;
-// }
-
-// .slide-leave-to {
-//   transform: translateX(100%);
-// }
 </style>
