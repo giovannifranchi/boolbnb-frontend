@@ -93,6 +93,13 @@ export default {
   background-color: transparent;
   border: none;
 
+  &:hover {
+    padding-top: 10px;
+    background-color: rgba(0, 0, 0, 0.108);
+    transition: 0.2s;
+    transform: scale(1.02);
+  }
+
   .carousel-inner {
     margin: 0;
     padding: 0;
@@ -117,12 +124,15 @@ export default {
     border-radius: 25px;
 
     &:hover {
+
+      transition: 0.2s;
       transform: scale(1.06);
     }
 
     .miniature {
       width: 40px;
       margin: 4px;
+
     }
   }
 
