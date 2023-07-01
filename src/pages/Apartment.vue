@@ -130,7 +130,7 @@ export default {
     up() {
       console.log(this.activePic);
       if(this.activePic > 0 ) this.activePic--;
-        if (this.activePic >= 5 && this.activePic <= this.images.length - 6) {
+        if (this.activeEnd > 5 && this.activePic <= this.images.length - 5) {
           this.activeStart--;
           this.activeEnd--;
           this.activeArray = this.images.slice(this.activeStart, this.activeEnd);
@@ -140,7 +140,7 @@ export default {
     down() {
       console.log(this.activePic);
       if(this.activePic < this.images.length - 1) this.activePic++;
-      if (this.activeEnd < this.images.length - 1) {
+      if (this.activeEnd < this.images.length) {
         if (this.activePic >= 5) {
           this.activeStart++;
           this.activeEnd++;
