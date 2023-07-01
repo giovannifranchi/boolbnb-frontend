@@ -22,7 +22,7 @@
                 :src="images"
                 alt=""
                 class="w-100 square-image"
-                :class="{ active: index == activePic  }"
+                :class="{ active: index + activeStart == activePic  }"
                 @click="selectedImage(index)"
               />
             </div>
