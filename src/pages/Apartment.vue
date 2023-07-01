@@ -15,6 +15,7 @@
         </div>
         <!-- others -->
         <div class="list-img col-lg-2 col-sm-12">
+          IMGS {{ activePic + 1 }} / {{ images.length }}
           <div class="row flex-lg-column gap-3 mt-3 mt-lg-0">
             <button class="btn btn-primary" @click="up">UP</button>
             <div class="col-sm-12" v-for="(image, index) in images.slice(activeStart, activeEnd)">
@@ -23,7 +24,7 @@
                 alt=""
                 class="w-100 square-image"
                 :class="{ active: index + activeStart == activePic  }"
-                @click="selectedImage(index)"
+                @click="selectedImage(index + activeStart)"
               />
             </div>
             <button class="btn btn-primary" @click="down">Down</button>
@@ -118,9 +119,7 @@ export default {
 
   methods: {
     selectedImage(index) {
-      this.activePic = this.getAllImages[index];
-      this.indexOfActive = index;
-      console.log(this.activePic);
+      this.activePic = index;
     },
 
     convertDateFormat(date) {
