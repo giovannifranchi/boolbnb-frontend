@@ -11,13 +11,13 @@
       <div class="row">
         <!-- main img -->
         <div class="main-img col-lg-10 col-sm-12">
-          <img :src="activeArray[activePic]" alt="..." class="w-100 square-image" id="thumbnail" />
+          <img :src="images[activePic]" alt="..." class="w-100 square-image" id="thumbnail" />
         </div>
         <!-- others -->
         <div class="list-img col-lg-2 col-sm-12">
           <div class="row flex-lg-column gap-3 mt-3 mt-lg-0">
             <button class="btn btn-primary" @click="up">UP</button>
-            <div class="col-sm-12" v-for="(images, index) in activeArray">
+            <div class="col-sm-12" v-for="(images, index) in images.slice(activeStart, activeEnd)">
               <img
                 :src="images"
                 alt=""
@@ -106,7 +106,7 @@ export default {
       activeArray: [],
       indexOfActive: 0,
       activeStart: 0,
-      activeEnd: 4,
+      activeEnd: 5,
     };
   },
 
@@ -130,7 +130,7 @@ export default {
     up() {
       if (this.activeStart > 0) {
         this.activePic--;
-        if (this.activePic > 4) {
+        if (this.activePic >= 5) {
           this.activeStart--;
           this.activeEnd--;
           this.activeArray = this.images.slice(this.activeStart, this.activeEnd);
@@ -142,7 +142,7 @@ export default {
     down() {
       if (this.activeEnd < this.images.length - 1) {
         this.activePic++;
-        if (this.activePic > 4) {
+        if (this.activePic >= 5) {
           this.activeStart++;
           this.activeEnd++;
           this.activeArray = this.images.slice(this.activeStart, this.activeEnd);
