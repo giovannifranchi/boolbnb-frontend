@@ -109,7 +109,7 @@ export default {
   name: "Apartment",
   components: {
     AppMessage,
-
+    BackBtn,
     MapDetail
 
   },
