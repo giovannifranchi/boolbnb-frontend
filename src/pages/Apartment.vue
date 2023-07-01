@@ -1,8 +1,7 @@
 <template>
-  		
   <!-- card details -->
   <div class="container pt-3 " v-if="!isbusy">
-    <BackBtn/>
+    <BackBtn />
     <!-- <button class="btn-back my-3"> <a href="/advanced-search">Go Back</a></button> add link  -->
     <div class="title mb-4">
       <h1>{{ apartment.name }}</h1>
@@ -18,8 +17,8 @@
         <div class="list-img col-lg-2 col-sm-12">
           <div class="row flex-lg-column gap-3 mt-3 mt-lg-0">
             <div class="col-sm-12" v-for="(images, index) in getAllImages">
-              <img :src="images" alt="" class=" w-100 square-image" :class="{ active: index == indexOfActive ? true : false }"
-                @click="selectedImage(index)" />
+              <img :src="images" alt="" class=" w-100 square-image"
+                :class="{ active: index == indexOfActive ? true : false }" @click="selectedImage(index)" />
             </div>
           </div>
         </div>
@@ -37,7 +36,7 @@
             Location: <strong>{{ apartment.city }}</strong>
           </li>
           <li>
-          Address: <strong>{{ apartment.address }}</strong>
+            Address: <strong>{{ apartment.address }}</strong>
           </li>
           <li>
             Price: <strong>{{ apartment.price }}€/night</strong>
@@ -74,13 +73,15 @@
         <AppMessage :apartment_id="apartment.id" />
       </div>
     </div>
-
+  </div>
+  <div class="col-lg-6 col-sm-12 px-4" v-if="apartment">
+    <MapDetail :info="apartment"/>
   </div>
 </template>
 
 <script>
 import Apartment from "../api/Apartment";
-import Service from "../api/Service";
+import MapDetail from "../components/PageDetails/MapDetail.vue";
 import AppMessage from "../components/PageDetails/AppMessage.vue";
 import { watchEffect } from "vue";
 import moment from "moment";
@@ -90,7 +91,7 @@ export default {
   name: "Apartment",
   components: {
     AppMessage,
-    BackBtn
+    MapDetail
   },
 
   data() {
@@ -158,35 +159,43 @@ export default {
   aspect-ratio: 1/1;
   object-fit: cover;
 }
-.container-card{
+
+.container-card {
   background-color: white;
   padding: 25px;
 }
-.main-img{
+
+.main-img {
   max-height: 100;
 }
+
 .active {
   border: 2px solid rgb(46, 204, 113);
 }
 
-a{
-  color:inherit;
+a {
+  color: inherit;
   text-decoration: none;
 }
-.info-section{
-    margin-bottom: 40px;
-  }
-@media (max-width: 576px) {
-  .container-card{
-  background-color:transparent;
-  padding: 0;
+
+.info-section {
+  margin-bottom: 40px;
 }
-  .title{
+
+@media (max-width: 576px) {
+  .container-card {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  .title {
     padding: 0 10px;
   }
-  .info-section{
+
+  .info-section {
     padding: 0 10px;
   }
+
   .main-img {
     display: none;
   }
@@ -198,5 +207,4 @@ a{
   .active {
     border: none;
   }
-}
-</style>
+}</style>
