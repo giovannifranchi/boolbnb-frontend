@@ -12,7 +12,7 @@
       <div class="row">
         <!-- main img -->
         <div class="main-img col-lg-10 col-sm-12">
-          <img :src="activePic" alt="..." class=" w-100 square-image" id="thumbnail" />
+          <img :src="activeArray[0]" alt="..." class=" w-100 square-image" id="thumbnail"/>
         </div>
         <!-- others -->
         <div class="list-img col-lg-2 col-sm-12">
@@ -98,11 +98,17 @@ export default {
       isbusy: true,
       apartment: null,
       images: [],
-      activePic: null,
+      activePic: 0,
       activeArray: [],
       indexOfActive: 0,
       activeStart: 0,
       activeEnd: 4,
+    }
+  },
+
+  computed: {
+    getActivePic(){
+      if(this.activeArray.length > 0) return this.activeArray[this.activePic];
     }
   },
 
@@ -122,6 +128,7 @@ export default {
         this.activeStart--;
         this.activeEnd--;
         this.activeArray = this.images.slice(this.activeStart, this.activeEnd);
+        this.activePic--;
       }
     },
 
@@ -130,6 +137,7 @@ export default {
         this.activeStart++;
         this.activeEnd++;
         this.activeArray = this.images.slice(this.activeStart, this.activeEnd);
+        this.activePic++;
       }
     }
   },
