@@ -17,9 +17,9 @@
         <div class="list-img col-lg-2 col-sm-12">
           <div class="row flex-lg-column gap-3 mt-3 mt-lg-0">
             <button class="btn btn-primary" @click="up">UP</button>
-            <div class="col-sm-12" v-for="(images, index) in images.slice(activeStart, activeEnd)">
+            <div class="col-sm-12" v-for="(image, index) in images.slice(activeStart, activeEnd)">
               <img
-                :src="images"
+                :src="image"
                 alt=""
                 class="w-100 square-image"
                 :class="{ active: index + activeStart == activePic  }"
@@ -128,20 +128,19 @@ export default {
     },
 
     up() {
-      if (this.activeStart > 0) {
-        this.activePic--;
-        if (this.activePic >= 5) {
+      console.log(this.activePic);
+      if(this.activePic > 0 ) this.activePic--;
+        if (this.activePic >= 5 && this.activePic <= this.images.length - 6) {
           this.activeStart--;
           this.activeEnd--;
           this.activeArray = this.images.slice(this.activeStart, this.activeEnd);
-        }
-        console.log(this.activePic);
       }
     },
 
     down() {
+      console.log(this.activePic);
+      if(this.activePic < this.images.length - 1) this.activePic++;
       if (this.activeEnd < this.images.length - 1) {
-        this.activePic++;
         if (this.activePic >= 5) {
           this.activeStart++;
           this.activeEnd++;
