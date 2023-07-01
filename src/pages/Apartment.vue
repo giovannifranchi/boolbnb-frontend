@@ -17,10 +17,12 @@
         <!-- others -->
         <div class="list-img col-lg-2 col-sm-12">
           <div class="row flex-lg-column gap-3 mt-3 mt-lg-0">
-            <div class="col-sm-12" v-for="(images, index) in getAllImages">
+            <button class="btn btn-primary" @click="up">UP</button>
+            <div class="col-sm-12" v-for="(images, index) in activeArray">
               <img :src="images" alt="" class=" w-100 square-image" :class="{ active: index == indexOfActive ? true : false }"
                 @click="selectedImage(index)" />
             </div>
+            <button class="btn btn-primary" @click="down">Down</button>
           </div>
         </div>
       </div>
@@ -80,9 +82,7 @@
 
 <script>
 import Apartment from "../api/Apartment";
-import Service from "../api/Service";
 import AppMessage from "../components/PageDetails/AppMessage.vue";
-import { watchEffect } from "vue";
 import moment from "moment";
 import BackBtn from "../components/PageDetails/BackBtn.vue";
 
@@ -97,44 +97,13 @@ export default {
     return {
       isbusy: true,
       apartment: null,
-
-      services: {
-        type: Object,
-      },
       images: [],
       activePic: null,
+      activeArray: [],
       indexOfActive: 0,
-      timeStamp: null,
-    };
-  },
-  async created() {
-    const response = await Apartment.getOne(this.$route.params.id);
-    // response.error ? this.$router.push({name:'notFound'}) : ()=>{this.apartment=response;this.isbusy = false;}
-    this.apartment = response;
-    this.isbusy = false;
-    if (this.apartment) {
-      this.images.push(this.apartment.thumb);
-      this.apartment.images.forEach((image) => {
-        this.images.push(image.path);
-      });
+      activeStart: 0,
+      activeEnd: 4,
     }
-  },
-  mounted() {
-    watchEffect(() => {
-      if (this.images.length > 0) {
-        this.activePic = this.images[0];
-      }
-    });
-  },
-
-  computed: {
-    getAllImages() {
-      if (this.apartment) {
-        const allImages = [this.apartment.thumb, ...this.apartment.images.map((image) => image.path)];
-        return allImages;
-      }
-      return [];
-    },
   },
 
   methods: {
@@ -147,6 +116,39 @@ export default {
     convertDateFormat(date) {
       return moment(date).format("DD-MM-YYYY");
     },
+
+    up(){
+      if(this.activeStart > 0 ){
+        this.activeStart--;
+        this.activeEnd--;
+        this.activeArray = this.images.slice(this.activeStart, this.activeEnd);
+      }
+    },
+
+    down(){
+      if(this.activeEnd < this.images.length - 1){
+        this.activeStart++;
+        this.activeEnd++;
+        this.activeArray = this.images.slice(this.activeStart, this.activeEnd);
+      }
+    }
+  },
+
+  async created() {
+    const response = await Apartment.getOne(this.$route.params.id);
+    // response.error ? this.$router.push({name:'notFound'}) : ()=>{this.apartment=response;this.isbusy = false;}
+    this.apartment = response;
+    this.isbusy = false;
+    if (this.apartment) {
+      this.images.push(this.apartment.thumb);
+      this.apartment.images.forEach((image) => {
+        this.images.push(image.path);
+      });
+      this.activeArray = this.images.slice(this.activeStart, this.activeEnd);
+      if (this.images.length > 0) {
+        this.activePic = this.activeArray[0];
+      }
+    }
   },
 };
 </script>
