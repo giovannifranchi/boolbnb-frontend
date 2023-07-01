@@ -1,6 +1,8 @@
 <template>
   <!-- card details -->
-  <div class="container pt-3" v-if="!isbusy">
+
+  <div class="container pt-3 " v-if="!isbusy">
+
     <BackBtn />
     <!-- <button class="btn-back my-3"> <a href="/advanced-search">Go Back</a></button> add link  -->
     <div class="title mb-4">
@@ -17,6 +19,7 @@
         <div class="list-img col-lg-2 col-sm-12">
           IMGS {{ activePic + 1 }} / {{ images.length }}
           <div class="row flex-lg-column gap-3 mt-3 mt-lg-0">
+
             <button class="btn btn-primary" @click="up">UP</button>
             <div class="col-sm-12" v-for="(image, index) in images.slice(activeStart, activeEnd)">
               <img
@@ -82,11 +85,22 @@
         <AppMessage :apartment_id="apartment.id" />
       </div>
     </div>
+
+  </div>
+      <!-- map -->
+  <div class="container">
+    <div class="col-lg-12 col-sm-12" v-if="apartment">
+      <MapDetail :info="apartment" />
+    </div>
+
   </div>
 </template>
 
 <script>
 import Apartment from "../api/Apartment";
+
+import MapDetail from "../components/PageDetails/MapDetail.vue";
+
 import AppMessage from "../components/PageDetails/AppMessage.vue";
 import moment from "moment";
 import BackBtn from "../components/PageDetails/BackBtn.vue";
@@ -95,7 +109,9 @@ export default {
   name: "Apartment",
   components: {
     AppMessage,
-    BackBtn,
+
+    MapDetail
+
   },
 
   data() {
@@ -173,13 +189,16 @@ export default {
   aspect-ratio: 1/1;
   object-fit: cover;
 }
+
 .container-card {
   background-color: white;
   padding: 25px;
 }
+
 .main-img {
   max-height: 100;
 }
+
 .active {
   border: 2px solid rgb(46, 204, 113);
 }
@@ -188,20 +207,27 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+
 .info-section {
   margin-bottom: 40px;
 }
+
 @media (max-width: 576px) {
   .container-card {
     background-color: transparent;
     padding: 0;
   }
+
+
   .title {
     padding: 0 10px;
   }
+
   .info-section {
     padding: 0 10px;
   }
+
   .main-img {
     display: none;
   }
