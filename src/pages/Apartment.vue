@@ -74,8 +74,11 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-6 col-sm-12 px-4" v-if="apartment">
-    <MapDetail :info="apartment"/>
+      <!-- map -->
+  <div class="container">
+    <div class="col-lg-12 col-sm-12" v-if="apartment">
+      <MapDetail :info="apartment" />
+    </div>
   </div>
 </template>
 
@@ -207,4 +210,5 @@ a {
   .active {
     border: none;
   }
-}</style>
+}
+</style>

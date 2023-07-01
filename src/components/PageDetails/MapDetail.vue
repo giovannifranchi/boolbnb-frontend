@@ -35,6 +35,7 @@ export default ({
 <style lang="scss" scoped>
 #map {
     height: 400px;
-    width: 600px;
+    border: 1px solid lightgrey;
+
 }
 </style>
