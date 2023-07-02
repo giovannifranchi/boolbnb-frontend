@@ -27,7 +27,7 @@ const routes = [
                     title: "BoolBnB"
                 }
             },
-/*             {
+            /* {
                 name: 'login',
                 path: '/login',
                 component: Login,
@@ -50,7 +50,7 @@ const routes = [
                 meta: {
                     title: "Dashboard"
                 }
-            },
+            }, 
             {
                 name: 'apartments',
                 path: '/dashboard/apartments',
@@ -91,8 +91,8 @@ const routes = [
                 meta: {
                     title: "Sponsor"
                 }
-            },
-
+            }, 
+ */
             {
                 name: 'apartment',
                 path: '/apartment/:slug/:id',
@@ -109,7 +109,7 @@ const routes = [
                     title: "Advanced Search"
                 }
             },
-/*             {
+            /*  {
                 name: 'successSend',
                 path: '/apartment/:slug/success',
                 component: SuccessSend,
@@ -125,7 +125,7 @@ const routes = [
                 meta: {
                     title: "Page Not Found"
                 }
-            },
+            },  */
 
         ]
     },
