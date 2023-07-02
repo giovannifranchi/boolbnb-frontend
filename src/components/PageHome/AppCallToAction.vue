@@ -60,7 +60,7 @@ export default {
         background-color: $custom-green;
         width: 100%;
         padding: 14px 24px;
-        color: $custom-white;
+        color: white;
         font-size: 23px;
         font-weight: bold;
         /* border-radius: 10px; */
