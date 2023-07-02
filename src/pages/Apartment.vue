@@ -17,24 +17,34 @@
         </div>
         <!-- others -->
         <div class="list-img col-lg-2 col-sm-12">
-          IMGS {{ activePic + 1 }} / {{ images.length }}
-          <div class="row flex-lg-column gap-3 mt-3 mt-lg-0">
+          <p class="mb-2">IMG {{ activePic + 1 }} / {{ images.length }}</p>
+          
+          <div>
+            <button class="btn  btn-carsousel-up" @click="up"><font-awesome-icon icon="fa-chevron-up"/></button>
+            <div class="row flex-lg-column gap-3 mt-3 mt-lg-0">
 
-            <button class="btn btn-primary" @click="up">UP</button>
-            <div class="col-sm-12" v-for="(image, index) in images.slice(activeStart, activeEnd)">
-              <img
-                :src="image"
-                alt=""
-                class="w-100 square-image"
-                :class="{ active: index + activeStart == activePic  }"
-                @click="selectedImage(index + activeStart)"
-              />
+              <div class="col-sm-12" v-for="(image, index) in images.slice(activeStart, activeEnd)">
+                <img :src="image" alt="" class="w-100 square-image" :class="{ active: index + activeStart == activePic }"
+                  @click="selectedImage(index + activeStart)" />
+              </div>
+
             </div>
-            <button class="btn btn-primary" @click="down">Down</button>
+                          <button class="btn  btn-carsousel-down" @click="down"><font-awesome-icon icon="fa-chevron-down"/></button>
+
           </div>
+
         </div>
       </div>
     </div>
+    <!--     <button class="carousel-control-prev" @click="up" type="button">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" :data-bs-target="'#carouselIndicators_' + uniqueId"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button> -->
 
     <div class="info-section row mt-5">
       <div class="col-lg-6 col-sm-12 px-3">
@@ -87,7 +97,7 @@
     </div>
 
   </div>
-      <!-- map -->
+  <!-- map -->
   <div class="container">
     <div class="col-lg-12 col-sm-12" v-if="apartment">
       <MapDetail :info="apartment" />
@@ -144,17 +154,17 @@ export default {
 
     up() {
       console.log(this.activePic);
-      if(this.activePic > 0 ) this.activePic--;
-        if (this.activeEnd > 5 && this.activePic <= this.images.length - 5) {
-          this.activeStart--;
-          this.activeEnd--;
-          this.activeArray = this.images.slice(this.activeStart, this.activeEnd);
+      if (this.activePic > 0) this.activePic--;
+      if (this.activeEnd > 5 && this.activePic <= this.images.length - 5) {
+        this.activeStart--;
+        this.activeEnd--;
+        this.activeArray = this.images.slice(this.activeStart, this.activeEnd);
       }
     },
 
     down() {
       console.log(this.activePic);
-      if(this.activePic < this.images.length - 1) this.activePic++;
+      if (this.activePic < this.images.length - 1) this.activePic++;
       if (this.activeEnd < this.images.length) {
         if (this.activePic >= 5) {
           this.activeStart++;
@@ -199,6 +209,10 @@ export default {
   max-height: 100;
 }
 
+.list-img {
+  position: relative;
+}
+
 .active {
   border: 2px solid rgb(46, 204, 113);
 }
@@ -213,6 +227,27 @@ a {
   margin-bottom: 40px;
 }
 
+.btn-carsousel-down {
+  bottom: 0;
+}
+.btn-carsousel-down, .btn-carsousel-up{
+  position: absolute;
+  z-index: 20;
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: white; 
+  opacity:0.5;
+  
+}
+.btn-carsousel-down, .btn-carsousel-up:hover{
+opacity:1;
+border: none;
+}
+.btn-carsousel-down, .btn-carsousel-up:active{
+  color: white;
+opacity:1;
+border: none;
+}
 @media (max-width: 576px) {
   .container-card {
     background-color: transparent;
