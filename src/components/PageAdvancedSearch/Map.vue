@@ -127,15 +127,11 @@ export default {
         markerElement.addEventListener("mouseenter", () => {
 
           storeFilter.activeApartment = Element.id;
-          tooltip.style.display = "block";
           // Show the tooltip
           tooltip.style.display = "inline-block";
 
         });
 
-        if (storeFilter.hoveredApartment === Element.id) {
-          markerElement.style.background = "red";
-        }
 
         markerElement.addEventListener("mouseleave", () => {
           storeFilter.activeApartment = null;
@@ -151,7 +147,7 @@ export default {
 
         marker.getElement().style.cursor = "pointer";
 
-        this.markers.push({ id: Element.id, marker: marker });
+        this.markers.push({ id: Element.id, marker: marker, tooltip: tooltip });
       });
 
       map.on("zoomend", () => {
@@ -174,17 +170,16 @@ export default {
       this.createMap();
     },
 
-    getHovered(newValue) {
-      this.createMap();
-    },
 
     getHovered(newValue, oldValue) {
-      this.markers.forEach(({ id, marker }) => {
+      this.markers.forEach(({ id, marker, tooltip }) => {
         let markerElement = marker.getElement();
         if (id === newValue) {
-          markerElement.style.background = "red";
+          markerElement.style.background = 'red';
+          tooltip.style.display = 'inline-block'
         } else if (id === oldValue) {
-          markerElement.style.background = "";
+          markerElement.style.background = '';
+          tooltip.style.display = 'none'
         }
       });
     },
