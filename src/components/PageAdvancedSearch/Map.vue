@@ -148,12 +148,12 @@ export default {
       deep: true,
     },
 
-    isOpen(newValue){
+    isOpen(newValue) {
       this.createMap();
     }
   },
 
-  mounted() {},
+  mounted() { },
 };
 </script>
 
@@ -174,9 +174,7 @@ export default {
   white-space: nowrap;
 }
 
-@media (min-width: 767px) {
-}
+@media (min-width: 767px) {}
 
-@media (min-width: 992px) {
-}
+@media (min-width: 992px) {}
 </style>

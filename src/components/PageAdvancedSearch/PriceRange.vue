@@ -22,10 +22,10 @@ export default {
 
     methods: {
         setChange() {
-            
+
             this.storeFilter.minPrice = this.priceRange[0];
             this.storeFilter.maxPrice = this.priceRange[1];
-            
+
         }
     },
 
@@ -33,7 +33,7 @@ export default {
 </script>
 
 <template>
-    <div class="price-range" v-if="storeFilter.lowerPrice && storeFilter.biggestPrice">
+    <div class="price-range mb-4 mx-4" v-if="storeFilter.lowerPrice && storeFilter.biggestPrice">
         <h5 class="mb-5 mt-4">Fascia di prezzo</h5>
         <Slider :min="this.storeFilter.lowerPrice" :max="this.storeFilter.biggestPrice" v-model="priceRange" :merge="merge"
             :format="format" />

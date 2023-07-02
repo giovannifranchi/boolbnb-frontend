@@ -71,74 +71,93 @@ export default {
 
 }
 </script>
+<template >
+    <div class="mx-4">
 
-<template>
-    <!-- Rooms -->
-    <div>
-        <h5>Numero Stanze</h5>
-        <ul class="px-0 pt-2 d-flex">
-            <li class="filter-select" v-for="(room, index) in 7" :key="room">
-                <button class="btn" :class="index === getRooms ? 'active' : ''" @click="setRooms(index)">{{
-                    getBtnValue(index) }}</button>
-            </li>
-        </ul>
-    </div>
-    <!-- /Rooms -->
-    <!-- beds -->
-    <div>
-        <h5>Numero Letti</h5>
-        <ul class="px-0 pt-2">
-            <ul class="px-0 pt-2 d-flex">
+
+        <!-- Rooms -->
+        <div>
+            <h5>Numero Stanze</h5>
+            <ul class="room-buttons">
+                <li class="filter-select" v-for="(room, index) in 7" :key="room">
+                    <button class="btn" :class="index === getRooms ? 'active' : ''" @click="setRooms(index)">
+                        {{ getBtnValue(index) }}
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <!-- /Rooms -->
+        <!-- beds -->
+        <div>
+            <h5>Numero Letti</h5>
+            <ul class="bed-buttons">
                 <li class="filter-select" v-for="(bed, index) in 7" :key="bed">
-                    <button class="btn" :class="index === getBeds ? 'active' : ''" @click="setBeds(index)">{{
-                        getBtnValue(index) }}</button>
+                    <button class="btn" :class="index === getBeds ? 'active' : ''" @click="setBeds(index)">
+                        {{ getBtnValue(index) }}
+                    </button>
                 </li>
             </ul>
-        </ul>
-    </div>
-    <!-- /beds -->
-    <!-- bathrooms -->
-    <div>
-        <h5>Numero Bagni</h5>
-        <ul class="px-0 pt-2">
-            <ul class="px-0 pt-2 d-flex">
+        </div>
+        <!-- /beds -->
+        <!-- bathrooms -->
+        <div>
+            <h5>Numero Bagni</h5>
+            <ul class="bath-buttons">
                 <li class="filter-select" v-for="(bath, index) in 7" :key="bath">
-                    <button class="btn" :class="index === getBaths ? 'active' : ''" @click="setBaths(index)">{{
-                        getBtnValue(index) }}</button>
+                    <button class="btn" :class="index === getBaths ? 'active' : ''" @click="setBaths(index)">
+                        {{ getBtnValue(index) }}
+                    </button>
                 </li>
             </ul>
-        </ul>
-    </div>
-    <!-- /bathrooms -->
-    <!-- services -->
-    <div v-if="!isbusy">
-        <h5>Servizi</h5>
-        <div class="row ps-3">
-            <div class="form-check col-6" v-for="service in getServices">
-                <input class="form-check-input" type="checkbox" :value="service.id" id="check-service"
-                    @change="getSelectedServices.includes(service.id) ? removeService(service.id) : selectService(service.id)"
-                    :selected="getSelectedServices.includes(service.id)">
-                <label class="form-check-label" for="check-service">
-                    <div>
-                        <font-awesome-icon aria-expanded="false" :icon="service.icon_url" class="icon" />
-                        {{ service.name }}
-
-                    </div>
-                </label>
+        </div>
+        <!-- /bathrooms -->
+        <!-- services -->
+        <div v-if="!isbusy">
+            <h5>Servizi</h5>
+            <div class="row ps-3">
+                <div class="form-check col-6" v-for="service in getServices" :key="service.id">
+                    <input class="form-check-input" type="checkbox" :value="service.id"
+                        :id="'check-service' + '-' + service.id" @change="toggleService(service.id)"
+                        :checked="getSelectedServices.includes(service.id)" />
+                    <label class="form-check-label" :for="'check-service' + '-' + service.id">
+                        <div>
+                            <font-awesome-icon aria-expanded="false" :icon="service.icon_url" class="icon" />
+                            {{ service.name }}
+                        </div>
+                    </label>
+                </div>
             </div>
         </div>
+        <!-- /services -->
     </div>
-    <!-- /services -->
 </template>
-
+  
 <style lang="scss" scoped>
 @import '../../assets/partials/variables';
 
 button {
     border: solid 1px $custom-black;
     border-radius: 1.5625rem;
-    margin-right: 10px;
+    margin-right: 8px;
+    margin-bottom: 8px;
     padding: 3px 15px;
+
+    @media screen and (max-width: 768px) {
+        /* Stili per schermi più piccoli di 768px */
+        padding: 3px 10px;
+    }
+}
+
+ul {
+    padding-left: 0;
+}
+
+.room-buttons,
+.bed-buttons,
+.bath-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
 }
 
 .active {
@@ -148,14 +167,12 @@ button {
     border: 1px $custom-black solid;
 }
 
-
-
 .btn-positive {
     background-color: $custom-blu;
 }
 
 .btn-negative {
     background-color: $custom-red;
-    /*  } */
 }
 </style>
+  

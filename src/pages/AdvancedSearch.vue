@@ -1,9 +1,9 @@
 <template>
   <div class="container d-flex justify-content-center align-items-center mb-4">
     <div class="container">
-      <h2 class="mb-4">ADVANCE SEARCH</h2>
+      <!-- <h2 class="mb-4">ADVANCE SEARCH</h2> -->
       <!-- search bar -->
-      <div class="d-flex flex-column">
+      <div class="d-flex flex-column mt-4">
         <form @submit.prevent="sendPositionButton(foundedItems[0].address)">
           <div class="d-flex">
             <input type="text" name="search" id="search" v-model="inputSearch" :placeholder="position"
@@ -29,38 +29,44 @@
         </div>
       </div>
       <!-- /search bar -->
+      <h5 class="mt-3">{{ apartments.length }} results</h5>
     </div>
   </div>
 
-  <div :class="isOpen ? ' container-fluid px-5' : 'container-fluid'">
-    <div class="d-flex">
-      <div class="ms-col" :class="isOpen ? 'open' : 'close'">
-        <div v-if="apartments.length > 0">
-          <h5>{{ apartments.length }} apartments found in {{ apartments[0]['city'] }}</h5>
+  <div id="main-container" class="container-fluid">
+
+
+
+    <div :class="isOpen ? ' ms-filter-open' : 'ms-filter-close d-none'">
+      <!-- OFFCANVAS  -->
+      <div class="">
+        <div class="filterContainer">
+          <Map :data-array="apartments" :is-open="isOpen" />
+          <!-- Filtri -->
+          <DistanceRange />
+          <PriceRange />
         </div>
-        <div class="row">
-          <div :class="isOpen ? 'col-lg-4' : ''" class="col-lg-3 col-md-4 col-sm-12 my-4"
-            v-for="apartment in  apartments " :key="apartment.id">
-            <CardImg :dataApartment="apartment" :class="storeFilter.activeApartment === apartment.id ? 'ms-active' : ''"/>
-          </div>
-        </div>
+        <ModalFilter />
       </div>
+      <!-- /OFFCANVAS  -->
+    </div>
 
 
-      <div :class="isOpen ? 'mx-5 ms-filter-open' : 'ms-filter-close'">
-        <!-- OFFCANVAS  -->
-        <div>
-          <div class="filterContainer">
-            <Map :data-array="apartments"  :is-open="isOpen"/>
-            <!-- Filtri -->
-            <DistanceRange />
-            <PriceRange />
-          </div>
-          <ModalFilter />
+
+
+
+
+    <div class="ms-col" :class="isOpen ? 'open' : 'close'">
+      <div class="row">
+        <div :class="isOpen ? 'col-lg-4' : ''" class="col-lg-3 col-md-4 col-sm-12 " v-for="apartment in  apartments"
+          :key="apartment.id">
+          <CardImg :dataApartment="apartment" :class="storeFilter.activeApartment === apartment.id ? 'ms-active' : ''" />
         </div>
-        <!-- /OFFCANVAS  -->
       </div>
     </div>
+
+
+
 
   </div>
 </template>
@@ -190,10 +196,10 @@ export default {
       this.position = address.streetName || '' + ' ' +
         address.municipality + ' ' +
         address.country
-        const prices = this.apartments.map(apartment => apartment.price);
-       this.storeFilter.biggestPrice = Math.max(...prices);
-       this.storeFilter.lowerPrice = Math.min(...prices);
-        console.log('send position button');
+      const prices = this.apartments.map(apartment => apartment.price);
+      this.storeFilter.biggestPrice = Math.max(...prices);
+      this.storeFilter.lowerPrice = Math.min(...prices);
+      console.log('send position button');
     },
     collapse() {
       this.isOpen = !this.isOpen
@@ -231,6 +237,11 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/partials/variables";
 
+
+.filterContainer {
+  flex-shrink: 0;
+}
+
 .ms-col.close {
   transition: all .2s ease-in-out;
 
@@ -240,13 +251,13 @@ export default {
 .ms-col.open {
   transition: all .2s ease-in-out;
   width: 70%;
-  
+
 }
 
 .ms-filter-open {
   transition: all .2s ease-in-out;
   width: 30%;
-  
+
 }
 
 .ms-filter-close {
@@ -326,21 +337,48 @@ li:hover {
   background-color: #c1c1c1;
 }
 
+#main-container {
+  display: flex;
+  flex-direction: row-reverse;
+}
 
-@media (min-width: 767px) {
-  .ms-row {
-    height: 50vh;
+@media (max-width: 991px) {
+  #main-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ms-col {
+    width: 100%;
+  }
+
+  .ms-filter-open {
+    width: 100%;
+  }
+
+  .ms-filter-close {
+    width: 0;
+  }
+
+  .ms-col.open {
+    transition: all .2s ease-in-out;
+    width: 100%;
+
   }
 }
 
 @media (min-width: 992px) {
-  .ms-row {
-    height: 70vh;
+  .ms-col {
+    width: 70%;
   }
 
-  .offcanvas {
-    width: 25% !important;
+  .ms-filter-open {
+    width: 30%;
+  }
+
+  .ms-filter-close {
+    width: 0;
+    overflow: hidden;
   }
 }
-
 </style>
