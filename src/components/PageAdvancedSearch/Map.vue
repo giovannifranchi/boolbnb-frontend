@@ -17,6 +17,7 @@ export default {
     return {
       apartments: [],
       storeFilter,
+      markers: [],
     };
   },
   props: {
@@ -25,8 +26,8 @@ export default {
     },
     isOpen: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
 
   computed: {
@@ -40,6 +41,9 @@ export default {
           return { lat: apartment.latitude, lng: apartment.longitude };
         });
       }
+    },
+    getHovered() {
+      return storeFilter.hoveredApartment;
     },
   },
 
@@ -121,12 +125,20 @@ export default {
         markerElement.append(tooltip);
 
         markerElement.addEventListener("mouseenter", () => {
+
+          storeFilter.activeApartment = Element.id;
+          tooltip.style.display = "block";
           // Show the tooltip
           tooltip.style.display = "inline-block";
+
         });
 
+        if (storeFilter.hoveredApartment === Element.id) {
+          markerElement.style.background = "red";
+        }
+
         markerElement.addEventListener("mouseleave", () => {
-          // Hide the tooltip
+          storeFilter.activeApartment = null;
           tooltip.style.display = "none";
         });
 
@@ -138,6 +150,8 @@ export default {
         });
 
         marker.getElement().style.cursor = "pointer";
+
+        this.markers.push({ id: Element.id, marker: marker });
       });
 
       map.on("zoomend", () => {
@@ -158,10 +172,25 @@ export default {
 
     isOpen(newValue) {
       this.createMap();
-    }
+    },
+
+    getHovered(newValue) {
+      this.createMap();
+    },
+
+    getHovered(newValue, oldValue) {
+      this.markers.forEach(({ id, marker }) => {
+        let markerElement = marker.getElement();
+        if (id === newValue) {
+          markerElement.style.background = "red";
+        } else if (id === oldValue) {
+          markerElement.style.background = "";
+        }
+      });
+    },
   },
 
-  mounted() { },
+  mounted() {},
 };
 </script>
 
@@ -172,7 +201,9 @@ export default {
 }
 
 
-@media (min-width: 767px) {}
+@media (min-width: 767px) {
+}
 
-@media (min-width: 992px) {}
+@media (min-width: 992px) {
+}
 </style>
