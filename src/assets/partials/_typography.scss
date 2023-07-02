@@ -1,9 +1,11 @@
 @font-face {
-    font-family: 'logo';
-    src: url('../assets/fonts/Nunito/static/Nunito-Black.ttf') format('truetype');
+    font-family: 'roboto';
+    src: url('../assets/fonts/roboto/Roboto-Regular.ttf') format('truetype');
 }
 
 
-.logo {
-    font-family: 'logo';
+
+
+* {
+    font-family: 'roboto';
 }
