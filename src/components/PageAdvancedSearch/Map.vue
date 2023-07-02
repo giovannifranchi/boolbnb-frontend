@@ -176,6 +176,7 @@ export default {
         let markerElement = marker.getElement();
         if (id === newValue) {
           markerElement.style.background = 'red';
+          markerElement.style.borderRadius = '5px';
           tooltip.style.display = 'inline-block'
         } else if (id === oldValue) {
           markerElement.style.background = '';
