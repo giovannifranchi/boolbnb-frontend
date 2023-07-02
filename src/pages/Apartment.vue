@@ -17,7 +17,7 @@
         </div>
         <!-- others -->
         <div class="list-img col-lg-2 col-sm-12">
-          <p class="mb-2">IMG {{ activePic + 1 }} / {{ images.length }}</p>
+          <p class="n-img mb-2">IMG {{ activePic + 1 }} / {{ images.length }}</p>
           
           <div>
             <button class="btn  btn-carsousel-up" @click="up"><font-awesome-icon icon="fa-chevron-up"/></button>
@@ -36,15 +36,6 @@
         </div>
       </div>
     </div>
-    <!--     <button class="carousel-control-prev" @click="up" type="button">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" :data-bs-target="'#carouselIndicators_' + uniqueId"
-          data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button> -->
 
     <div class="info-section row mt-5">
       <div class="col-lg-6 col-sm-12 px-3">
@@ -248,13 +239,7 @@ border: none;
 opacity:1;
 border: none;
 }
-@media (max-width: 576px) {
-  .container-card {
-    background-color: transparent;
-    padding: 0;
-  }
-
-
+@media (max-width:768px) {
   .title {
     padding: 0 10px;
   }
@@ -263,7 +248,7 @@ border: none;
     padding: 0 10px;
   }
 
-  .main-img {
+  .main-img, .n-img, .btn {
     display: none;
   }
 
