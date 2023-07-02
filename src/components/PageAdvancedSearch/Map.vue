@@ -113,12 +113,12 @@ export default {
         markerElement.append(tooltip);
 
         markerElement.addEventListener("mouseenter", () => {
-          // Show the tooltip
+          storeFilter.activeApartment = Element.id;
           tooltip.style.display = "block";
         });
 
         markerElement.addEventListener("mouseleave", () => {
-          // Hide the tooltip
+          storeFilter.activeApartment = null;
           tooltip.style.display = "none";
         });
 

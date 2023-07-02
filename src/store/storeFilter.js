@@ -11,5 +11,5 @@ export const storeFilter = reactive({
     rooms: 0,
     baths: 0,
     activeApartment: null,
-    priceRange: []
+    hoveredApartment: null,
 })
