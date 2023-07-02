@@ -111,14 +111,26 @@ export default {
 
         let tooltip = document.createElement("div");
         tooltip.className = "marker-tooltip";
-        tooltip.textContent = `Price: ${Element.price}`;
+        tooltip.textContent = `${Element.price}$`;
         tooltip.style.display = "none";
+        tooltip.style.background = 'black';
+        tooltip.style.padding = '10px 5px';
+        tooltip.style.fontSize = '18px'
+        tooltip.style.color = 'white'
+        tooltip.style.borderRadius = '200px'
+        tooltip.style.zIndex = '1000'
+        tooltip.style.position = 'relative'
+
 
         markerElement.append(tooltip);
 
         markerElement.addEventListener("mouseenter", () => {
+
           storeFilter.activeApartment = Element.id;
           tooltip.style.display = "block";
+          // Show the tooltip
+          tooltip.style.display = "inline-block";
+
         });
 
         if (storeFilter.hoveredApartment === Element.id) {
@@ -132,7 +144,7 @@ export default {
 
         // Add a click event listener to the marker's DOM element
         markerElement.addEventListener("click", () => {
-          console.log("Marker clicked:", Element.id);
+
           this.storeFilter.activeApartment = Element.id;
           this.$router.push({ name: "apartment", params: { id: Element.id, slug: Element.slug } });
         });
@@ -188,16 +200,6 @@ export default {
   border-radius: 10px;
 }
 
-.marker-tooltip {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 5px;
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-}
 
 @media (min-width: 767px) {
 }
