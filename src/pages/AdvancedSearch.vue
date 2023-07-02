@@ -60,7 +60,7 @@
       <div class="row">
         <div :class="isOpen ? 'col-lg-4' : ''" class="col-lg-3 col-md-4 col-sm-12 " v-for="apartment in  apartments"
           :key="apartment.id">
-          <CardImg :dataApartment="apartment" :class="storeFilter.activeApartment === apartment.id ? 'ms-active' : ''" />
+          <CardImg :dataApartment="apartment" :class="storeFilter.activeApartment === apartment.id ? 'ms-active' : ''"  @mouseenter="storeFilter.hoveredApartment = apartment.id" @mouseleave="storeFilter.hoveredApartment = null"/>
         </div>
       </div>
     </div>
