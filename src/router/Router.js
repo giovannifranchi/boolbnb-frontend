@@ -1,18 +1,18 @@
 import { createRouter, createWebHistory } from "vue-router";
 import MainLayout from '../layouts/MainLayout.vue'
 import Home from '../pages/Home.vue';
-import Login from '../pages/Login.vue';
+/* import Login from '../pages/Login.vue';
 import Register from '../pages/Register.vue';
 import Dashboard from '../pages/Dashboard.vue';
 import Apartments from '../pages/Apartments.vue';
 import Add from '../pages/Add.vue';
 import Edit from '../pages/Edit.vue';
 import Statistics from '../pages/Statistics.vue';
-import Sponsor from '../pages/Sponsor.vue';
+import Sponsor from '../pages/Sponsor.vue'; */
 import Apartment from '../pages/Apartment.vue';
 import AdvancedSearch from '../pages/AdvancedSearch.vue';
-import SuccessSend from '../pages/SuccessSend.vue';
-import PageNotFound from '../pages/PageNotFound.vue';
+/* import SuccessSend from '../pages/SuccessSend.vue';
+import PageNotFound from '../pages/PageNotFound.vue'; */
 
 const routes = [
     {
@@ -27,7 +27,7 @@ const routes = [
                     title: "BoolBnB"
                 }
             },
-            {
+/*             {
                 name: 'login',
                 path: '/login',
                 component: Login,
@@ -86,11 +86,13 @@ const routes = [
             {
                 name: 'sponsor',
                 path: '/dashboard/apartments/:slug/sponsor',
+
                 component: Sponsor,
                 meta: {
                     title: "Sponsor"
                 }
             },
+
             {
                 name: 'apartment',
                 path: '/apartment/:slug/:id',
@@ -107,7 +109,7 @@ const routes = [
                     title: "Advanced Search"
                 }
             },
-            {
+/*             {
                 name: 'successSend',
                 path: '/apartment/:slug/success',
                 component: SuccessSend,
@@ -118,11 +120,13 @@ const routes = [
             {
                 name: 'notFound',
                 path: '/:pathMatch(.*)*',
+
                 component: PageNotFound,
                 meta: {
                     title: "Page Not Found"
                 }
             },
+
         ]
     },
 ];

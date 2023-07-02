@@ -51,7 +51,7 @@
         <!-- OFFCANVAS  -->
         <div>
           <div class="filterContainer">
-            <Map :data-array="apartments" />
+            <Map :data-array="apartments"  :is-open="isOpen"/>
             <!-- Filtri -->
             <DistanceRange />
             <PriceRange />
@@ -93,8 +93,7 @@ export default {
       foundedItems: [],
       searchRadius: 20,
       position: null,
-      isOpen: false,
-      isOpenFilter: false,
+      isOpen: true,
     };
   },
   mounted() {
@@ -137,6 +136,7 @@ export default {
       const prices = this.apartments.map(apartment => apartment.price);
       this.storeFilter.biggestPrice = Math.max(...prices);
       this.storeFilter.lowerPrice = Math.min(...prices);
+      console.log(storeFilter.biggestPrice);
     },
     async searchAdvanced() {
       const response = await Apartment.searchByPosition({
@@ -190,6 +190,10 @@ export default {
       this.position = address.streetName || '' + ' ' +
         address.municipality + ' ' +
         address.country
+        const prices = this.apartments.map(apartment => apartment.price);
+       this.storeFilter.biggestPrice = Math.max(...prices);
+       this.storeFilter.lowerPrice = Math.min(...prices);
+        console.log('send position button');
     },
     collapse() {
       this.isOpen = !this.isOpen
@@ -228,25 +232,25 @@ export default {
 @import "../assets/partials/variables";
 
 .ms-col.close {
-  transition: all .3s ease-in-out;
+  transition: all .2s ease-in-out;
 
   width: 100%;
 }
 
 .ms-col.open {
-  transition: all .3s ease-in-out;
+  transition: all .2s ease-in-out;
   width: 70%;
   
 }
 
 .ms-filter-open {
-  transition: all .3s ease-in-out;
+  transition: all .2s ease-in-out;
   width: 30%;
   
 }
 
 .ms-filter-close {
-  transition: all .3s ease-in-out;
+  transition: all .2s ease-in-out;
 
   overflow: hidden;
   width: 0;
@@ -339,19 +343,4 @@ li:hover {
   }
 }
 
-// .slide-enter-active {
-//   transition: transform 0.5s ease;
-// }
-
-// .slide-enter {
-//   transform: translateX(100%);
-// }
-
-// .slide-leave-active {
-//   transition: transform 0.5s ease;
-// }
-
-// .slide-leave-to {
-//   transform: translateX(100%);
-// }
 </style>

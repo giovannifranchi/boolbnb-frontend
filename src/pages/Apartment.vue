@@ -1,26 +1,38 @@
 <template>
-  		
   <!-- card details -->
+
   <div class="container pt-3 " v-if="!isbusy">
+
+    <BackBtn />
     <!-- <button class="btn-back my-3"> <a href="/advanced-search">Go Back</a></button> add link  -->
     <div class="title mb-4">
       <h1>{{ apartment.name }}</h1>
     </div>
 
-    <div class="container-card ">
+    <div class="container-card">
       <div class="row">
         <!-- main img -->
         <div class="main-img col-lg-10 col-sm-12">
-          <img :src="activePic" alt="..." class=" w-100 square-image" id="thumbnail" />
+          <img :src="images[activePic]" alt="..." class="w-100 square-image" id="thumbnail" />
         </div>
         <!-- others -->
         <div class="list-img col-lg-2 col-sm-12">
-          <div class="row flex-lg-column gap-3 mt-3 mt-lg-0">
-            <div class="col-sm-12" v-for="(images, index) in getAllImages">
-              <img :src="images" alt="" class=" w-100 square-image" :class="{ active: index == indexOfActive ? true : false }"
-                @click="selectedImage(index)" />
+          <p class="n-img mb-2">IMG {{ activePic + 1 }} / {{ images.length }}</p>
+          
+          <div>
+            <button class="btn  btn-carsousel-up" @click="up"><font-awesome-icon icon="fa-chevron-up"/></button>
+            <div class="row flex-lg-column gap-3 mt-3 mt-lg-0">
+
+              <div class="col-sm-12" v-for="(image, index) in images.slice(activeStart, activeEnd)">
+                <img :src="image" alt="" class="w-100 square-image" :class="{ active: index + activeStart == activePic }"
+                  @click="selectedImage(index + activeStart)" />
+              </div>
+
             </div>
+                          <button class="btn  btn-carsousel-down" @click="down"><font-awesome-icon icon="fa-chevron-down"/></button>
+
           </div>
+
         </div>
       </div>
     </div>
@@ -36,7 +48,7 @@
             Location: <strong>{{ apartment.city }}</strong>
           </li>
           <li>
-          Address: <strong>{{ apartment.address }}</strong>
+            Address: <strong>{{ apartment.address }}</strong>
           </li>
           <li>
             Price: <strong>{{ apartment.price }}€/night</strong>
@@ -60,8 +72,9 @@
         <h3 class="mb-3">Services:</h3>
         <ul class="d-flex p-0 gap-3 flex-wrap">
           <li v-for="(service, index) in apartment.services">
-            <p class="mb-1"><font-awesome-icon aria-expanded="false" :icon="service.icon_url" class="icon" /> {{
-              service.name }}</p>
+            <p class="mb-1">
+              <font-awesome-icon aria-expanded="false" :icon="service.icon_url" class="icon" /> {{ service.name }}
+            </p>
           </li>
         </ul>
 
@@ -75,35 +88,85 @@
     </div>
 
   </div>
+  <!-- map -->
+  <div class="container">
+    <div class="col-lg-12 col-sm-12" v-if="apartment">
+      <MapDetail :info="apartment" />
+    </div>
+
+  </div>
 </template>
 
 <script>
 import Apartment from "../api/Apartment";
-import Service from "../api/Service";
+
+import MapDetail from "../components/PageDetails/MapDetail.vue";
+
 import AppMessage from "../components/PageDetails/AppMessage.vue";
-import { watchEffect } from "vue";
 import moment from "moment";
+import BackBtn from "../components/PageDetails/BackBtn.vue";
 
 export default {
   name: "Apartment",
   components: {
     AppMessage,
+    BackBtn,
+    MapDetail
+
   },
 
   data() {
     return {
       isbusy: true,
       apartment: null,
-
-      services: {
-        type: Object,
-      },
       images: [],
-      activePic: null,
+      activePic: 0,
+      activeArray: [],
       indexOfActive: 0,
-      timeStamp: null,
+      activeStart: 0,
+      activeEnd: 5,
     };
   },
+
+  computed: {
+    getActivePic() {
+      if (this.activeArray.length > 0) return this.activeArray[this.activePic];
+    },
+  },
+
+  methods: {
+    selectedImage(index) {
+      this.activePic = index;
+    },
+
+    convertDateFormat(date) {
+      return moment(date).format("DD-MM-YYYY");
+    },
+
+    up() {
+      console.log(this.activePic);
+      if (this.activePic > 0) this.activePic--;
+      if (this.activeEnd > 5 && this.activePic <= this.images.length - 5) {
+        this.activeStart--;
+        this.activeEnd--;
+        this.activeArray = this.images.slice(this.activeStart, this.activeEnd);
+      }
+    },
+
+    down() {
+      console.log(this.activePic);
+      if (this.activePic < this.images.length - 1) this.activePic++;
+      if (this.activeEnd < this.images.length) {
+        if (this.activePic >= 5) {
+          this.activeStart++;
+          this.activeEnd++;
+          this.activeArray = this.images.slice(this.activeStart, this.activeEnd);
+        }
+        console.log(this.activePic);
+      }
+    },
+  },
+
   async created() {
     const response = await Apartment.getOne(this.$route.params.id);
     // response.error ? this.$router.push({name:'notFound'}) : ()=>{this.apartment=response;this.isbusy = false;}
@@ -114,36 +177,8 @@ export default {
       this.apartment.images.forEach((image) => {
         this.images.push(image.path);
       });
+      this.activeArray = this.images.slice(this.activeStart, this.activeEnd);
     }
-  },
-  mounted() {
-    watchEffect(() => {
-      if (this.images.length > 0) {
-        this.activePic = this.images[0];
-      }
-    });
-  },
-
-  computed: {
-    getAllImages() {
-      if (this.apartment) {
-        const allImages = [this.apartment.thumb, ...this.apartment.images.map((image) => image.path)];
-        return allImages;
-      }
-      return [];
-    },
-  },
-
-  methods: {
-    selectedImage(index) {
-      this.activePic = this.getAllImages[index];
-      this.indexOfActive = index;
-      console.log(this.activePic);
-    },
-
-    convertDateFormat(date) {
-      return moment(date).format("DD-MM-YYYY");
-    },
   },
 };
 </script>
@@ -155,49 +190,65 @@ export default {
   aspect-ratio: 1/1;
   object-fit: cover;
 }
-.container-card{
+
+.container-card {
   background-color: white;
   padding: 25px;
 }
-.main-img{
+
+.main-img {
   max-height: 100;
 }
+
+.list-img {
+  position: relative;
+}
+
 .active {
   border: 2px solid rgb(46, 204, 113);
 }
-.btn-back{
-		margin-top: 20px;
-		border: 2px solid $custom-green;
-		padding:10px 20px;
-		color:$custom-green;
-		border-radius: 25px;
-		font-weight: 600;
-	}
-	.btn-back:hover{
-		/* scale: 1.05; */
-		transition: transform 0.2s ease-in-out;
-		background-color: $custom-green;
-		color:white;	
-	}
-a{
-  color:inherit;
+
+a {
+  color: inherit;
   text-decoration: none;
 }
-.info-section{
-    margin-bottom: 40px;
-  }
-@media (max-width: 576px) {
-  .container-card{
-  background-color:transparent;
-  padding: 0;
+
+
+.info-section {
+  margin-bottom: 40px;
 }
-  .title{
+
+.btn-carsousel-down {
+  bottom: 0;
+}
+.btn-carsousel-down, .btn-carsousel-up{
+  position: absolute;
+  z-index: 20;
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: white; 
+  opacity:0.5;
+  
+}
+.btn-carsousel-down, .btn-carsousel-up:hover{
+opacity:1;
+border: none;
+}
+.btn-carsousel-down, .btn-carsousel-up:active{
+  color: white;
+opacity:1;
+border: none;
+}
+@media (max-width:768px) {
+  .title {
     padding: 0 10px;
   }
-  .info-section{
+
+  .info-section {
     padding: 0 10px;
   }
-  .main-img {
+
+  .main-img, .n-img, .btn {
     display: none;
   }
 
