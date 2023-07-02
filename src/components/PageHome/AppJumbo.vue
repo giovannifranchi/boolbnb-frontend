@@ -1,39 +1,36 @@
 <template>
   <div :style="{
-  backgroundImage: 'url(' + cities[0] + ')',
-  backgroundPosition: 'center',
-  backgroundSize: 'cover',
-  backgroundRepeat: 'no-repeat' }" class="background-img d-flex align-items-center mb-5">
-<div class="container">
-  <form class="form-container d-flex flex-column" @submit.prevent="sendPositionButton()">
+    backgroundImage: 'url(' + cities[0] + ')',
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat'
+  }" class="background-img d-flex align-items-center mb-5">
+    <div class="container">
+      <form class="form-container d-flex flex-column py-4" @submit.prevent="sendPositionButton()">
         <h2>Find where to stay</h2>
         <label for="search">Book unique accommodations, homes, and more on with us!</label>
         <div class="input-container row align-items-start pb-2 ">
-          <div class="col-lg-10 col-sm-12 pt-3">          
-            <input
-          placeholder="Search here..."
-          type="text"
-          name="search"
-          id="search"
-          v-model="inputSearch"
-          @input="autoComplete(inputSearch)"/>
+          <div class="col-lg-10 col-sm-12 pt-3">
+            <input placeholder="Search here..." type="text" name="search" id="search" v-model="inputSearch"
+              @input="autoComplete(inputSearch)" />
 
-        <ul v-if="inputSearch">
-          <li class="list" v-for="element in foundedItems" @click="sendPosition(element.position)">
-            {{ element.address.streetName || "" + " " + element.address.municipality + " " + element.address.country }}
-          </li>
-        </ul>
-      </div>
-      <div class="col-lg-2 col-sm-12 pt-3">
-        <div class="button-container">
-          <button type="submit">Search</button>
-        </div>
-      </div>
+            <ul v-if="inputSearch">
+              <li class="list" v-for="element in foundedItems" @click="sendPosition(element.position)">
+                {{ element.address.streetName || "" + " " + element.address.municipality + " " + element.address.country
+                }}
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-sm-12 pt-3">
+            <div class="button-container">
+              <button type="submit">Search</button>
+            </div>
+          </div>
 
         </div>
 
       </form>
-</div>
+    </div>
   </div>
 </template>
 
@@ -49,7 +46,7 @@ export default {
       inputSearch: "",
       foundedItems: [],
       defaultRadius: 20,
-      cities: ['src/assets/images/rome.webp', 'src/assets/images/bern.jpg', 'src/assets/images/copenaghen.jpg', 'src/assets/images/dublin.jpg', 'src/assets/images/prague.jpg', 'src/assets/images/lisbon.webp', 'src/assets/images/lisbon.webp', 'src/assets/images/tallinn.jpg' ]
+      cities: ['src/assets/images/rome.webp', 'src/assets/images/bern.jpg', 'src/assets/images/copenaghen.jpg', 'src/assets/images/dublin.jpg', 'src/assets/images/prague.jpg', 'src/assets/images/lisbon.webp', 'src/assets/images/lisbon.webp', 'src/assets/images/tallinn.jpg']
     };
   },
   computed: {
@@ -96,12 +93,12 @@ export default {
 <style lang="scss" scoped>
 @import "../../assets/partials/variables";
 
-.background-img{
+.background-img {
   height: 500px;
 }
 
 .form-container {
-  padding:10px 30px;
+  padding: 10px 30px;
   background-color: white;
   box-shadow: 0px 0px 20px 16px rgba(17, 17, 26, 0.18);
 
@@ -118,15 +115,18 @@ export default {
       }
     }
   }
-  .input-container{
+
+  .input-container {
     align-items: center;
-    input{
+
+    input {
       width: 100%;
     }
   }
+
   input,
   li {
-    
+
     border: 1px solid $custom-black;
     font-size: 1.25rem;
     padding: 5px 10px;
@@ -156,11 +156,14 @@ export default {
   .jumbotron {
     padding: 0;
   }
+
   .image-container {
     display: none;
   }
+
   .form-container {
     width: 100%;
+
     input,
     li {
       width: 100%;
