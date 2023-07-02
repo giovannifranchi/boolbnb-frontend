@@ -12,15 +12,17 @@
     <div class="container-card">
       <div class="row">
         <!-- main img -->
-        <div class="main-img col-lg-10 col-sm-12">
+        <div class="main-img col-md-10 col-sm-12">
+          <button class="btn  btn-carsousel-up-big" @click="up"><font-awesome-icon style="height:60px" icon="fa-chevron-up" /></button>
           <img :src="images[activePic]" alt="..." class="w-100 square-image" id="thumbnail" />
+          
+          <button class="btn  btn-carsousel-down-big" @click="down"><font-awesome-icon style="height:60px" icon="fa-chevron-down" /></button>
         </div>
         <!-- others -->
-        <div class="list-img col-lg-2 col-sm-12">
+        <div class="list-img  col-md-2 col-sm-12">
           <p class="n-img mb-2">IMG {{ activePic + 1 }} / {{ images.length }}</p>
-          
           <div>
-            <button class="btn  btn-carsousel-up" @click="up"><font-awesome-icon icon="fa-chevron-up"/></button>
+            <button class="btn  btn-carsousel-up" @click="up"><font-awesome-icon  icon="fa-chevron-up" /></button>
             <div class="row flex-lg-column gap-3 mt-3 mt-lg-0">
 
               <div class="col-sm-12" v-for="(image, index) in images.slice(activeStart, activeEnd)">
@@ -29,7 +31,7 @@
               </div>
 
             </div>
-                          <button class="btn  btn-carsousel-down" @click="down"><font-awesome-icon icon="fa-chevron-down"/></button>
+            <button class="btn  btn-carsousel-down" @click="down"><font-awesome-icon icon="fa-chevron-down" /></button>
 
           </div>
 
@@ -198,6 +200,7 @@ export default {
 
 .main-img {
   max-height: 100;
+  position: relative;
 }
 
 .list-img {
@@ -217,29 +220,46 @@ a {
 .info-section {
   margin-bottom: 40px;
 }
-
+.btn-carsousel-down-big,
 .btn-carsousel-down {
   bottom: 0;
 }
-.btn-carsousel-down, .btn-carsousel-up{
+
+.btn-carsousel-down,
+.btn-carsousel-up,
+.btn-carsousel-down-big,
+.btn-carsousel-up-big {
   position: absolute;
   z-index: 20;
   left: 50%;
   transform: translate(-50%, 0);
-  color: white; 
-  opacity:0.5;
-  
-}
-.btn-carsousel-down, .btn-carsousel-up:hover{
-opacity:1;
-border: none;
-}
-.btn-carsousel-down, .btn-carsousel-up:active{
   color: white;
-opacity:1;
-border: none;
+  opacity: 0.5;
+
 }
-@media (max-width:768px) {
+.btn-carsousel-down-big,
+.btn-carsousel-up-big,
+.btn-carsousel-down,
+.btn-carsousel-up:hover {
+  opacity: 1;
+  border: none;
+}
+
+
+.btn-carsousel-down,
+.btn-carsousel-up:active {
+  color: white;
+  opacity: 1;
+  border: none;
+}
+@media (min-width:768px){
+  .btn-carsousel-down-big,
+.btn-carsousel-up-big{
+  display:none;
+}
+
+}
+@media (max-width:767px) {
   .title {
     padding: 0 10px;
   }
@@ -248,16 +268,19 @@ border: none;
     padding: 0 10px;
   }
 
-  .main-img, .n-img, .btn {
+    .list-img, .n-img {
     display: none;
   }
-
-  .list-img {
-    padding: 0;
-  }
-
+  
   .active {
     border: none;
   }
+  .btn-carsousel-down-big,
+.btn-carsousel-up-big{
+  display:block;
+  height: 60p;
+  color: white;
+  opacity: 0.5;
+}
 }
 </style>
