@@ -20,6 +20,17 @@ export default {
         }
     },
 
+    computed: {
+        getlower(){
+            return storeFilter.lowerPrice;
+        },
+
+        getBigger(){
+            return storeFilter.biggestPrice;
+        }
+
+    },
+
     methods: {
         setChange() {
 
@@ -35,7 +46,7 @@ export default {
 <template>
     <div class="price-range mb-4 mx-4" v-if="storeFilter.lowerPrice && storeFilter.biggestPrice">
         <h5 class="mb-5 mt-4">Fascia di prezzo</h5>
-        <Slider :min="this.storeFilter.lowerPrice" :max="this.storeFilter.biggestPrice" v-model="priceRange" :merge="merge"
+        <Slider :min="getlower" :max="getBigger" v-model="priceRange" :merge="merge"
             :format="format" />
     </div>
 </template>
