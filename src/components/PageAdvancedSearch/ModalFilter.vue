@@ -115,13 +115,15 @@ export default {
         <div v-if="!isbusy">
             <h5>Servizi</h5>
             <div class="row ps-3">
-                <div class="form-check col-6" v-for="service in getServices" :key="service.id">
+                <div class="form-check col-6" v-for="service in getServices">
                     <input class="form-check-input" type="checkbox" :value="service.id" id="check-service"
-                        @change="toggleService(service.id)" :checked="getSelectedServices.includes(service.id)" />
+                        @change="getSelectedServices.includes(service.id) ? removeService(service.id) : selectService(service.id)"
+                        :selected="getSelectedServices.includes(service.id)">
                     <label class="form-check-label" for="check-service">
                         <div>
                             <font-awesome-icon aria-expanded="false" :icon="service.icon_url" class="icon" />
                             {{ service.name }}
+
                         </div>
                     </label>
                 </div>
