@@ -175,7 +175,6 @@ export default {
       this.markers.forEach(({ id, marker, tooltip }) => {
         let markerElement = marker.getElement();
         if (id === newValue) {
-          markerElement.style.background = 'red';
           markerElement.style.borderRadius = '5px';
           tooltip.style.display = 'inline-block'
         } else if (id === oldValue) {
@@ -186,7 +185,7 @@ export default {
     },
   },
 
-  mounted() {},
+  mounted() { },
 };
 </script>
 
@@ -197,9 +196,7 @@ export default {
 }
 
 
-@media (min-width: 767px) {
-}
+@media (min-width: 767px) {}
 
-@media (min-width: 992px) {
-}
+@media (min-width: 992px) {}
 </style>
